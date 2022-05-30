@@ -1,0 +1,15 @@
+//客製化 自己的按鈕樣式 (避免直接修改bootstrap變數檔主題色，會造成樣式過多)
+.btn-custom-search {
+    // 利用寫好的button-variant Mixins，直接用include 引用 加上參數 
+    @include button-variant($primary, $primary); 
+}
+
+.btn-outline-red {
+    @include button-outline-variant(#E0DA48); 
+}
+
+
+.btn-outline-bedag {
+    @include button-outline-variant( #BEA363); 
+}
+

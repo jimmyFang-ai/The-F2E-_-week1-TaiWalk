@@ -1,1 +1,65 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+ 
+  
+ // 首頁 header banner區塊
+.swiper-banner {
+    background: no-repeat center center;
+    background-size: cover;
+    height: 400px;
+}
 
+// 分頁樣式 pagination
+.swiper-pagination {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.swiper-pagination-bullet {
+    width: 16px;
+    height: 16px;
+    background-color: #C4C4C4;
+    opacity: .8;
+    &-active {
+        background-color: $white;
+        opacity: 1;
+    }
+}
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: 30px;
+}
+
+
+
+// 方向鍵樣式  navigation
+// 方向按鈕
+
+
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    left: 30px;
+    right: auto;
+    color: $white;
+    border-radius: 50%;
+    border: 1px solid $white;
+  }
+  
+  .swiper-button-next {
+      width: 40px;
+      height: 40px;
+      right: 30px;
+      left: auto;
+      color: $white;
+      border-radius: 50%;
+      border: 1px solid $white;
+  }
+  
+  
+  .swiper-button-prev::after ,.swiper-button-next::after {
+    font-size: 4px;
+  } 
+  

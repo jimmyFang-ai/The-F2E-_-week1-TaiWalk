@@ -12,11 +12,11 @@
 @import "./helpers/utilities";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
-// Aos
-@import "../../../node_modules/aos/dist/aos";
+// // // Aos
+// // @import "../../../node_modules/aos/dist/aos";
 
-// swiper
-@import "../../../node_modules/swiper/swiper.min";
+// // swiper
+// @import "../../../node_modules/swiper/swiper.min";
 
 
 
@@ -30,6 +30,7 @@
 // components
 @import './components/custom-swiper';
 @import './components/custom-border';
+@import './components/custom-btn';
 
 
 

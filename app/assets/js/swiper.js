@@ -1,22 +1,22 @@
-// const mySwiperDemo = new Swiper('.mySwiper', {
-//   // Optional parameters
-//   direction: 'vertical',
-//   loop: true,
+// 首頁 heroBanner 
+const swiperHeroBanner = new Swiper(".swiper-heroBanner", {
+    cssMode: true,
+    slidesPerView: 1,
+    // loop: true,
+    // autoplay: {
+    //   disableOnInteraction: false,
+    //   delay: 4000,
+    // },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+  });
+  
 
-//   // If we need pagination
-//   pagination: {
-//     el: '.swiper-pagination',
-//   },
 
-//   // Navigation arrows
-//   navigation: {
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//   },
-
-//   // And if we need scrollbar
-//   scrollbar: {
-//     el: '.swiper-scrollbar',
-//   },
-// });
-// console.log(mySwiperDemo);
+  console.log(mySwiper);
