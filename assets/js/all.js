@@ -4,26 +4,27 @@ function init() {// AOS.init();
 }
 
 ;
-// const mySwiperDemo = new Swiper('.mySwiper', {
-//   // Optional parameters
-//   direction: 'vertical',
-//   loop: true,
-//   // If we need pagination
-//   pagination: {
-//     el: '.swiper-pagination',
-//   },
-//   // Navigation arrows
-//   navigation: {
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//   },
-//   // And if we need scrollbar
-//   scrollbar: {
-//     el: '.swiper-scrollbar',
-//   },
-// });
-// console.log(mySwiperDemo);
 "use strict";
+
+// 首頁 heroBanner 
+var swiperHeroBanner = new Swiper(".swiper-heroBanner", {
+  cssMode: true,
+  slidesPerView: 1,
+  // loop: true,
+  // autoplay: {
+  //   disableOnInteraction: false,
+  //   delay: 4000,
+  // },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+});
+console.log(mySwiper);
 "use strict";
 
 var togglerBurger = document.querySelector('#toggler-burger'); // 預設是 false 選單關閉，不會出現打 X

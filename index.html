@@ -13,13 +13,16 @@
   <meta property="og:url" content="https://jimmyfang-ai.github.io/The-F2E-3rd---week1" />
 
 
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+
   <link rel="stylesheet" href="./assets/style/all.css">
 </head>
 
 <body>
 
   <!-- 導覽列 -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light py-1 py-lg-4  mb-8">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-1 py-lg-4">
     <div class="container">
       <!-- logo -->
       <h1 class="mx-auto ps-4 ps-md-0"><a class="logo" href="./index.html">台灣走走．Tai Walk</a></h1>
@@ -52,22 +55,25 @@
   </nav>
 
   <!-- 主要內容 -->
-  <main>
+  <main class="container  pt-1 pt-lg-8 pb-7 pb-lg-9">
     
 
 
 <!-- 搜尋功能和slogan -->
-<section class="pb-4 mb-5">
+<section class="pb-2 pb-lg-4 mb-3 mb-lg-5">
   <div class="container">
     <div class="row justify-content-center align-items-center">
 
       <!-- slogan -->
-      <div class="col-lg-6">
-        <h2 class="display-5  lh-base text-dark  mb-2">探索<span class="deco-line-warning">台灣之美</span>
+      <div class="col-lg-6 text-center text-lg-start mb-6 mb-lg-0">
+        <h2 class="fs-3 fs-lg-xxl lh-base text-dark  fw-light mb-2">探索<span class="deco-line-warning">台灣之美</span>
           <br>讓我們更親近這片土地
         </h2>
-        <p class="d-flex align-items-center fs-lg mb-0  text-secondary"><img src="./assets/images/spot24_Y.png"
-            alt="spot icon">台灣旅遊景點導覽<span class="ms-1 fs-sm fw-bold">Taiwan Travel Guide</span></p>
+        <p
+          class="d-flex  align-items-center justify-content-center justify-content-lg-start  fs-lg-lg fs-sm mb-0  text-secondary">
+          <img src="./assets/images/spot24_Y.png" alt="spot icon">台灣旅遊景點導覽<span
+            class="ms-1 fs-xs fs-lg-sm fw-bold">Taiwan Travel Guide</span>
+        </p>
       </div>
 
       <!-- 搜尋功能 -->
@@ -79,10 +85,33 @@
             <option value="food">品嘗美食</option>
           </select>
           <input type="text" class="form-control mb-1 text-muted" placeholder="你想去哪裡？請輸入關鍵字">
-          <button type="button" class="btn btn-primary text-white w-100">搜尋</button>
+          <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
         </form>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- hero-banner-swiper -->
+<section>
+  <div class="container">
+    <div class="swiper swiper-heroBanner">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide  swiper-banner" style="background-image: url('./assets/images/Carousel.png')">
+        </div>
+        <div class="swiper-slide  swiper-banner" style="background-image: url('./assets/images/Carousel.png')">
+        </div>
+      </div>
+
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
   </div>
 </section>
   </main>
@@ -97,7 +126,7 @@
   <!-- axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-
+  <!-- <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> -->
   <script src="./assets/js/vendors.js"></script>
   <script src="./assets/js/all.js"></script>
 </body>
