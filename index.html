@@ -93,25 +93,71 @@
 </section>
 
 <!-- hero-banner-swiper -->
-<section>
+<section class="mb-4 mb-lg-6">
   <div class="container">
     <div class="swiper swiper-heroBanner">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide  swiper-banner" style="background-image: url('./assets/images/Carousel.png')">
-        </div>
-        <div class="swiper-slide  swiper-banner" style="background-image: url('./assets/images/Carousel.png')">
-        </div>
-      </div>
+      <!-- 要插入 render 回來的資料 -->
+      <ul class="swiper-wrapper">
+        <li class="swiper-slide  swiper-banner">
+          <a href="#">
+            <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
+            <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">新北市 | 不厭亭
+            </h3>
+          </a>
+        </li>
+        <li class="swiper-slide  swiper-banner">
+          <a href="#">
+            <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
+            <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">新北市 | 不厭亭
+            </h3>
+          </a>
+        </li>
+      </ul>
 
-
-      <!-- If we need pagination -->
+      <!--  pagination -->
       <div class="swiper-pagination"></div>
 
-      <!-- If we need navigation buttons -->
+      <!-- navigation buttons -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+  </div>
+</section>
 
+<!-- 近期活動 -->
+<section>
+  <div class="container">
+    <div class="d-flex justify-content-between px-3 mb-2">
+      <h2 class="fw-light">近期活動</h2>
+      <a class="btn btn-outline-red border-0" href="./festivals.html">查看更多活動 ></a>
+    </div>
+
+    <div class="row  row-cols-1  row-cols-lg-2">
+      <div class="col mb-2">
+        <div class="card">
+          <div class="row gx-0">
+            <div class="col-4">
+              <a href="#">
+                <img class="img-fluid" src="./assets/images/EventPhoto.png" alt="近期活動照片">
+              </a>
+            </div>
+            <div class="col-8">
+              <div class="card-body px-5 h-100">
+                <span class="card-text">2021/10/30 - 2021/11/13</span>
+                <h5 class="card-title">2021 日月潭花火音樂嘉年華</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="ms-1"><img src="./assets/images/spot16.png" alt="spot">新北市</span>
+                  <a class="btn btn-outline-primary border-0" href="#">詳細介紹 ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
   </div>
 </section>
   </main>
