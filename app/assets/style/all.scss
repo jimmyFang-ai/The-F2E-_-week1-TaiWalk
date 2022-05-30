@@ -6,10 +6,10 @@
 /* 套件: */
 // Bootstrap 5
 @import "../../../node_modules/bootstrap/scss/functions";
-@import "./helpers/variables";
+@import "./helpers/variables-bs5";
 @import "../../../node_modules/bootstrap/scss/mixins";
 @import "../../../node_modules/bootstrap/scss/utilities";
-@import "./helpers/utilities";
+@import "./helpers/utilities-bs5";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // // // Aos
@@ -31,8 +31,10 @@
 @import './components/custom-swiper';
 @import './components/custom-border';
 @import './components/custom-btn';
+@import './components/custom.card';
 
-
+// util
+@import './util/img';
 
 // layout
 @import './layout/logo';
