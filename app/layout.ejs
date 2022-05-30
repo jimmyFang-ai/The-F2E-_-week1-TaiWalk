@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%- title %></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/style/all.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+  <meta name="description" content="提供多種台灣觀光景點、在地美食、地方節慶活動的旅遊網站!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="台灣走走．Tai Walk" />
+  <meta property="og:description" content="提供多種台灣觀光景點、在地美食、地方節慶活動的旅遊網站!">
+  <meta property="og:url" content="https://jimmyfang-ai.github.io/The-F2E-3rd---week1" />
+
+
+  <link rel="stylesheet" href="./assets/style/all.css">
+</head>
+
+<body>
+
+  <!-- 導覽列 -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-1 py-lg-4  mb-8">
+    <div class="container">
+      <!-- logo -->
+      <h1 class="mx-auto ps-4 ps-md-0"><a class="logo" href="./index.html">台灣走走．Tai Walk</a></h1>
+
+      <!-- 漢堡開關 -->
+      <button class="navbar-toggler burger-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- 客製化漢堡 -->
+        <div class="togglerMenu-icon" id="toggler-burger">
+          <div class="togglerMenu-icon-burger"></div>
         </div>
+      </button>
+
+      <!-- 選單 -->
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav align-items-center align-items-md-start  ms-auto">
+          <li class="nav-item">
+            <a class="nav-link py-lg-0  <% if (current === 'spots') {%>active<%} %>" aria-current="page"
+              href="./spots.html">探索景點</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link py-lg-0 <% if (current === 'festivals') {%>active<%} %>" href="./festivals.html">節慶活動</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link py-lg-0 <% if (current === 'food') {%>active<%} %>" href="./food.html">品嚐美食</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
+  <!-- 主要內容 -->
+  <main>
     <%- contents %>
+  </main>
 
-    <footer class="footer">
-      footer
-    </footer>
 
-    <script src="./assets/js/vendors.js"></script>
-    <script src="./assets/js/all.js"></script>
-  </body>
+  <!-- 表尾 -->
+  <footer class="bg-success py-3">
+    <p class="text-center text-white mb-0 fs-sm ">TheF2E @ 2021.# Design: Breakfast / Code: JimmyFang</p>
+  </footer>
+
+
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+  <script src="./assets/js/vendors.js"></script>
+  <script src="./assets/js/all.js"></script>
+</body>
 
 </html>
