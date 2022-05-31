@@ -70,5 +70,12 @@ $utilities: map-merge(
         ),
       )
     ),
+    "position": 
+      map-merge(
+          map-get($utilities, "position"),
+      (
+          responsive: true,
+      )
+    ),
   )
 );
