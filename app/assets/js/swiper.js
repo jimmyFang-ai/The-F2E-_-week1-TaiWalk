@@ -18,5 +18,58 @@ const swiperHeroBanner = new Swiper(".swiper-heroBanner", {
   });
   
 
+// 熱門打卡景點
+const swiperSpots = new Swiper(".swiper-spots", {
+  slidesPerView: 1.6,
+  spaceBetween: 16,
+  grid: {
+      rows: 1,
+      fill: 'row',
+  },
+  breakpoints:{
+    992: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        grid: {
+            rows: 1,
+            fill: 'row',
+        },
+    },
+    768: {
+        slidesPerView: 2.5,
+        spaceBetween: 30,
+        grid: {
+            rows: 1,
+            fill: 'row',
+        },
+    },
+  }
+});
 
-  console.log(mySwiper);
+// 一再回訪美食
+const foodSpots = new Swiper(".swiper-foods", {
+  slidesPerView: 1.6,
+  spaceBetween: 16,
+  grid: {
+      rows: 1,
+      fill: 'row',
+  },
+  breakpoints:{
+    992: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        grid: {
+            rows: 1,
+            fill: 'row',
+        },
+    },
+    768: {
+        slidesPerView: 2.5,
+        spaceBetween: 30,
+        grid: {
+            rows: 1,
+            fill: 'row',
+        },
+    },
+  }
+});

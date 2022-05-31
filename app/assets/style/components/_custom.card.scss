@@ -1,6 +1,6 @@
 
 // 節慶活動卡片
-.festivals-cardGroup{
+.activity-cardGroup{
     .card {
         border: 0;
         overflow: hidden;
@@ -37,7 +37,7 @@
 
 
 @include media-breakpoint-up(md) { 
-    .festivals-cardGroup{
+    .activity-cardGroup{
         .card-body{
             border-radius: 0 12px 12px 0px;
             background-color: #F9F9F9;
