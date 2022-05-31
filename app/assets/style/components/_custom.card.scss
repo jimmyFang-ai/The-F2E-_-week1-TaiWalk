@@ -1,0 +1,38 @@
+
+// 節慶活動卡片
+.festivals-cardGroup .card {
+    border: 0;
+}
+
+.festivals-cardGroup .card-body{
+    height: 80px;
+}
+
+
+
+.festivals-cardGroup .card-img {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+
+@include media-breakpoint-up(lg) { 
+    .festivals-cardGroup .card {
+        border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    
+    .festivals-cardGroup .card-img {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        min-height: 100%;
+    }
+
+    .festivals-cardGroup .card-body{
+        height: 100%;
+    }
+    
+       
+}
