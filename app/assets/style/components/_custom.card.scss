@@ -1,38 +1,60 @@
 
 // 節慶活動卡片
-.festivals-cardGroup .card {
-    border: 0;
-}
-
-.festivals-cardGroup .card-body{
-    height: 80px;
-}
-
-
-
-.festivals-cardGroup .card-img {
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-}
-
-
-@include media-breakpoint-up(lg) { 
-    .festivals-cardGroup .card {
-        border: 1px solid rgba(0, 0, 0, 0.125);
+.festivals-cardGroup{
+    .card {
+        border: 0;
+        overflow: hidden;
     }
 
-    
-    .festivals-cardGroup .card-img {
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-        min-height: 100%;
+    .card-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
-    .festivals-cardGroup .card-body{
+    .card-body{
+        padding: 0 1rem;
         height: 100%;
     }
+
+    .imgWarp {
+        display: block;
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+    .card-img {
+        height: 80px;
+        transition: transform .5s ;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+   
+}
+
+
+@include media-breakpoint-up(md) { 
+    .festivals-cardGroup{
+        .card-body{
+            border-radius: 0 12px 12px 0px;
+            background-color: #F9F9F9;
+            border: 1px solid #E5E5E5;
+            // 由於 border 是不可繼承樣式，設定了 border: unset 的元素，最終表現為 border: initial ，也就是預設 border 樣式，無邊框。
+            border-left: unset; 
+        }
+
+        .imgWarp {
+           border-radius: 0;
+        }
+
+        .card-img {
+            border-radius: 12px 0 0 12px;
+            height: 100%;
+        }
+    }
     
-       
+
 }
