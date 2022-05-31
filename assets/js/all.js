@@ -23,8 +23,61 @@ var swiperHeroBanner = new Swiper(".swiper-heroBanner", {
     el: ".swiper-pagination",
     clickable: true
   }
+}); // 熱門打卡景點
+
+var swiperSpots = new Swiper(".swiper-spots", {
+  slidesPerView: 1.6,
+  spaceBetween: 16,
+  grid: {
+    rows: 1,
+    fill: 'row'
+  },
+  breakpoints: {
+    992: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      grid: {
+        rows: 1,
+        fill: 'row'
+      }
+    },
+    768: {
+      slidesPerView: 2.5,
+      spaceBetween: 30,
+      grid: {
+        rows: 1,
+        fill: 'row'
+      }
+    }
+  }
+}); // 一再回訪美食
+
+var foodSpots = new Swiper(".swiper-foods", {
+  slidesPerView: 1.6,
+  spaceBetween: 16,
+  grid: {
+    rows: 1,
+    fill: 'row'
+  },
+  breakpoints: {
+    992: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      grid: {
+        rows: 1,
+        fill: 'row'
+      }
+    },
+    768: {
+      slidesPerView: 2.5,
+      spaceBetween: 30,
+      grid: {
+        rows: 1,
+        fill: 'row'
+      }
+    }
+  }
 });
-console.log(mySwiper);
 "use strict";
 
 var togglerBurger = document.querySelector('#toggler-burger'); // 預設是 false 選單關閉，不會出現打 X

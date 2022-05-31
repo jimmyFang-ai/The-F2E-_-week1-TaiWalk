@@ -13888,30 +13888,30 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   background-color: transparent;
 }
 
-.festivals-cardGroup .card {
+.activity-cardGroup .card {
   border: 0;
   overflow: hidden;
 }
 
-.festivals-cardGroup .card-title {
+.activity-cardGroup .card-title {
   overflow: hidden;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.festivals-cardGroup .card-body {
+.activity-cardGroup .card-body {
   padding: 0 1rem;
   height: 100%;
 }
 
-.festivals-cardGroup .imgWarp {
+.activity-cardGroup .imgWarp {
   display: block;
   overflow: hidden;
   border-radius: 12px;
 }
 
-.festivals-cardGroup .card-img {
+.activity-cardGroup .card-img {
   height: 80px;
   -webkit-transition: -webkit-transform .5s;
   transition: -webkit-transform .5s;
@@ -13920,23 +13920,23 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   transition: transform .5s, -webkit-transform .5s;
 }
 
-.festivals-cardGroup .card-img:hover {
+.activity-cardGroup .card-img:hover {
   -webkit-transform: scale(1.2);
       -ms-transform: scale(1.2);
           transform: scale(1.2);
 }
 
 @media (min-width: 768px) {
-  .festivals-cardGroup .card-body {
+  .activity-cardGroup .card-body {
     border-radius: 0 12px 12px 0px;
     background-color: #F9F9F9;
     border: 1px solid #E5E5E5;
     border-left: unset;
   }
-  .festivals-cardGroup .imgWarp {
+  .activity-cardGroup .imgWarp {
     border-radius: 0;
   }
-  .festivals-cardGroup .card-img {
+  .activity-cardGroup .card-img {
     border-radius: 12px 0 0 12px;
     height: 100%;
   }
