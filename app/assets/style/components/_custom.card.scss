@@ -7,6 +7,7 @@
     }
 
     .card-title {
+        // 多餘的文字會截斷
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -25,8 +26,6 @@
 
     .card-img {
         height: 80px;
-        transition: transform .5s ;
-
         &:hover {
             transform: scale(1.2);
         }
@@ -57,4 +56,16 @@
     }
     
 
+}
+
+
+
+// 景點卡片
+.spots-card{
+    position: relative;
+    .ratio-16x9  img {
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
 }

@@ -94,3 +94,13 @@
     }
 }
 
+
+
+// slide 圖片被hover 變大效果
+.swiper-slide {
+    .ratio-16x9 img {
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+}

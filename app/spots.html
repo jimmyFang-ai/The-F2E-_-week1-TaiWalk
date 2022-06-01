@@ -4,3 +4,93 @@ layout: ./app/layout.ejs
 engine: ejs
 current: spots
 ---
+
+
+<div class="container mb-2  mb-lg-6">
+    <div class="spots-breadcrumb">
+        <a class="text-info" href="./index.html">首頁</a> /
+        <a class="breadcrumb-theme text-secondary" href="./spots.html">探索景點</a>
+        <a class="breadcrumb-city" href="#"></a>
+        <a class="breadcrumb-location" href="#"></a>
+    </div>
+</div>
+
+
+<section class="mb-1">
+    <div class="container">
+        <!-- 搜尋列 -->
+        <div class="row gx-md-2 mb-4 mb-lg-7">
+            <div class="col-12 col-md-3 mb-1 mb-md-0">
+                <select class="search-city form-select text-primary" aria-label="select">
+                    <option value="all" selected="">全部縣市</option>
+                    <option value="Taipei">臺北市</option>
+                    <option value="NewTaipei">新北市</option>
+                    <option value="Taoyuan">桃園市</option>
+                    <option value="Taichung">臺中市</option>
+                    <option value="Tainan">臺南市</option>
+                    <option value="Kaohsiung">高雄市</option>
+                    <option value="Keelung">基隆市</option>
+                    <option value="Hsinchu">新竹市</option>
+                    <option value="HsinchuCounty">新竹縣</option>
+                    <option value="MiaoliCounty">苗栗縣</option>
+                    <option value="ChanghuaCounty">彰化縣</option>
+                    <option value="NantouCounty">南投縣</option>
+                    <option value="YunlinCounty">雲林縣</option>
+                    <option value="ChiayiCounty">嘉義縣</option>
+                    <option value="Chiayi">嘉義市</option>
+                    <option value="PingtungCounty">屏東縣</option>
+                    <option value="YilanCounty">宜蘭縣</option>
+                    <option value="HualienCounty">花蓮縣</option>
+                    <option value="TaitungCounty">臺東縣</option>
+                    <option value="KinmenCounty">金門縣</option>
+                    <option value="PenghuCounty">澎湖縣</option>
+                    <option value="LienchiangCounty">連江縣</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-6 mb-1 mb-md-0">
+                <input type="text" class="form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
+            </div>
+            <div class="col-12 col-md-3 mb-1 mb-md-0">
+                <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
+            </div>
+        </div>
+
+        <!-- 主題分類區 -->
+        <h2 class="text-dark fw-light mb-2">熱門主題</h2>
+        <div class="spots-category-list row row-cols-2  row-cols-md-3 row-cols-lg-4">
+            <div class="spots-card col  mb-2">
+                <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                    <a href="#">
+                        <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
+                    </a>
+                </div>
+                <p class="mb-0 text-white fs-5 bold  position-absolute top-50 start-50 translate-middle">自然風景類</p>
+            </div>
+            <div class="spots-card col  mb-2">
+                <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                    <a href="#">
+                        <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
+                    </a>
+                </div>
+                <p class="mb-0 text-white fs-5 bold  position-absolute top-50 start-50 translate-middle">自然風景類</p>
+            </div>
+            <div class="spots-card col  mb-2">
+                <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                    <a href="#">
+                        <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
+                    </a>
+                </div>
+                <p class="mb-0 text-white fs-5 bold  position-absolute top-50 start-50 translate-middle">自然風景類</p>
+            </div>
+            <div class="spots-card col  mb-2">
+                <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                    <a href="#">
+                        <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
+                    </a>
+                </div>
+                <p class="mb-0 text-white fs-5 bold  position-absolute top-50 start-50 translate-middle">自然風景類</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
