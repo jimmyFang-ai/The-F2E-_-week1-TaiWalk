@@ -1,9 +1,11 @@
 "use strict";
 
-function init() {// AOS.init();
-}
-
-;
+// jq 初始化
+$(function () {
+  console.log("QQ");
+}); // function init() {
+//   // AOS.init();
+// };
 "use strict";
 
 // 首頁 heroBanner 
