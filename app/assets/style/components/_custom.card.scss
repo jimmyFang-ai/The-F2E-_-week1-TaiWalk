@@ -63,9 +63,18 @@
 // 景點卡片
 .spots-card{
     position: relative;
-    .ratio-16x9  img {
-        &:hover {
+    box-shadow: 0 0 0 4px #bea363;
+ 
+    .text-white {
+        cursor: pointer;
+        opacity: .6;
+    }
+
+    &:hover .text-white {
+       opacity: 1;
+    }
+
+    &:hover .ratio-16x9  img {
             transform: scale(1.2);
-        }
     }
 }
