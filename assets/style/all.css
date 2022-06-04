@@ -13956,13 +13956,26 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 
 .spots-card {
   position: relative;
-  -webkit-box-shadow: 0 0 0 4px #bea363;
-          box-shadow: 0 0 0 4px #bea363;
 }
 
 .spots-card .text-white {
   cursor: pointer;
   opacity: .6;
+}
+
+.spots-card.active {
+  -webkit-box-shadow: 0 0 0 4px #E0DA48;
+          box-shadow: 0 0 0 4px #E0DA48;
+}
+
+.spots-card.active .text-white {
+  opacity: 1;
+}
+
+.spots-card.active .ratio-16x9 img {
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .spots-card:hover .text-white {

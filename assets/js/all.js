@@ -8,6 +8,16 @@ $(function () {
 // };
 "use strict";
 
+var categoryList = document.querySelector(".spots-categoryList");
+categoryList.addEventListener("click", function (e) {
+  e.preventDefault();
+  var category = e.target.closest(".spots-card");
+  var categoryVal = e.target.closest("li").dataset.category;
+  console.log(categoryVal);
+  category.classList.toggle("active");
+});
+"use strict";
+
 // 首頁 heroBanner 
 var swiperHeroBanner = new Swiper(".swiper-heroBanner", {
   cssMode: true,
