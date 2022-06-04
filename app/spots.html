@@ -16,10 +16,11 @@ current: spots
 </div>
 
 
-<section class="mb-4 mb-lg-6">
+<!-- 探索景點主要內容 -->
+<section class="mb-1 d-none">
     <div class="container">
 
-        <!-- 探索景點主要內容 -->
+        <!-- 探索景點 搜尋功能 -->
         <div class="spots-searchGroup">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
                 <div class="col-12  col-lg-3 mb-2">
@@ -59,7 +60,7 @@ current: spots
 
             <!-- 主題分類區 -->
             <h2 class="text-dark fw-light mb-2">熱門主題</h2>
-            <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
+            <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4 mb-6">
                 <li class="col mb-2">
                     <div class="spots-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
@@ -67,25 +68,59 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
                             </a>
                         </div>
-                        <p class="mb-0 text-white fs-5 bold  position-absolute top-50 start-50 translate-middle">自然風景類</p>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">自然風景類
+                        </h4>
                     </div>
                 </li>
             </ul>
+
+            <!-- 篩選結果 -->
+            <h2 class="text-dark fw-light mb-2">搜尋結果
+                <p class="fs-lg d-inline">共有 <span class="text-warning">240</span> 筆
+                </p>
+            </h2>
+            <ul class="spots-searchResult  row row-cols-2  row-cols-md-3 row-cols-lg-4  mb-8">
+                <li class="col mb-6">
+                    <a href="#">
+                        <div class="card border-0">
+                            <img src="./assets/images/NoImage-255x200.png" class="card-img-top rounded-5" alt="">
+                            <div class="card-body px-0 py-1">
+                                <h5 class="card-title fs-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點</h5>
+                                <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                                        src="./assets/images/spot16.png" alt="spot">新北市</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- 分頁 -->
+            <nav class="py-3">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </section>
 
 
-<section>
-    <div class="container">
-        <h2 class="text-dark fw-light mb-2">搜尋結果 <span class="fs-lg">共有 <small class="text-warning">240</small> 筆 </span></h2>
-              <!-- 篩選結果 -->
-        <ul class="spots-filterResult">
 
-        </ul>
-
-
-             <!-- 分頁 -->
-             
-    </div>
+<!-- 探索景點 分類內頁 -->
+<section class="mb-1">
+          <div class="container">
+              qq
+          </div>
 </section>
