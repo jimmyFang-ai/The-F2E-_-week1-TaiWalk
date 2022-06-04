@@ -30,6 +30,7 @@
   --bs-light: #f8f9fa;
   --bs-dark: #1E1E1E;
   --bs-gray-black: #2F2F2F;
+  --bs-badge: #BEA363;
   --bs-font-sans-serif: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -3807,6 +3808,47 @@ fieldset:disabled .btn {
   border-color: #2F2F2F;
 }
 
+.btn-badge {
+  color: #000;
+  background-color: #BEA363;
+  border-color: #BEA363;
+}
+
+.btn-badge:hover {
+  color: #000;
+  background-color: #c8b17a;
+  border-color: #c5ac73;
+}
+
+.btn-check:focus + .btn-badge, .btn-badge:focus {
+  color: #000;
+  background-color: #c8b17a;
+  border-color: #c5ac73;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(162, 139, 84, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(162, 139, 84, 0.5);
+}
+
+.btn-check:checked + .btn-badge,
+.btn-check:active + .btn-badge, .btn-badge:active, .btn-badge.active,
+.show > .btn-badge.dropdown-toggle {
+  color: #000;
+  background-color: #cbb582;
+  border-color: #c5ac73;
+}
+
+.btn-check:checked + .btn-badge:focus,
+.btn-check:active + .btn-badge:focus, .btn-badge:active:focus, .btn-badge.active:focus,
+.show > .btn-badge.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(162, 139, 84, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(162, 139, 84, 0.5);
+}
+
+.btn-badge:disabled, .btn-badge.disabled {
+  color: #000;
+  background-color: #BEA363;
+  border-color: #BEA363;
+}
+
 .btn-outline-primary {
   color: #7F977B;
   border-color: #7F977B;
@@ -4110,6 +4152,40 @@ fieldset:disabled .btn {
 
 .btn-outline-gray-black:disabled, .btn-outline-gray-black.disabled {
   color: #2F2F2F;
+  background-color: transparent;
+}
+
+.btn-outline-badge {
+  color: #BEA363;
+  border-color: #BEA363;
+}
+
+.btn-outline-badge:hover {
+  color: #000;
+  background-color: #BEA363;
+  border-color: #BEA363;
+}
+
+.btn-check:focus + .btn-outline-badge, .btn-outline-badge:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
+}
+
+.btn-check:checked + .btn-outline-badge,
+.btn-check:active + .btn-outline-badge, .btn-outline-badge:active, .btn-outline-badge.active, .btn-outline-badge.dropdown-toggle.show {
+  color: #000;
+  background-color: #BEA363;
+  border-color: #BEA363;
+}
+
+.btn-check:checked + .btn-outline-badge:focus,
+.btn-check:active + .btn-outline-badge:focus, .btn-outline-badge:active:focus, .btn-outline-badge.active:focus, .btn-outline-badge.dropdown-toggle.show:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
+}
+
+.btn-outline-badge:disabled, .btn-outline-badge.disabled {
+  color: #BEA363;
   background-color: transparent;
 }
 
@@ -5790,6 +5866,16 @@ fieldset:disabled .btn {
   color: #161616;
 }
 
+.alert-badge {
+  color: #72623b;
+  background-color: #f2ede0;
+  border-color: #ece3d0;
+}
+
+.alert-badge .alert-link {
+  color: #5b4e2f;
+}
+
 @-webkit-keyframes progress-bar-stripes {
   0% {
     background-position-x: 1rem;
@@ -6268,6 +6354,22 @@ fieldset:disabled .btn {
   color: #fff;
   background-color: #1c1c1c;
   border-color: #1c1c1c;
+}
+
+.list-group-item-badge {
+  color: #72623b;
+  background-color: #f2ede0;
+}
+
+.list-group-item-badge.list-group-item-action:hover, .list-group-item-badge.list-group-item-action:focus {
+  color: #72623b;
+  background-color: #dad5ca;
+}
+
+.list-group-item-badge.list-group-item-action.active {
+  color: #fff;
+  background-color: #72623b;
+  border-color: #72623b;
 }
 
 .btn-close {
@@ -7493,6 +7595,14 @@ fieldset:disabled .btn {
   color: #262626;
 }
 
+.link-badge {
+  color: #BEA363;
+}
+
+.link-badge:hover, .link-badge:focus {
+  color: #cbb582;
+}
+
 .ratio {
   position: relative;
   width: 100%;
@@ -7931,6 +8041,10 @@ fieldset:disabled .btn {
 
 .border-gray-black {
   border-color: #2F2F2F !important;
+}
+
+.border-badge {
+  border-color: #BEA363 !important;
 }
 
 .border-white {
@@ -9122,6 +9236,10 @@ fieldset:disabled .btn {
   color: #2F2F2F !important;
 }
 
+.text-badge {
+  color: #BEA363 !important;
+}
+
 .text-white {
   color: #fff !important;
 }
@@ -9180,6 +9298,10 @@ fieldset:disabled .btn {
 
 .bg-gray-black {
   background-color: #2F2F2F !important;
+}
+
+.bg-badge {
+  background-color: #BEA363 !important;
 }
 
 .bg-body {
