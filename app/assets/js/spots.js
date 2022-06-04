@@ -1,15 +1,19 @@
 
 
+const searchCategory = document.querySelector(".search-category");
+
 const categoryList = document.querySelector(".spots-categoryList");
 
-categoryList.addEventListener("click" ,function(e) {
-    e.preventDefault();
+if (categoryList) {
+    categoryList.addEventListener("click", function (e) {
+        e.preventDefault();
 
-    let category  = e.target.closest(".spots-card");
-    let categoryVal = e.target.closest("li").dataset.category;
+        let category = e.target.closest(".spots-card");
+        let categoryVal = e.target.closest("li").dataset.category;
 
-    console.log(categoryVal);
+        searchCategory.value = categoryVal;
 
-    category.classList.toggle("active");
+        category.classList.toggle("active");
 
-})
+    })
+}

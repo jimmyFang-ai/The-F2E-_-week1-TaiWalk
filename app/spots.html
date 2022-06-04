@@ -21,7 +21,7 @@ current: spots
     <div class="container">
 
         <!-- 探索景點 搜尋功能 -->
-        <div class="spots-searchGroup mb-6">
+        <div class="spots-searchGroup mb-4 mb-md-6">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
                 <div class="col-12  col-lg-3 mb-2">
                     <select class="search-city form-select text-primary" aria-label="select">
@@ -50,16 +50,28 @@ current: spots
                         <option value="LienchiangCounty">連江縣</option>
                     </select>
                 </div>
-                <div class="col-12  col-lg-6 mb-2">
+                <div class="col-12  col-lg-3 mb-2">
+                    <select class="search-category form-select text-primary" aria-label="select">
+                        <option value="all">全部主題</option>
+                        <option value="自然風景類">自然風景類</option>
+                        <option value="觀光工廠類">觀光工廠類</option>
+                        <option value="遊憩類">遊憩類</option>
+                        <option value="休閒農業類">休閒農業類</option>
+                        <option value="生態類">生態類</option>
+                        <option value="溫泉類">溫泉類</option>
+                        <option value="古蹟類">古蹟類</option>
+                    </select>
+                </div>
+                <div class="col-12  col-lg-4 mb-2">
                     <input type="text" class="form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
-                <div class="col-12  col-lg-3 mb-2">
+                <div class="col-12  col-lg-2 mb-2">
                     <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
                 </div>
             </div>
 
             <!-- 主題分類區 -->
-            <h2 class="text-dark fw-light mb-2">熱門主題</h2>
+            <h2 class="fs-4 fs-md-2 text-dark  fw-light mb-2">熱門主題</h2>
             <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
                 <li class="col mb-2"  data-category="自然風景類">
                     <div class="spots-card active rounded-6">
@@ -68,7 +80,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">自然風景類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">自然風景類
                         </h4>
                     </div>
                 </li>
@@ -79,7 +91,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-2.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">觀光工廠類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">觀光工廠類
                         </h4>
                     </div>
                 </li>
@@ -90,7 +102,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-3.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">遊憩類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">遊憩類
                         </h4>
                     </div>
                 </li>
@@ -101,7 +113,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-4.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">休閒農業類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">休閒農業類
                         </h4>
                     </div>
                 </li>
@@ -112,7 +124,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-5.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">生態類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">生態類
                         </h4>
                     </div>
                 </li>
@@ -123,7 +135,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-6.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">溫泉類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">溫泉類
                         </h4>
                     </div>
                 </li>
@@ -134,7 +146,7 @@ current: spots
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-7.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">古蹟類
+                        <h4 class="fs-6 fs-md-4 text-white  fw-bold  mb-0">古蹟類
                         </h4>
                     </div>
                 </li>
@@ -144,17 +156,29 @@ current: spots
 
         <!-- 呈現 篩選結果 -->
         <div class="spots-searchResult">
-            <h2 class="text-dark fw-light mb-2">搜尋結果
-                <p class="fs-lg d-inline">共有 <span class="text-warning">240</span> 筆
+            <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
+                <p class="fs-sm fs-md-lg d-inline">共有 <span class="text-warning">240</span> 筆
                 </p>
             </h2>
-            <ul class="spots-resultList  row row-cols-2  row-cols-md-3 row-cols-lg-4  mb-8">
-                <li class="col mb-6">
+            <ul class="spots-resultList  row row-cols-1  row-cols-md-3 row-cols-lg-4  mb-8">
+                <li class="col mb-3 mb-md-6">
                     <a href="#">
                         <div class="card border-0">
                             <img src="./assets/images/NoImage-255x200.png" class="card-img-top rounded-5" alt="">
                             <div class="card-body px-0 py-1">
-                                <h5 class="card-title fs-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點</h5>
+                                <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點</h5>
+                                <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                                        src="./assets/images/spot16.png" alt="spot">新北市</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="col mb-3 mb-md-6">
+                    <a href="#">
+                        <div class="card border-0">
+                            <img src="./assets/images/NoImage-255x200.png" class="card-img-top rounded-5" alt="">
+                            <div class="card-body px-0 py-1">
+                                <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點</h5>
                                 <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                                         src="./assets/images/spot16.png" alt="spot">新北市</span>
                             </div>
@@ -188,8 +212,34 @@ current: spots
 
 
 <!-- 探索景點 分類內頁 -->
-<section class="spots-categoryInner mb-1 d-none">
+<section class="spots-categoryInner mb-1  d-none">
     <div class="container">
-        qq
-    </div>
+        <!-- 輪播卡片 -->
+        <div class="swiper swiper-heroBanner">
+          <!-- 要插入 render 回來的資料 -->
+          <ul class="swiper-wrapper rounded-6">
+            <li class="swiper-slide  swiper-banner">
+              <a href="#">
+                <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
+                <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">新北市 | 不厭亭
+                </h3>
+              </a>
+            </li>
+            <li class="swiper-slide  swiper-banner">
+              <a href="#">
+                <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
+                <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">新北市 | 不厭亭
+                </h3>
+              </a>
+            </li>
+          </ul>
+    
+          <!--  pagination -->
+          <div class="swiper-pagination"></div>
+    
+          <!-- navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
 </section>
