@@ -14124,6 +14124,40 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
           transform: scale(1.2);
 }
 
+.nearbyInfo-Card .nearbyIcon {
+  text-align: center;
+  display: block;
+}
+
+.nearbyInfo-Card .nearbyIcon-hover {
+  text-align: center;
+  display: none;
+}
+
+.nearbyInfo-Card:hover .nearbyIcon {
+  display: none;
+}
+
+.nearbyInfo-Card:hover .nearbyIcon-hover {
+  display: block;
+}
+
+.nearbyInfo-Card:hover .text-center {
+  color: #7F977B;
+}
+
+.nearbyInfo-Card.active .nearbyIcon {
+  display: none;
+}
+
+.nearbyInfo-Card.active .nearbyIcon-hover {
+  display: block;
+}
+
+.nearbyInfo-Card.active .text-center {
+  color: #7F977B;
+}
+
 .img-cover {
   -o-object-fit: cover;
      object-fit: cover;
