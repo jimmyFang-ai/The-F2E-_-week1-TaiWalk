@@ -98,3 +98,49 @@
         }
     } 
 }
+
+
+// 周邊資訊 卡片
+.nearbyInfo-Card {
+    
+    .nearbyIcon {
+        text-align: center;
+        display: block;
+    }
+
+    .nearbyIcon-hover {
+        text-align: center;
+        display: none;
+    }
+
+    &:hover{
+        .nearbyIcon {
+            display: none;
+        }
+    
+        .nearbyIcon-hover {
+            display: block;
+        }
+
+        .text-center {
+            color: $primary;
+           
+        }
+    }
+
+    &.active {
+        .nearbyIcon {
+            display: none;
+        }
+    
+        .nearbyIcon-hover {
+            display: block;
+        }
+
+        .text-center {
+            color: $primary;
+           
+        }
+    }
+}
+
