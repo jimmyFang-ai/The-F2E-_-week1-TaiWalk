@@ -11,3 +11,5 @@ togglerBurger.addEventListener('click', function (e) {
     isMenuOpen = !isMenuOpen;
     isMenuOpen ? this.classList.add('open') : this.classList.remove('open');
 })
+
+

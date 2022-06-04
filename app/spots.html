@@ -17,11 +17,11 @@ current: spots
 
 
 <!-- 探索景點主要內容 -->
-<section class="mb-1 d-none">
+<section class="spots-themeArea mb-1">
     <div class="container">
 
         <!-- 探索景點 搜尋功能 -->
-        <div class="spots-searchGroup">
+        <div class="spots-searchGroup mb-6">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
                 <div class="col-12  col-lg-3 mb-2">
                     <select class="search-city form-select text-primary" aria-label="select">
@@ -60,9 +60,9 @@ current: spots
 
             <!-- 主題分類區 -->
             <h2 class="text-dark fw-light mb-2">熱門主題</h2>
-            <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4 mb-6">
-                <li class="col mb-2">
-                    <div class="spots-card rounded-6">
+            <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
+                <li class="col mb-2"  data-category="自然風景類">
+                    <div class="spots-card active rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
@@ -72,14 +72,83 @@ current: spots
                         </h4>
                     </div>
                 </li>
+                <li class="col mb-2" data-category="觀光工廠類">
+                    <div class="spots-card rounded-6"  >
+                        <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                            <a href="#">
+                                <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-2.png" alt="spots">
+                            </a>
+                        </div>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">觀光工廠類
+                        </h4>
+                    </div>
+                </li>
+                <li class="col mb-2" data-category="遊憩類">
+                    <div class="spots-card rounded-6">
+                        <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                            <a href="#">
+                                <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-3.png" alt="spots">
+                            </a>
+                        </div>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">遊憩類
+                        </h4>
+                    </div>
+                </li>
+                <li class="col mb-2" data-category="休閒農業類">
+                    <div class="spots-card rounded-6">
+                        <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                            <a href="#">
+                                <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-4.png" alt="spots">
+                            </a>
+                        </div>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">休閒農業類
+                        </h4>
+                    </div>
+                </li>
+                <li class="col mb-2" data-category="生態類">
+                    <div class="spots-card rounded-6">
+                        <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                            <a href="#">
+                                <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-5.png" alt="spots">
+                            </a>
+                        </div>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">生態類
+                        </h4>
+                    </div>
+                </li>
+                <li class="col mb-2" data-category="溫泉類">
+                    <div class="spots-card rounded-6">
+                        <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                            <a href="#">
+                                <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-6.png" alt="spots">
+                            </a>
+                        </div>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">溫泉類
+                        </h4>
+                    </div>
+                </li>
+                <li class="col mb-2"  data-category="古蹟類">
+                    <div class="spots-card rounded-6">
+                        <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
+                            <a href="#">
+                                <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-7.png" alt="spots">
+                            </a>
+                        </div>
+                        <h4 class="mb-0 text-white  fw-bold  position-absolute top-50 start-50 translate-middle">古蹟類
+                        </h4>
+                    </div>
+                </li>
             </ul>
+        </div>
 
-            <!-- 篩選結果 -->
+
+        <!-- 呈現 篩選結果 -->
+        <div class="spots-searchResult">
             <h2 class="text-dark fw-light mb-2">搜尋結果
                 <p class="fs-lg d-inline">共有 <span class="text-warning">240</span> 筆
                 </p>
             </h2>
-            <ul class="spots-searchResult  row row-cols-2  row-cols-md-3 row-cols-lg-4  mb-8">
+            <ul class="spots-resultList  row row-cols-2  row-cols-md-3 row-cols-lg-4  mb-8">
                 <li class="col mb-6">
                     <a href="#">
                         <div class="card border-0">
@@ -119,8 +188,8 @@ current: spots
 
 
 <!-- 探索景點 分類內頁 -->
-<section class="mb-1">
-          <div class="container">
-              qq
-          </div>
+<section class="spots-categoryInner mb-1 d-none">
+    <div class="container">
+        qq
+    </div>
 </section>
