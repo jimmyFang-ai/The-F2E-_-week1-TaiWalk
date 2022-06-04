@@ -8,14 +8,18 @@ $(function () {
 // };
 "use strict";
 
+var searchCategory = document.querySelector(".search-category");
 var categoryList = document.querySelector(".spots-categoryList");
-categoryList.addEventListener("click", function (e) {
-  e.preventDefault();
-  var category = e.target.closest(".spots-card");
-  var categoryVal = e.target.closest("li").dataset.category;
-  console.log(categoryVal);
-  category.classList.toggle("active");
-});
+
+if (categoryList) {
+  categoryList.addEventListener("click", function (e) {
+    e.preventDefault();
+    var category = e.target.closest(".spots-card");
+    var categoryVal = e.target.closest("li").dataset.category;
+    searchCategory.value = categoryVal;
+    category.classList.toggle("active");
+  });
+}
 "use strict";
 
 // 首頁 heroBanner 
