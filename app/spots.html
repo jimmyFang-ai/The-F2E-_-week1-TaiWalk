@@ -17,7 +17,7 @@ current: spots
 
 
 <!-- 探索景點主要內容 -->
-<section class="spots-themeArea mb-1">
+<section class="spots-themeArea mb-1 d-none">
     <div class="container">
 
         <!-- 探索景點 搜尋功能 -->
@@ -73,7 +73,7 @@ current: spots
             <!-- 主題分類區 -->
             <h2 class="fs-4 fs-md-2 text-dark  fw-light mb-2">熱門主題</h2>
             <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
-                <li class="col mb-2"  data-category="自然風景類">
+                <li class="col mb-2" data-category="自然風景類">
                     <div class="spots-card active rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
@@ -85,7 +85,7 @@ current: spots
                     </div>
                 </li>
                 <li class="col mb-2" data-category="觀光工廠類">
-                    <div class="spots-card rounded-6"  >
+                    <div class="spots-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-2.png" alt="spots">
@@ -139,7 +139,7 @@ current: spots
                         </h4>
                     </div>
                 </li>
-                <li class="col mb-2"  data-category="古蹟類">
+                <li class="col mb-2" data-category="古蹟類">
                     <div class="spots-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
@@ -166,7 +166,8 @@ current: spots
                         <div class="card border-0">
                             <img src="./assets/images/NoImage-255x200.png" class="card-img-top rounded-5" alt="">
                             <div class="card-body px-0 py-1">
-                                <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點</h5>
+                                <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點
+                                </h5>
                                 <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                                         src="./assets/images/spot16.png" alt="spot">新北市</span>
                             </div>
@@ -178,7 +179,8 @@ current: spots
                         <div class="card border-0">
                             <img src="./assets/images/NoImage-255x200.png" class="card-img-top rounded-5" alt="">
                             <div class="card-body px-0 py-1">
-                                <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點</h5>
+                                <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點
+                                </h5>
                                 <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                                         src="./assets/images/spot16.png" alt="spot">新北市</span>
                             </div>
@@ -212,34 +214,82 @@ current: spots
 
 
 <!-- 探索景點 分類內頁 -->
-<section class="spots-categoryInner mb-1  d-none">
-    <div class="container">
-        <!-- 輪播卡片 -->
+<section class="spots-categoryInner mb-1  ">
+    <!-- 輪播卡片 -->
+    <div class="container mb-5">
         <div class="swiper swiper-heroBanner">
-          <!-- 要插入 render 回來的資料 -->
-          <ul class="swiper-wrapper rounded-6">
-            <li class="swiper-slide  swiper-banner">
-              <a href="#">
-                <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
-                <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">新北市 | 不厭亭
-                </h3>
-              </a>
-            </li>
-            <li class="swiper-slide  swiper-banner">
-              <a href="#">
-                <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
-                <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">新北市 | 不厭亭
-                </h3>
-              </a>
-            </li>
-          </ul>
-    
-          <!--  pagination -->
-          <div class="swiper-pagination"></div>
-    
-          <!-- navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+            <!-- 要插入 render 回來的資料 -->
+            <ul class="swiper-wrapper rounded-6">
+                <li class="swiper-slide  swiper-banner">
+                    <a href="#">
+                        <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
+                        <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">
+                            新北市 | 不厭亭
+                        </h3>
+                    </a>
+                </li>
+                <li class="swiper-slide  swiper-banner">
+                    <a href="#">
+                        <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
+                        <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">
+                            新北市 | 不厭亭
+                        </h3>
+                    </a>
+                </li>
+            </ul>
+
+            <!--  pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-      </div>
+    </div>
+
+    <!-- 內頁內容 -->
+    <div class="container">
+        <h2 class="fw-light mb-2">羅東林業文化園區</h2>
+        <div class="mb-5">
+            <span class="badge rounded-pill border border-badge text-badge  fs-lg lh-base fw-normal me-1"># 自然風景類</span>
+            <span class="badge rounded-pill border border-badge text-badge  fs-lg lh-base fw-normal me-1"> # 藝文活動</span>
+        </div>
+        <h5 class="fw-bold mb-1">景點介紹：</h5>
+        <p class="fw-light mb-7">
+            日治時期台灣有三大林場，分別是：八仙山林場、阿里山林場以及太平山林場。從太平山林場所砍伐的檜木、扁柏等木材，都會運送到羅東出張所和貯木池進行存放，而羅東出張所經過規劃後，成為現今的羅東林業文化園區。羅東林業文化區坐落於羅東市區附近，交通十分方便，園內規劃有貯木池、森林鐵路、竹林車站、蒸汽火車頭、綠林和步道等，從這些設備、建築物中發現當年的林業發展多麼蓬勃，又是多麼地熱鬧，同時也讓人不禁感慨，許多珍貴的檜木消逝在太平山中。隨著林業發展的轉型，可以看見昔日風華的貯木池，零散放著當時砍伐的檜木，如今，貯木池不再具有貯木的功能，而是成為水鳥和魚兒們的天堂。在園區中散步，彷彿進入一座秘密花園，園內種植滿滿茂密的樹木，不時聽見鳥兒的叫聲，空氣中帶有芬多精與淡淡的檜木香，舒服的環境，令人不禁停下腳步，感受內心的寧靜。
+        </p>
+
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+                <div class="bg-light px-3 py-5">
+                    <p class="fw-bold mb-2">開放時間： <span class="fw-normal">06:00-19:00</span></p>
+                    <p class="fw-bold mb-2">服務電話： <a class="text-gray-black fw-normal"
+                            href="tel:+886-3-9545114">886-3-9545114</a></p>
+                    <p class="fw-bold mb-2">景點地址： <span
+                            class="text-info text-decoration-underline fw-normal">宜蘭縣265羅東鎮中正北路118號</span></p>
+                    <p class="fw-bold mb-2">官方網站： <a class="text-info text-decoration-underline fw-normal"
+                            href="https://www.facebook.com/lfcgexhibition/">https://www.facebook.com/lfcgexhibition/</a>
+                    </p>
+                    <p class="fw-bold mb-2">票價資訊： <span class="fw-normal">免費，露營活動另計。</span></p>
+                    <div>
+                        <p class="fw-bold mb-1">注意事項：</p>
+                        <span class="fw-normal">1、愛護大自然生物，並請維護環境整潔。2、夏季日照與冬季寒風甚強，請預作防範。</span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col">
+                    <div class="ratio ratio-9x4 overflow-hidden mb-5">
+                        <iframe  class="rounded-4" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14454.01159552712!2d121.58607397049146!3d25.08483239317479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442acea866a6e2f%3A0xb251bab667083c8f!2z5aSn5rmW5YWs5ZySICjpmLLngb3lhazlnJLvvIk!5e0!3m2!1szh-TW!2stw!4v1654327720711!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <p class="fw-bold">周邊資訊：</p>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+
 </section>
