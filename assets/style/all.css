@@ -13993,40 +13993,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   border-color: #7F977B;
 }
 
-.btn-outline-bedag {
-  color: #BEA363;
-  border-color: #BEA363;
-}
-
-.btn-outline-bedag:hover {
-  color: #000;
-  background-color: #BEA363;
-  border-color: #BEA363;
-}
-
-.btn-check:focus + .btn-outline-bedag, .btn-outline-bedag:focus {
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
-          box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
-}
-
-.btn-check:checked + .btn-outline-bedag,
-.btn-check:active + .btn-outline-bedag, .btn-outline-bedag:active, .btn-outline-bedag.active, .btn-outline-bedag.dropdown-toggle.show {
-  color: #000;
-  background-color: #BEA363;
-  border-color: #BEA363;
-}
-
-.btn-check:checked + .btn-outline-bedag:focus,
-.btn-check:active + .btn-outline-bedag:focus, .btn-outline-bedag:active:focus, .btn-outline-bedag.active:focus, .btn-outline-bedag.dropdown-toggle.show:focus {
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
-          box-shadow: 0 0 0 0.25rem rgba(190, 163, 99, 0.5);
-}
-
-.btn-outline-bedag:disabled, .btn-outline-bedag.disabled {
-  color: #BEA363;
-  background-color: transparent;
-}
-
 .activity-cardGroup .card {
   border: 0;
   overflow: hidden;
@@ -14080,7 +14046,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   position: relative;
 }
 
-.spots-card .text-white {
+.spots-card .spots-cardText {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -14096,6 +14062,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+  color: #fff;
+  font-weight: 700;
   opacity: .6;
 }
 
@@ -14104,7 +14072,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
           box-shadow: 0 0 0 4px #E0DA48;
 }
 
-.spots-card.active .text-white {
+.spots-card.active .spots-cardText {
   opacity: 1;
 }
 
@@ -14114,7 +14082,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
           transform: scale(1.2);
 }
 
-.spots-card:hover .text-white {
+.spots-card:hover .spots-cardText {
   opacity: 1;
 }
 
@@ -14124,37 +14092,46 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
           transform: scale(1.2);
 }
 
-.nearbyInfo-Card .nearbyIcon {
+.nearbyInfo-card .nearbyIcon {
   text-align: center;
   display: block;
 }
 
-.nearbyInfo-Card .nearbyIcon-hover {
+.nearbyInfo-card .nearbyIcon-hover {
   text-align: center;
   display: none;
 }
 
-.nearbyInfo-Card:hover .nearbyIcon {
+.nearbyInfo-card .nearbyInfo-cardtext {
+  text-align: center;
+}
+
+.nearbyInfo-card:hover .nearbyIcon {
   display: none;
 }
 
-.nearbyInfo-Card:hover .nearbyIcon-hover {
+.nearbyInfo-card:hover .nearbyIcon-hover {
   display: block;
 }
 
-.nearbyInfo-Card:hover .text-center {
+.nearbyInfo-card:hover .nearbyInfo-cardtext {
   color: #7F977B;
 }
 
-.nearbyInfo-Card.active .nearbyIcon {
+.nearbyInfo-card.active {
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.nearbyInfo-card.active .nearbyIcon {
   display: none;
 }
 
-.nearbyInfo-Card.active .nearbyIcon-hover {
+.nearbyInfo-card.active .nearbyIcon-hover {
   display: block;
 }
 
-.nearbyInfo-Card.active .text-center {
+.nearbyInfo-card.active .nearbyInfo-cardtext {
   color: #7F977B;
 }
 
