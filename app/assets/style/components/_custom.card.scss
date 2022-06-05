@@ -63,7 +63,7 @@
 .spots-card{
     position: relative;
 
-    .text-white {
+    .spots-cardText {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -73,12 +73,14 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        color: $white;
+        font-weight: 700;
         opacity: .6;
     }
 
     &.active {
         box-shadow: 0 0 0 4px  $warning;
-        .text-white {
+        .spots-cardText  {
             opacity: 1;
          }
 
@@ -89,7 +91,7 @@
    
 
     &:hover {
-        .text-white {
+        .spots-cardText {
             opacity: 1;
          }
 
@@ -101,7 +103,7 @@
 
 
 // 周邊資訊 卡片
-.nearbyInfo-Card {
+.nearbyInfo-card {
     
     .nearbyIcon {
         text-align: center;
@@ -113,6 +115,11 @@
         display: none;
     }
 
+    .nearbyInfo-cardtext{
+        text-align: center;
+    }
+
+
     &:hover{
         .nearbyIcon {
             display: none;
@@ -122,13 +129,14 @@
             display: block;
         }
 
-        .text-center {
+        .nearbyInfo-cardtext {
             color: $primary;
            
         }
     }
 
     &.active {
+        box-shadow: $box-shadow;
         .nearbyIcon {
             display: none;
         }
@@ -137,7 +145,7 @@
             display: block;
         }
 
-        .text-center {
+        .nearbyInfo-cardtext {
             color: $primary;
            
         }
