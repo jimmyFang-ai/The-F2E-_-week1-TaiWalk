@@ -61,7 +61,6 @@
 
 
 
-
 // 方向鍵樣式  navigation
 .swiper-button-prev, .swiper-button-next {
     opacity: 0;
@@ -98,7 +97,7 @@
 
 // slide 圖片被hover 變大效果
 .swiper-slide {
-    .ratio-16x9 img {
+    .ratio-5x4 img {
         &:hover {
             transform: scale(1.2);
         }
