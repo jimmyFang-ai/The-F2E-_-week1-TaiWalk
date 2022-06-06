@@ -6,13 +6,6 @@
 
 
 // 導覽列選單 hover 底線
-.deco-line-primary-hover {
-   &:hover::after, :focus::after, :active::after {
-      opacity: .6;
-      width: 100%;
-   }
-}
-
 .deco-line-primary-hover::after {
    content: '';
    position: absolute;
@@ -28,10 +21,25 @@
 }
 
 
+.deco-line-primary-hover {
+   &:hover::after, :focus::after {
+      opacity: .6;
+      width: 100%;
+   }
+}
+
+.deco-line-primary-hover.active  {
+     &::after {
+      opacity: .6;
+      width: 100%;
+   }
+}
+
+
+
 
 @include media-breakpoint-up(lg) { 
    .deco-line-primary-hover::after {
       margin-top: 10px;
    }
-   
 }

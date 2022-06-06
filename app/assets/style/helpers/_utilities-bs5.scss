@@ -62,6 +62,7 @@ $utilities: map-merge(
         map-merge(
           map-get($utilities, "rounded"),
       (
+        responsive: true,
         values:
         map-merge(map-get(map-get($utilities, "rounded"), "values"),
           (

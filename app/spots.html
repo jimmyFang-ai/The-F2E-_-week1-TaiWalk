@@ -17,7 +17,7 @@ current: spots
 
 
 <!-- 探索景點主要內容 -->
-<section class="spots-themeArea mb-1 d-none">
+<section class="spots-themeArea mb-1 ">
     <div class="container">
 
         <!-- 探索景點 搜尋功能 -->
@@ -63,7 +63,7 @@ current: spots
                     </select>
                 </div>
                 <div class="col-12  col-lg-4 mb-2">
-                    <input type="text" class="form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
+                    <input type="text" class="search-keyword  form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
                 <div class="col-12  col-lg-2 mb-2">
                     <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
@@ -74,79 +74,79 @@ current: spots
             <h2 class="fs-4 fs-md-2 text-dark  fw-light mb-2">熱門主題</h2>
             <ul class="spots-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
                 <li class="col mb-2" data-category="自然風景類">
-                    <div class="spots-card active rounded-6">
+                    <div class="category-card  active rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-1.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6 fs-md-4   mb-0">自然風景類
+                        <h4 class="category-cardText   fs-6 fs-md-4   mb-0">自然風景類
                         </h4>
                     </div>
                 </li>
                 <li class="col mb-2" data-category="觀光工廠類">
-                    <div class="spots-card rounded-6">
+                    <div class="category-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-2.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6 fs-md-4   mb-0">觀光工廠類
+                        <h4 class="category-cardText fs-6 fs-md-4   mb-0">觀光工廠類
                         </h4>
                     </div>
                 </li>
                 <li class="col mb-2" data-category="遊憩類">
-                    <div class="spots-card rounded-6">
+                    <div class="category-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-3.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6  fs-md-4   mb-0">遊憩類
+                        <h4 class="category-cardText  fs-6  fs-md-4   mb-0">遊憩類
                         </h4>
                     </div>
                 </li>
                 <li class="col mb-2" data-category="休閒農業類">
-                    <div class="spots-card rounded-6">
+                    <div class="category-card  rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-4.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6 fs-md-4   mb-0">休閒農業類
+                        <h4 class="category-cardText   fs-6 fs-md-4   mb-0">休閒農業類
                         </h4>
                     </div>
                 </li>
                 <li class="col mb-2" data-category="生態類">
-                    <div class="spots-card rounded-6">
+                    <div class="category-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-5.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6 fs-md-4   mb-0">生態類
+                        <h4 class="category-cardText  fs-6 fs-md-4   mb-0">生態類
                         </h4>
                     </div>
                 </li>
                 <li class="col mb-2" data-category="溫泉類">
-                    <div class="spots-card rounded-6">
+                    <div class="category-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-6.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6 fs-md-4   mb-0">溫泉類
+                        <h4 class="category-cardText fs-6 fs-md-4   mb-0">溫泉類
                         </h4>
                     </div>
                 </li>
                 <li class="col mb-2" data-category="古蹟類">
-                    <div class="spots-card rounded-6">
+                    <div class="category-card rounded-6">
                         <div class="ratio ratio-16x9 rounded-6 overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover" src="./assets/images/Theme-bg1-7.png" alt="spots">
                             </a>
                         </div>
-                        <h4 class="spots-cardText  fs-6 fs-md-4   mb-0">古蹟類
+                        <h4 class="category-cardText  fs-6 fs-md-4   mb-0">古蹟類
                         </h4>
                     </div>
                 </li>
@@ -217,7 +217,7 @@ current: spots
 <section class="spots-categoryInner mb-1">
     <!-- 輪播卡片 -->
     <div class="container mb-2 mb-md-5">
-        <div class="swiper swiper-heroBanner">
+        <div class="swiper swiper-spotsBanner">
             <!-- 要插入 render 回來的資料 -->
             <ul class="swiper-wrapper rounded-6">
                 <li class="swiper-slide  swiper-banner">
@@ -260,8 +260,8 @@ current: spots
         </p>
 
         <div class="row row-cols-1 row-cols-lg-2">
-            <div class="bg-light  col">
-                <div class=" px-1 px-lg-3 py-5">
+            <div class="bg-light  col rounded-0 rounded-md-4 ">
+                <div class="px-1 px-lg-3 py-5 ">
                     <p class="fw-bold">開放時間： <span class="fw-normal">06:00-19:00</span></p>
                     <p class="fw-bold">服務電話： <a class="text-gray-black fw-normal"
                             href="tel:+886-3-9545114">886-3-9545114</a></p>
@@ -287,8 +287,8 @@ current: spots
                 </div>
 
                 <p class="fw-bold">周邊資訊：</p>
-                <div class="row row-cols-1 row-cols-lg-3 gy-1 gy-lg-0">
-                    <div class="col">
+                <ul class="spots-nearbyInfo row row-cols-1 row-cols-lg-3 gy-1 gy-lg-0">
+                    <li class="col">
                         <a class="d-block  border border-1 rounded-3" href="#">
                             <div class="nearbyInfo-card  p-4">
                                 <div class="d-flex justify-content-center align-items-center">
@@ -300,8 +300,8 @@ current: spots
                                 <p class="nearbyInfo-cardtext mb-0">附近景點</p>
                             </div>
                         </a>
-                    </div>
-                    <div class="col">
+                    </li>
+                    <li class="col">
                         <a class="d-block  border border-1 rounded-3" href="#">
                             <div class="nearbyInfo-card active    p-4">
                                 <div class="d-flex justify-content-center align-items-center">
@@ -313,8 +313,8 @@ current: spots
                                 <p class="nearbyInfo-cardtext  mb-0">附近活動</p>
                             </div>
                         </a>
-                    </div>
-                    <div class="col">
+                    </li>
+                    <li class="col">
                         <a class="d-block  border border-1 rounded-3" href="#">
                             <div class="nearbyInfo-card  p-4">
                                 <div class="d-flex justify-content-center align-items-center">
@@ -325,8 +325,8 @@ current: spots
                                 <p class="nearbyInfo-cardtext mb-0">附近美食</p>
                             </div>
                         </a>
-                    </div>
-                </div>
+                    </li>
+                </ul>
 
 
 
@@ -337,17 +337,17 @@ current: spots
 
     <!-- 還有這些不能錯過的景點 -->
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center px-3 mb-1 mb-md-2">
-            <h2 class="fs-4 fs-md-2 fw-light">熱門打卡景點</h2>
+        <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1 mb-md-2">
+            <h2 class="fs-4 fs-md-2 fw-light">還有這些不能錯過<span class="d-none d-md-blcok">的景點</span></h2>
             <a class="text-danger" href="./activity.html">查看更多活動 ></a>
         </div>
 
         <div class="row">
             <div class="col">
                 <!-- spots-swiper -->
-                <div class="swiper swiper-spots">
+                <div class="swiper swiper-recommend">
                     <!-- 要插入 render 回來的資料 -->
-                    <ul class="swiper-wrapper">
+                    <ul class="swiper-wrapper recommend_spots">
                         <li class="swiper-slide">
                             <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
                                 <a href="#">
