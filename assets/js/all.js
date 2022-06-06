@@ -10,11 +10,12 @@ $(function () {
 
 var searchCategory = document.querySelector(".search-category");
 var categoryList = document.querySelector(".spots-categoryList");
+console.log(searchCategory);
 
 if (categoryList) {
   categoryList.addEventListener("click", function (e) {
     e.preventDefault();
-    var category = e.target.closest(".spots-card");
+    var category = e.target.closest(".category-card");
     var categoryVal = e.target.closest("li").dataset.category;
     searchCategory.value = categoryVal;
     category.classList.toggle("active");
@@ -22,15 +23,15 @@ if (categoryList) {
 }
 "use strict";
 
-// 首頁 heroBanner 
-var swiperHeroBanner = new Swiper(".swiper-heroBanner", {
+// 首頁 - heroBanner 
+var swiper_heroBanner = new Swiper(".swiper-heroBanner", {
   cssMode: true,
   slidesPerView: 1,
-  // loop: true,
-  // autoplay: {
-  //   disableOnInteraction: false,
-  //   delay: 4000,
-  // },
+  loop: true,
+  autoplay: {
+    disableOnInteraction: false,
+    delay: 4000
+  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev"
@@ -39,9 +40,9 @@ var swiperHeroBanner = new Swiper(".swiper-heroBanner", {
     el: ".swiper-pagination",
     clickable: true
   }
-}); // 熱門打卡景點
+}); // 首頁 - 熱門打卡景點
 
-var swiperSpots = new Swiper(".swiper-spots", {
+var swiperSpots = new Swiper(".swiper-homeSpots", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -66,9 +67,72 @@ var swiperSpots = new Swiper(".swiper-spots", {
       }
     }
   }
-}); // 一再回訪美食
+}); // 首頁 - 一再回訪美食
 
-var foodSpots = new Swiper(".swiper-foods", {
+var swiperFoods = new Swiper(".swiper-homeFoods", {
+  slidesPerView: 1.6,
+  spaceBetween: 16,
+  grid: {
+    rows: 1,
+    fill: 'row'
+  },
+  breakpoints: {
+    992: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      grid: {
+        rows: 1,
+        fill: 'row'
+      }
+    },
+    768: {
+      slidesPerView: 2.5,
+      spaceBetween: 30,
+      grid: {
+        rows: 1,
+        fill: 'row'
+      }
+    }
+  }
+}); // 探索景點 內頁 swiper
+
+var swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
+  cssMode: true,
+  slidesPerView: 1,
+  loop: true,
+  autoplay: {
+    disableOnInteraction: false,
+    delay: 4000
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+}); // 節慶活動 內頁 swiper
+
+var swiper_activityBanner = new Swiper(".swiper-activityBanner", {
+  cssMode: true,
+  slidesPerView: 1,
+  loop: true,
+  autoplay: {
+    disableOnInteraction: false,
+    delay: 4000
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+}); // 推薦商品  swiper
+
+var swiperRecommend = new Swiper(".swiper-recommend", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
