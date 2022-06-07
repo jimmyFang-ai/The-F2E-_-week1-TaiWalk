@@ -94,7 +94,7 @@ var swiperFoods = new Swiper(".swiper-homeFoods", {
       }
     }
   }
-}); // 探索景點 內頁 swiper
+}); // 探索景點 內頁 swiper banner
 
 var swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
   cssMode: true,
@@ -112,9 +112,27 @@ var swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
     el: ".swiper-pagination",
     clickable: true
   }
-}); // 節慶活動 內頁 swiper
+}); // 節慶活動 內頁 swiper banner
 
 var swiper_activityBanner = new Swiper(".swiper-activityBanner", {
+  cssMode: true,
+  slidesPerView: 1,
+  loop: true,
+  autoplay: {
+    disableOnInteraction: false,
+    delay: 4000
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+}); // 品嘗美食 內頁 swiper banner
+
+var swiper_foodBanner = new Swiper(".swiper-foodBanner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
