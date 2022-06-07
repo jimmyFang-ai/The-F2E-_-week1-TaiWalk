@@ -14184,7 +14184,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 
 .swiper-heroBanner .swiper-wrapper, .swiper-spotsBanner .swiper-wrapper, .swiper-activityBanner .swiper-wrapper, .swiper-foodBanner .swiper-wrapper {
   background: rgba(0, 0, 0, 0.05);
-  border-radius: 24px;
   width: 100%;
   height: 185px;
   overflow: hidden;
@@ -14263,6 +14262,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   .swiper-button-prev, .swiper-button-next {
     opacity: 1;
   }
+}
+
+.swiper-slide {
+  cursor: pointer;
 }
 
 .swiper-slide:hover .zoomImg {
@@ -14346,7 +14349,48 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   border-color: #7F977B;
 }
 
+.btn-infoBtn {
+  color: #7F977B;
+  border-radius: 1rem;
+  border: none;
+  -webkit-box-shadow: inset 0 0 0 0 transparent;
+          box-shadow: inset 0 0 0 0 transparent;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.btn-infoBtn:hover {
+  color: #7F977B;
+  -webkit-box-shadow: inset 0 0 6px 2px #7F977B;
+          box-shadow: inset 0 0 6px 2px #7F977B;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.btn-moreBtn {
+  color: #FF725E;
+  border-radius: 1rem;
+  border: none;
+  -webkit-box-shadow: inset 0 0 0 0 transparent;
+          box-shadow: inset 0 0 0 0 transparent;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+
+.btn-moreBtn:hover {
+  color: #FF725E;
+  -webkit-box-shadow: inset 0 0 6px 2px #FF725E;
+          box-shadow: inset 0 0 6px 2px #FF725E;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .home-activity .card {
+  cursor: pointer;
   border: 0;
   overflow: hidden;
 }
