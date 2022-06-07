@@ -8,12 +8,12 @@ current: index
 
 
 <!-- 搜尋功能和slogan -->
-<section class="pb-2 pb-lg-4 mb-3 mb-lg-5">
+<section class="mb-6 mb-md-7">
   <div class="container">
     <div class="row justify-content-center align-items-center">
 
       <!-- slogan -->
-      <div class="col-lg-6 text-center text-lg-start mb-6 mb-lg-0">
+      <div class="col-md-6 col-lg-6 text-center text-lg-start mb-6 mb-md-0">
         <h2 class="fs-3 fs-lg-xxl lh-base text-dark  fw-light mb-2">探索<span class="deco-line-warning">台灣之美</span>
           <br>讓我們更親近這片土地
         </h2>
@@ -25,14 +25,14 @@ current: index
       </div>
 
       <!-- 搜尋功能 -->
-      <div class="col-lg-4">
+      <div class="col-md-6 col-lg-4">
         <form>
           <select id="searchSelect" class="form-select text-info mb-1">
             <option value="spots" selected>探索景點</option>
             <option value="festivals">節慶地點</option>
             <option value="food">品嘗美食</option>
           </select>
-          <input type="text" class="form-control mb-1 text-muted" placeholder="你想去哪裡？請輸入關鍵字">
+          <input type="text" class="search_keyword form-control mb-1 text-muted" placeholder="你想去哪裡？請輸入關鍵字">
           <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
         </form>
       </div>
@@ -41,7 +41,7 @@ current: index
 </section>
 
 <!-- hero-banner-swiper -->
-<section class="mb-4 mb-lg-6">
+<section class="mb-4 mb-md-6">
   <div class="container">
     <div class="swiper swiper-heroBanner">
       <!-- 要插入 render 回來的資料 -->
@@ -73,11 +73,11 @@ current: index
 </section>
 
 <!-- 近期活動 -->
-<section class="mb-4 mb-lg-6">
+<section class="mb-4 mb-md-6">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center px-md-3 mb-2">
+    <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1  mb-md-2">
       <h2 class="fs-4 fs-md-2 fw-light">近期活動</h2>
-      <a class="text-danger" href="./activity.html">查看更多活動 ></a>
+      <a class="btn btn-moreBtn" href="./activity.html">查看更多活動 ❯</a>
     </div>
 
     <!-- 近期活動 卡片 平板以上呈現 2欄 、 手機板 1 欄-->
@@ -87,7 +87,7 @@ current: index
           <div class="row g-0">
             <div class="col-4 overflow-hidden">
               <a class="imgWarp" href="#">
-                <img class="card-img img-cover " src="./assets/images/EventPhoto.png" alt="近期活動照片">
+                <img class=" card-img img-cover " src="./assets/images/EventPhoto.png" alt="近期活動照片">
               </a>
             </div>
             <div class="col-8">
@@ -99,7 +99,7 @@ current: index
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                       src="./assets/images/spot16.png" alt="spot">新北市</span>
-                  <a class="card-text text-primary d-none d-md-block" href="#">詳細介紹 ></a>
+                  <a class="btn  btn-infoBtn   d-none d-md-block" href="#">詳細介紹 ❯ </a>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@ current: index
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                       src="./assets/images/spot16.png" alt="spot">新北市</span>
-                  <a class="card-text text-primary d-none d-md-block" href="#">詳細介紹 ></a>
+                  <a class="btn  btn-infoBtn d-none d-md-block" href="#">詳細介紹 ❯</a>
                 </div>
               </div>
             </div>
@@ -137,11 +137,11 @@ current: index
 
 
 <!-- 熱門打卡景點 -->
-<section class="mb-4 mb-lg-6">
+<section class="mb-4 mb-md-6">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center px-md-3 mb-2">
+    <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1  mb-md-2">
       <h2 class="fs-4 fs-md-2 fw-light">熱門打卡景點</h2>
-      <a class="text-danger" href="./spots.html">查看更多活動 ></a>
+      <a class="btn btn-moreBtn" href="./spots.html">查看更多活動 ❯</a>
     </div>
 
     <div class="row">
@@ -152,7 +152,27 @@ current: index
           <ul class="swiper-wrapper">
             <li class="swiper-slide">
               <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
-                <a  href="#">
+                <a href="#">
+                  <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
+                </a>
+              </div>
+              <h5 class="fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+            </li>
+            <li class="swiper-slide">
+              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+                <a href="#">
+                  <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
+                </a>
+              </div>
+              <h5 class="fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+            </li>
+            <li class="swiper-slide">
+              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+                <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
                 </a>
               </div>
@@ -162,27 +182,7 @@ current: index
             </li>
             <li class="swiper-slide">
               <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
-                <a  href="#">
-                  <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
-                </a>
-              </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
-            </li>
-            <li class="swiper-slide">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
-                <a  href="#">
-                  <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
-                </a>
-              </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
-            </li>
-            <li class="swiper-slide">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
-                <a  href="#">
+                <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
                 </a>
               </div>
@@ -200,9 +200,9 @@ current: index
 <!-- 一再回訪美食 -->
 <section class="mb-1">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center px-md-3 mb-2">
+    <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1  mb-md-2">
       <h2 class="fs-4 fs-md-2 fw-light">一再回訪美食</h2>
-      <a class="text-danger" href="./food.html">查看更多活動 ></a>
+      <a class="btn  btn-moreBtn" href="./food.html">查看更多活動 ❯</a>
     </div>
 
     <div class="row">

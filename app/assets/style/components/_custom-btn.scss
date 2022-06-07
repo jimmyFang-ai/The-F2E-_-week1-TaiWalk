@@ -5,3 +5,26 @@
 }
 
 
+// 客製化 按鈕樣式
+@mixin  customBtn($color) {
+    color: $color;
+    border-radius: $border-radius-4;
+    border: none;
+    box-shadow:   inset 0 0 0 0 transparent;
+    transition: .3s;
+    &:hover  {
+        color: $color;
+        box-shadow: inset 0 0 6px 2px $color;
+        transform: scale(1.1);
+    }
+}
+
+// 詳細介紹按鈕
+.btn-infoBtn {
+  @include customBtn($primary);
+}
+
+// 查看更多活動 按鈕
+.btn-moreBtn {
+    @include customBtn($danger);
+}
