@@ -1,101 +1,5 @@
-// 共同卡片管理樣式:
-// 熱門分類 管理共同卡片樣式
-%all-categoryGroup {
-    .category-card{
-        position: relative;
-        .category-cardText {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: $white;
-            font-weight: 700;
-            opacity: .6;
-        }
-    
-        &.active {
-            box-shadow: 0 0 0 4px  $warning;
-            .category-cardText   {
-                opacity: 1;
-             }
-    
-            .ratio-16x9  img {
-                     transform: scale(1.2);
-             }
-        }
-       
-        &:hover {
-            .category-cardText  {
-                opacity: 1;
-             }
-    
-             .ratio-16x9  img {
-                transform: scale(1.2);
-            }
-        } 
-    }
-}
 
-// 周邊資訊 共同卡片樣式
-%all-nearbyInfo-card {
-    .nearbyInfo-card{
-        .nearbyIcon {
-            text-align: center;
-            display: block;
-        }
-    
-        .nearbyIcon-hover {
-            text-align: center;
-            display: none;
-        }
-    
-        .nearbyInfo-cardtext{
-            text-align: center;
-        }
-    
-    
-        &:hover{
-            .nearbyIcon {
-                display: none;
-            }
-        
-            .nearbyIcon-hover {
-                display: block;
-            }
-    
-            .nearbyInfo-cardtext {
-                color: $primary;
-               
-            }
-        }
-    
-        &.active {
-            box-shadow: $box-shadow;
-            .nearbyIcon {
-                display: none;
-            }
-        
-            .nearbyIcon-hover {
-                display: block;
-            }
-    
-            .nearbyInfo-cardtext {
-                color: $primary;
-               
-            }
-        }
-    }
-}
-
-
-
-
-// 節慶活動卡片
+// 首頁 - 節慶活動卡片
 .home-activity{
     .card {
         border: 0;
@@ -126,8 +30,6 @@
             transform: scale(1.2);
         }
     }
-
-   
 }
 
 @include media-breakpoint-up(md) { 
@@ -153,24 +55,103 @@
 }
 
 
-// 探索景點 - 分類卡片樣式
-.spots-categoryList {
-    @extend %all-categoryGroup;
+
+// 分頁 -  熱門分類卡片
+.category-card{
+    position: relative;
+    .category-cardText {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: $white;
+        font-weight: 700;
+        opacity: .6;
+    }
+
+    &.active {
+        box-shadow: 0 0 0 4px  $warning;
+        .category-cardText   {
+            opacity: 1;
+         }
+
+        .zoomImg {
+                 transform: scale(1.2);
+         }
+    }
+   
+    &:hover {
+        .category-cardText  {
+            opacity: 1;
+         }
+
+         .zoomImg{
+            transform: scale(1.2);
+        }
+    } 
 }
 
-// 節慶活動 - 分類卡片樣式
-.activity-categoryList {
-    @extend %all-categoryGroup;
+
+
+// 分頁 - 搜尋結果卡片
+.resultList-card {
+   &:hover .zoomImg { 
+       transform: scale(1.2);
+    }
 }
 
 
-// 探索景點 - 周邊卡片樣式
-.spots-nearbyInfo  {
-    @extend %all-nearbyInfo-card;
-}
+// 分類內頁 - 周邊卡片
+.nearbyInfo-card{
+    .nearbyIcon {
+        text-align: center;
+        display: block;
+    }
+
+    .nearbyIcon-hover {
+        text-align: center;
+        display: none;
+    }
+
+    .nearbyInfo-cardtext{
+        text-align: center;
+    }
 
 
-// 節慶活動 - 周邊卡片樣式
-.activity-nearbyInfo {
-    @extend %all-nearbyInfo-card;
+    &:hover{
+        .nearbyIcon {
+            display: none;
+        }
+    
+        .nearbyIcon-hover {
+            display: block;
+        }
+
+        .nearbyInfo-cardtext {
+            color: $primary;
+           
+        }
+    }
+
+    &.active {
+        box-shadow: $box-shadow;
+        .nearbyIcon {
+            display: none;
+        }
+    
+        .nearbyIcon-hover {
+            display: block;
+        }
+
+        .nearbyInfo-cardtext {
+            color: $primary;
+           
+        }
+    }
 }
+
