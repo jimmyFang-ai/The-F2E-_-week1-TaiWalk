@@ -52,7 +52,7 @@ current: food
                 </div>
                 <div class="col-12  col-lg-3 mb-2">
                     <select class="search-category form-select text-primary" aria-label="select">
-                        <option value="all">全部主題</option>
+                        <option value="">全部分類</option>
                         <option value="地方特產">地方特產</option>
                         <option value="中式美食">中式美食</option>
                         <option value="甜點冰品">甜點冰品</option>
@@ -65,7 +65,10 @@ current: food
                     <input type="text" class="search-keyword form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
                 <div class="col-12  col-lg-2 mb-2">
-                    <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
+                    <button type="button"
+                        class="btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
+                        <span class="material-symbols-outlined me-2 ">search</span>搜尋
+                    </button>
                 </div>
             </div>
 
@@ -76,7 +79,8 @@ current: food
                     <div class="category-card active rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-1.png" alt="地方特產">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-1.png"
+                                    alt="地方特產">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">地方特產
@@ -87,7 +91,8 @@ current: food
                     <div class="category-card  rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-2.png" alt="中式美食">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-2.png"
+                                    alt="中式美食">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">中式美食
@@ -98,7 +103,8 @@ current: food
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-3.png" alt="甜點冰品">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-3.png"
+                                    alt="甜點冰品">
                             </a>
                         </div>
                         <h4 class="category-cardText fs-6  fs-md-4   mb-0">甜點冰品
@@ -109,7 +115,8 @@ current: food
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-4.png" alt="異國料理">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-4.png"
+                                    alt="異國料理">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">異國料理
@@ -120,7 +127,8 @@ current: food
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-5.png" alt="伴手禮">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-5.png"
+                                    alt="伴手禮">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">伴手禮
@@ -131,7 +139,8 @@ current: food
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-6.png" alt="素食">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg3-6.png"
+                                    alt="素食">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">素食
@@ -149,38 +158,39 @@ current: food
                 </p>
             </h2>
             <ul class="food-resultList  row row-cols-1  row-cols-md-3 row-cols-lg-4  mb-8">
-                <li class="col mb-3 mb-md-6">
+                <li class="col mb-2 mb-md-4">
                     <div class="resultList-card border-0">
-                        <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5 mb-1 overflow-hidden">
+                        <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/NoImage-255x200.png"
                                     alt="spots">
                             </a>
                         </div>
-                        <div class="card-body px-0 py-1">
-                            <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點景點景點景點景點
+                        <div class="py-1 py-md-2">
+                            <h5 class="card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1">景點名稱景點名稱景點景點景點景點景點
                             </h5>
-                            <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                            <span class="text-secondary d-flex align-items-center"><img class="me-1"
                                     src="./assets/images/spot16.png" alt="spot">新北市</span>
                         </div>
                     </div>
                 </li>
-                <li class="col mb-3 mb-md-6">
+                <li class="col mb-2 mb-md-4">
                     <div class="resultList-card border-0">
-                        <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5 mb-1 overflow-hidden">
+                        <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden">
                             <a href="#">
                                 <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/NoImage-255x200.png"
                                     alt="spots">
                             </a>
                         </div>
-                        <div class="card-body px-0 py-1">
-                            <h5 class="card-title fs-m fs-md-xl fw-bold text-truncate text-gray-black">景點名稱景點名稱景點景點景點景點景點
+                        <div class="py-1 py-md-2">
+                            <h5 class="card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1">景點名稱景點名稱景點景點景點景點景點
                             </h5>
-                            <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                            <span class="text-secondary d-flex align-items-center"><img class="me-1"
                                     src="./assets/images/spot16.png" alt="spot">新北市</span>
                         </div>
                     </div>
                 </li>
+                
             </ul>
 
             <!-- 分頁 -->
@@ -235,7 +245,7 @@ current: food
     <div class="container mb-7">
         <h2 class="fs-4 fs-md-2 fw-light mb-1 mb-md-2">金都餐廳</h2>
         <div class="mb-2 mb-md-5">
-            <span class="badge rounded-pill border border-badge text-badge  fs-sm fs-md-lg lh-base fw-normal">#
+            <span class="btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal">#
                 中式美食</span>
         </div>
         <h5 class="fs-m fs-md-5 fw-bold mb-1">餐廳介紹：</h5>
@@ -314,7 +324,7 @@ current: food
     <div class="container">
         <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1 mb-md-2">
             <h2 class="fs-4 fs-md-2 fw-light">還有這些不能錯過<span class="d-none d-md-inline">的美食</span></h2>
-            <a class="text-danger" href="./food.html">查看更多美食 ></a>
+            <a class="btn btn-moreBtn" href="./food.html"><span class="btn-inner"> 查看更多美食 ❯</span></a>
         </div>
 
         <div class="row">
@@ -324,48 +334,43 @@ current: food
                     <!-- 要插入 render 回來的資料 -->
                     <ul class="swiper-wrapper  recommend_food">
                         <li class="swiper-slide">
-                            <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+                            <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
                                     <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
                                         alt="spots">
                                 </a>
                             </div>
-                            <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-                            <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+                            <div class="py-1 py-md-2">
+                                <h5 class="slide-title-hover  fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                                        src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+                            </div>
                         </li>
                         <li class="swiper-slide">
-                            <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+                            <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
                                     <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
                                         alt="spots">
                                 </a>
                             </div>
-                            <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-                            <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+                            <div class="py-1 py-md-2">
+                                <h5 class="slide-title-hover  fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                                        src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+                            </div>
                         </li>
                         <li class="swiper-slide">
-                            <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+                            <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
                                     <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
                                         alt="spots">
                                 </a>
                             </div>
-                            <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-                            <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
-                        </li>
-                        <li class="swiper-slide">
-                            <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
-                                <a href="#">
-                                    <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
-                                        alt="spots">
-                                </a>
+                            <div class="py-1 py-md-2">
+                                <h5 class="slide-title-hover  fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                                        src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
                             </div>
-                            <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-                            <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
                         </li>
                     </ul>
                 </div>

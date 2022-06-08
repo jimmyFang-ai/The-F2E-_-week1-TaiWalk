@@ -101,9 +101,21 @@
 
 // 分頁 - 搜尋結果卡片
 .resultList-card {
-   &:hover .zoomImg { 
-       transform: scale(1.2);
+    cursor: pointer;
+
+    .card-title-hover {
+        color: $gray-black;
     }
+
+   &:hover  { 
+    .zoomImg { 
+        transform: scale(1.2);
+     }
+
+     .card-title-hover {
+         color: $primary;
+     }
+   }
 }
 
 
