@@ -12,6 +12,8 @@
   <meta property="og:description" content="提供多種台灣觀光景點、在地美食、地方節慶活動的旅遊網站!">
   <meta property="og:url" content="https://jimmyfang-ai.github.io/The-F2E-3rd---week1" />
 
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <!-- swiper -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
@@ -87,7 +89,10 @@
             <option value="food">品嘗美食</option>
           </select>
           <input type="text" class="search_keyword form-control mb-1 text-muted" placeholder="你想去哪裡？請輸入關鍵字">
-          <button type="button" class="btn btn-custom-search  text-white w-100">搜尋</button>
+          <button type="button"
+            class="btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
+            <span class="material-symbols-outlined me-2 ">search</span>搜尋
+          </button>
         </form>
       </div>
     </div>
@@ -131,7 +136,7 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1  mb-md-2">
       <h2 class="fs-4 fs-md-2 fw-light">近期活動</h2>
-      <a class="btn btn-moreBtn" href="./activity.html">查看更多活動 ❯</a>
+      <a class="btn btn-moreBtn" href="./activity.html"><span class="btn-inner"> 查看更多活動 ❯</span> </a>
     </div>
 
     <!-- 近期活動 卡片 平板以上呈現 2欄 、 手機板 1 欄-->
@@ -153,7 +158,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                       src="./assets/images/spot16.png" alt="spot">新北市</span>
-                  <a class="btn  btn-infoBtn   d-none d-md-block" href="#">詳細介紹 ❯ </a>
+                  <a class="btn  btn-infoBtn   d-none d-md-block" href="./activity.html"><span class="btn-inner">詳細介紹 ❯
+                    </span></a>
                 </div>
               </div>
             </div>
@@ -178,7 +184,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
                       src="./assets/images/spot16.png" alt="spot">新北市</span>
-                  <a class="btn  btn-infoBtn d-none d-md-block" href="#">詳細介紹 ❯</a>
+                  <a class="btn  btn-infoBtn   d-none d-md-block" href="./activity.html"><span class="btn-inner">詳細介紹 ❯
+                    </span></a>
                 </div>
               </div>
             </div>
@@ -195,7 +202,7 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1  mb-md-2">
       <h2 class="fs-4 fs-md-2 fw-light">熱門打卡景點</h2>
-      <a class="btn btn-moreBtn" href="./spots.html">查看更多活動 ❯</a>
+      <a class="btn btn-moreBtn" href="./activity.html"><span class="btn-inner"> 查看更多活動 ❯</span></a>
     </div>
 
     <div class="row">
@@ -205,45 +212,54 @@
           <!-- 要插入 render 回來的資料 -->
           <ul class="swiper-wrapper">
             <li class="swiper-slide">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5  overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              </div>
             </li>
             <li class="swiper-slide">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5  overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              </div>
             </li>
             <li class="swiper-slide">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5  overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              </div>
             </li>
             <li class="swiper-slide">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5  overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png" alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold  fs-m fs-md-5 mb-1">龜山島牛奶海</h5>
+                <span class="text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">宜蘭縣</span>
+              </div>
             </li>
+
           </ul>
         </div>
       </div>
@@ -256,7 +272,7 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1  mb-md-2">
       <h2 class="fs-4 fs-md-2 fw-light">一再回訪美食</h2>
-      <a class="btn  btn-moreBtn" href="./food.html">查看更多活動 ❯</a>
+      <a class="btn btn-moreBtn" href="./activity.html"><span class="btn-inner"> 查看更多活動 ❯</span></a>
     </div>
 
     <div class="row">
@@ -266,48 +282,56 @@
           <!-- 要插入 render 回來的資料 -->
           <ul class="swiper-wrapper">
             <li class="swiper-slide ">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/b4b5af20e58fa4e69893ae2adb14a1a0.jpg"
                     alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
+                <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              </div>
             </li>
             <li class="swiper-slide ">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/b4b5af20e58fa4e69893ae2adb14a1a0.jpg"
                     alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
+                <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              </div>
             </li>
             <li class="swiper-slide ">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/b4b5af20e58fa4e69893ae2adb14a1a0.jpg"
                     alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
+                <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              </div>
             </li>
             <li class="swiper-slide ">
-              <div class="ratio ratio-5x4 rounded-5 mb-1 overflow-hidden">
+              <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                 <a href="#">
                   <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/b4b5af20e58fa4e69893ae2adb14a1a0.jpg"
                     alt="spots">
                 </a>
               </div>
-              <h5 class="fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
-              <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
-                  src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              <div class="py-1 py-md-2">
+                <h5 class="slide-title-hover fw-bold fs-m fs-md-5 mb-1">金都餐廳</h5>
+                <span class="card-text text-secondary d-flex align-items-center"><img class="me-1"
+                    src="./assets/images/spot16.png" alt="spot">南投縣</span>
+              </div>
             </li>
           </ul>
         </div>
