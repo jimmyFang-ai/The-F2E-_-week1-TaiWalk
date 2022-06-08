@@ -178,6 +178,7 @@ var swiperRecommend = new Swiper(".swiper-recommend", {
 });
 "use strict";
 
+// 漢堡動態效果
 var togglerBurger = document.querySelector('#toggler-burger'); // 預設是 false 選單關閉，不會出現打 X
 
 var isMenuOpen = false;
@@ -187,5 +188,6 @@ togglerBurger.addEventListener('click', function (e) {
   // 點擊後 選單打開 為true，會出現打 X
   isMenuOpen = !isMenuOpen;
   isMenuOpen ? this.classList.add('open') : this.classList.remove('open');
-});
+}); // 導覽列動態效果
+// goTop 動態效果
 //# sourceMappingURL=all.js.map
