@@ -14592,6 +14592,19 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #7F977B;
 }
 
+.goTop {
+  right: 10px;
+  bottom: 10px;
+  z-index: 1030;
+  -webkit-transition: .6s;
+  -o-transition: .6s;
+  transition: .6s;
+}
+
+.goTop:hover {
+  opacity: 0.8;
+}
+
 .img-cover {
   -o-object-fit: cover;
      object-fit: cover;
