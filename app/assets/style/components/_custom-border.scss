@@ -22,7 +22,7 @@
 
 
 .deco-line-primary-hover {
-   &:hover::after, :focus::after {
+   &:hover::after, :focus::after{
       opacity: .6;
       width: 100%;
    }
@@ -34,8 +34,6 @@
       width: 100%;
    }
 }
-
-
 
 
 @include media-breakpoint-up(lg) { 

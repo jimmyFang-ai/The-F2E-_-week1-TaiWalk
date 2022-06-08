@@ -1,4 +1,5 @@
 
+// 漢堡動態效果
 const togglerBurger = document.querySelector('#toggler-burger');
 
 // 預設是 false 選單關閉，不會出現打 X
@@ -11,5 +12,13 @@ togglerBurger.addEventListener('click', function (e) {
     isMenuOpen = !isMenuOpen;
     isMenuOpen ? this.classList.add('open') : this.classList.remove('open');
 })
+
+
+// 導覽列動態效果
+
+
+
+
+// goTop 動態效果
 
 
