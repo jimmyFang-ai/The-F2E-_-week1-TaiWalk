@@ -31,8 +31,9 @@
     }
 
     &:hover , :focus {
+        border: 0;
+        box-shadow: none;
         color: $white;
-        border: 1px solid $color;
         &::before {
             width: 100%;
         }
