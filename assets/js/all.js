@@ -207,5 +207,24 @@ $(function () {
 
     lastPos = currentPos; //再記住現在位置，跟未來的位置做比較
   }); // goTop 動態效果
+  //選擇整個瀏覽器綁定監聽事件，使用 scroll 函式，並下判斷，如果瀏覽器的頂點超過 150x，
+  // 如果 .goTop 有 .hide 這個 Class，就執行切換 class，不然就增加 .hide。
+
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() > 150) {
+      if ($(".goTop").hasClass("hide")) {
+        $(".goTop").toggleClass("hide");
+      }
+    } else {
+      $(".goTop").addClass("hide");
+    }
+  }); //  點擊 goTopBtn 按鈕後，html 與 body 給予動畫效果，並且讓捲軸上方回到 0 的位置，時間為 0.6秒。
+
+  $('#goTopBtn').on('click', function (e) {
+    e.preventDefault();
+    $('html , body').animate({
+      scrollTop: 0
+    }, '600');
+  });
 });
 //# sourceMappingURL=all.js.map
