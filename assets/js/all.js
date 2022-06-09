@@ -1,11 +1,32 @@
 "use strict";
 
-// jq 初始化
-$(function () {
-  console.log("QQ");
-}); // function init() {
-//   // AOS.init();
-// };
+// header 驗證
+function getAuthorizationHeader() {
+  //  填入自己 ID、KEY 開始
+  var AppID = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
+  var AppKey = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF'; //  填入自己 ID、KEY 結束
+
+  var GMTString = new Date().toGMTString();
+  var ShaObj = new jsSHA('SHA-1', 'TEXT');
+  ShaObj.setHMACKey(AppKey, 'TEXT');
+  ShaObj.update('x-date: ' + GMTString);
+  var HMAC = ShaObj.getHMAC('B64');
+  var Authorization = 'hmac username=\"' + AppID + '\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"' + HMAC + '\"';
+  return {
+    'Authorization': Authorization,
+    'X-Date': GMTString
+  };
+} // apiUrl
+
+
+axios.get('https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$top=10&$format=JSON', {
+  headers: getAuthorizationHeader()
+}).then(function (response) {
+  //    document.querySelector('body').textContent=JSON.stringify(response.data);
+  console.log(response.data);
+})["catch"](function (error) {
+  console.log(error.response.data);
+});
 // const searchCategory = document.querySelector(".search-category");
 // const categoryList = document.querySelector(".spots-categoryList");
 // console.log(searchCategory);
