@@ -52,12 +52,10 @@ $(function () {
       }
     });
 
-   //  點擊 goTopBtn 按鈕後，html 與 body 給予動畫效果，並且讓捲軸上方回到 0 的位置，時間為 0.8秒。
+   //  點擊 goTopBtn 按鈕後，html 與 body 給予動畫效果，並且讓捲軸上方回到 0 的位置，時間為 0.6秒。
    $('#goTopBtn').on('click',function (e) {
-      console.log(e.target);
       e.preventDefault();
-      console.log( $('html , body'));
-      $('html , body').animate( { scrollTop: 0,},'800');
+      $('html , body').animate( { scrollTop: 0,},'600');
     });
 });
 
