@@ -7,6 +7,7 @@
 
 // mixin 客製化 按鈕效果樣式
 @mixin  customBtn($color) {
+    border: 0;
     color: $color;
     border-radius: $border-radius-4;
     background-color: transparent;
