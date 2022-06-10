@@ -14204,6 +14204,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .btn-moreBtn {
+  border: 0;
   color: #FF725E;
   border-radius: 1rem;
   background-color: transparent;
@@ -14245,6 +14246,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .btn-infoBtn {
+  border: 0;
   color: #6E7D60;
   border-radius: 1rem;
   background-color: transparent;
