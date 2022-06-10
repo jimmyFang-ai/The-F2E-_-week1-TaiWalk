@@ -4,8 +4,6 @@
   }
  
 
-
-
 //管理共同的 swiper Banner
 %swiper-allBanner {
     background: rgba(0, 0, 0, 0.05);
@@ -26,7 +24,7 @@
     @extend %swiper-allBanner;
 }
 
-// spots 內頁 swiper-banner
+// scenicSpot 內頁 swiper-banner
 .swiper-spotsBanner .swiper-wrapper {
     @extend %swiper-allBanner;
  }
@@ -36,7 +34,7 @@
     @extend %swiper-allBanner;
  }
 
-//  food 內頁 swiper-banner
+//  restaurant內頁 swiper-banner
 .swiper-foodBanner .swiper-wrapper {
     @extend %swiper-allBanner;
  }

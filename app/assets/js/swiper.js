@@ -19,7 +19,7 @@ const swiper_heroBanner = new Swiper(".swiper-heroBanner", {
   
 
 // 首頁 - 熱門打卡景點
-const swiperSpots = new Swiper(".swiper-homeSpots", {
+const swiper_homeSpots = new Swiper(".swiper-home_scenicSpot", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -47,7 +47,7 @@ const swiperSpots = new Swiper(".swiper-homeSpots", {
 });
 
 // 首頁 - 一再回訪美食
-const swiperFoods = new Swiper(".swiper-homeFoods", {
+const swiper_homeRestaurant = new Swiper(".swiper-home_restaurant", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -75,9 +75,8 @@ const swiperFoods = new Swiper(".swiper-homeFoods", {
 });
 
 
-
 // 探索景點 內頁 swiper banner
-const swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
+const swiper_spotsBanner = new Swiper(".swiper-scenicSpot_banner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
@@ -97,7 +96,7 @@ const swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
 
 
 // 節慶活動 內頁 swiper banner
-const swiper_activityBanner = new Swiper(".swiper-activityBanner", {
+const swiper_activityBanner = new Swiper(".swiper-activity_banner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
@@ -117,7 +116,7 @@ const swiper_activityBanner = new Swiper(".swiper-activityBanner", {
 
 
 // 品嘗美食 內頁 swiper banner
-const swiper_foodBanner = new Swiper(".swiper-foodBanner", {
+const swiper_restaurantBanner = new Swiper(".swiper-restaurant_banner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
@@ -138,7 +137,7 @@ const swiper_foodBanner = new Swiper(".swiper-foodBanner", {
 
 
 // 推薦商品  swiper
-const swiperRecommend = new Swiper(".swiper-recommend", {
+const swiper_recommend = new Swiper(".swiper-recommend", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {

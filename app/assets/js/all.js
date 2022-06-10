@@ -15,6 +15,9 @@ function getAuthorizationHeader() {
 
 
 // apiUrl
+// scenicSpot_apiUrl
+// activity_apiUrl
+// restaurant_apiUrl
 
 
 
