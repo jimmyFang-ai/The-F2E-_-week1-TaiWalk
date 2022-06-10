@@ -17,6 +17,9 @@ function getAuthorizationHeader() {
     'X-Date': GMTString
   };
 } // apiUrl
+// scenicSpot_apiUrl
+// activity_apiUrl
+// restaurant_apiUrl
 
 
 axios.get('https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$top=10&$format=JSON', {
@@ -61,7 +64,7 @@ var swiper_heroBanner = new Swiper(".swiper-heroBanner", {
   }
 }); // 首頁 - 熱門打卡景點
 
-var swiperSpots = new Swiper(".swiper-homeSpots", {
+var swiper_homeSpots = new Swiper(".swiper-home_scenicSpot", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -88,7 +91,7 @@ var swiperSpots = new Swiper(".swiper-homeSpots", {
   }
 }); // 首頁 - 一再回訪美食
 
-var swiperFoods = new Swiper(".swiper-homeFoods", {
+var swiper_homeRestaurant = new Swiper(".swiper-home_restaurant", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -115,7 +118,7 @@ var swiperFoods = new Swiper(".swiper-homeFoods", {
   }
 }); // 探索景點 內頁 swiper banner
 
-var swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
+var swiper_spotsBanner = new Swiper(".swiper-scenicSpot_banner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
@@ -133,7 +136,7 @@ var swiper_spotsBanner = new Swiper(".swiper-spotsBanner", {
   }
 }); // 節慶活動 內頁 swiper banner
 
-var swiper_activityBanner = new Swiper(".swiper-activityBanner", {
+var swiper_activityBanner = new Swiper(".swiper-activity_banner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
@@ -151,7 +154,7 @@ var swiper_activityBanner = new Swiper(".swiper-activityBanner", {
   }
 }); // 品嘗美食 內頁 swiper banner
 
-var swiper_foodBanner = new Swiper(".swiper-foodBanner", {
+var swiper_restaurantBanner = new Swiper(".swiper-restaurant_banner", {
   cssMode: true,
   slidesPerView: 1,
   loop: true,
@@ -169,7 +172,7 @@ var swiper_foodBanner = new Swiper(".swiper-foodBanner", {
   }
 }); // 推薦商品  swiper
 
-var swiperRecommend = new Swiper(".swiper-recommend", {
+var swiper_recommend = new Swiper(".swiper-recommend", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {

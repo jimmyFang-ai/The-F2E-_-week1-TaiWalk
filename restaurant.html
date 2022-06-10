@@ -47,7 +47,7 @@
         <ul class="navbar-nav align-items-center align-items-lg-start  ms-auto py-2 py-md-0">
           <li class="nav-item position-relative  mb-1 mb-md-0  mx-lg-2">
             <a class="nav-link deco-line-primary-hover  py-lg-0  "
-              aria-current="page" href="./spots.html">探索景點</a>
+              aria-current="page" href="./scenicSpot.html">探索景點</a>
           </li>
           <li class="nav-item position-relative  mb-1 mb-md-0 mx-lg-2">
             <a class="nav-link deco-line-primary-hover py-lg-0 "
@@ -55,7 +55,7 @@
           </li>
           <li class="nav-item position-relative   mx-lg-2">
             <a class="nav-link deco-line-primary-hover py-lg-0 active"
-              href="./food.html">品嚐美食</a>
+              href="./restaurant.html">品嚐美食</a>
           </li>
         </ul>
       </div>
@@ -67,9 +67,9 @@
     
 
 <div class="container mb-2  mb-lg-6">
-    <div class="food-breadcrumb">
+    <div class="restaurant-breadcrumb">
         <a class="text-info" href="./index.html">首頁</a> /
-        <a class="breadcrumb-theme text-secondary" href="./food.html">品嘗美食</a>
+        <a class="breadcrumb-theme text-secondary" href="./restaurant.html">品嘗美食</a>
         <a class="breadcrumb-city" href="#"></a>
         <a class="breadcrumb-location" href="#"></a>
     </div>
@@ -77,11 +77,11 @@
 
 
 <!--品嘗美食 主要內容 -->
-<section class="food-themeArea mb-1 ">
+<section class="restaurant-themeArea mb-1 ">
     <div class="container">
 
         <!-- 品嘗美食 搜尋功能 -->
-        <div class="food-searchGroup mb-4 mb-md-6">
+        <div class="restaurant-searchGroup mb-4 mb-md-6">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
                 <div class="col-12  col-lg-3 mb-2">
                     <select class="search-city form-select text-primary" aria-label="select">
@@ -134,7 +134,7 @@
 
             <!-- 主題分類區 -->
             <h2 class="fs-4 fs-md-2 text-dark  fw-light mb-2">熱門分類</h2>
-            <ul class="food-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
+            <ul class="restaurant-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
                 <li class="col mb-2" data-category="地方特產">
                     <div class="category-card active rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
@@ -212,12 +212,12 @@
 
 
         <!-- 呈現 篩選結果 -->
-        <div class="food-searchResult">
+        <div class="restaurant-searchResult">
             <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
                 <p class="fs-sm fs-md-lg d-inline">共有 <span class="text-warning">240</span> 筆
                 </p>
             </h2>
-            <ul class="food-resultList  row row-cols-1  row-cols-md-3 row-cols-lg-4  mb-8">
+            <ul class="restaurant-resultList  row row-cols-1  row-cols-md-3 row-cols-lg-4  mb-8">
                 <li class="col mb-2 mb-md-4">
                     <div class="resultList-card border-0">
                         <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden">
@@ -278,10 +278,10 @@
 
 
 <!-- 品嘗美食 分類內頁 -->
-<section class="food-categoryInner mb-1 ">
+<section class="restaurant-categoryInner mb-1 ">
     <!-- 輪播卡片 -->
     <div class="container mb-2 mb-md-5">
-        <div class="swiper swiper-foodBanner">
+        <div class="swiper swiper-restaurant_banner">
             <!-- 要插入 render 回來的資料 -->
             <ul class="swiper-wrapper rounded-4 rounded-md-6">
                 <li class="swiper-slide">
@@ -335,7 +335,7 @@
                 </div>
 
                 <p class="fw-bold">周邊資訊：</p>
-                <ul class="food-nearbyInfo row row-cols-1 row-cols-lg-3 gy-1 gy-lg-0">
+                <ul class="restaurant-nearbyInfo row row-cols-1 row-cols-lg-3 gy-1 gy-lg-0">
                     <li class="col">
                         <a class="d-block  border border-1 rounded-3" href="#">
                             <div class="nearbyInfo-card   py-2  py-md-4">
@@ -384,15 +384,15 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center px-0 px-md-3 mb-1 mb-md-2">
             <h2 class="fs-4 fs-md-2 fw-light">還有這些不能錯過<span class="d-none d-md-inline">的美食</span></h2>
-            <a class="btn btn-moreBtn" href="./food.html"><span class="btn-inner"> 查看更多美食 ❯</span></a>
+            <a class="btn btn-moreBtn" href="./restaurant.html"><span class="btn-inner"> 查看更多美食 ❯</span></a>
         </div>
 
         <div class="row">
             <div class="col">
-                <!-- food-swiper -->
+                <!-- restaurant-swiper -->
                 <div class="swiper swiper-recommend">
                     <!-- 要插入 render 回來的資料 -->
-                    <ul class="swiper-wrapper  recommend_food">
+                    <ul class="swiper-wrapper  recommend_restaurant">
                         <li class="swiper-slide">
                             <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
