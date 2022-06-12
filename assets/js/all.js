@@ -1,5 +1,6 @@
 "use strict";
 
+// 帳號未註冊完成: 可不使用API金鑰呼叫API，但每日呼叫次數上限為50次。
 // header 驗證
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始
@@ -17,19 +18,34 @@ function getAuthorizationHeader() {
     'X-Date': GMTString
   };
 } // apiUrl
-// scenicSpot_apiUrl
-// activity_apiUrl
+
+
+var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?$filter=Picture/PictureUrl1 ne null&$format=JSON'; // activity_apiUrl
 // restaurant_apiUrl
+// 初始化
 
+function init() {
+  get_ScenicSpot();
+}
 
-axios.get('https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$top=10&$format=JSON', {
-  headers: getAuthorizationHeader()
-}).then(function (response) {
-  //    document.querySelector('body').textContent=JSON.stringify(response.data);
-  console.log(response.data);
-})["catch"](function (error) {
-  console.log(error.response.data);
-});
+init(); // 觀光景點: 取得資料 & 渲染畫面
+
+function get_ScenicSpot() {
+  axios.get(apiUrl_scenicSpot, {
+    headers: getAuthorizationHeader()
+  }).then(function (response) {
+    //    document.querySelector('body').textContent=JSON.stringify(response.data);
+    console.log(response.data);
+    var thisData = response.data; // 將沒有三張圖片的資料都濾掉
+
+    thisData = thisData.filter(function (item) {
+      return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined;
+    });
+    console.log(thisData);
+  })["catch"](function (error) {
+    console.log(error.response.data);
+  });
+}
 // const searchCategory = document.querySelector(".search-category");
 // const categoryList = document.querySelector(".spots-categoryList");
 // console.log(searchCategory);
