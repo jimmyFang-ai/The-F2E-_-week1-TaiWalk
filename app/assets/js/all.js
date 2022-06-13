@@ -1,7 +1,5 @@
 // 帳號未註冊完成: 可不使用API金鑰呼叫API，但每日呼叫次數上限為50次。
 
-
-
 // header 驗證
 function getAuthorizationHeader() {
     //  填入自己 ID、KEY 開始
@@ -18,12 +16,16 @@ function getAuthorizationHeader() {
 }
 
 
-
 // apiUrl
-let apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?$filter=Picture/PictureUrl1 ne null&$format=JSON';
+let apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?&$format=JSON';
+let apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
+let apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
 
-// activity_apiUrl
-// restaurant_apiUrl
+
+// data 
+let data_scenicSpot = [];
+let data_activity = [];
+let data_restaurant = [];
 
 
 // 初始化
@@ -42,13 +44,14 @@ function get_ScenicSpot() {
     )
         .then(function (response) {
             //    document.querySelector('body').textContent=JSON.stringify(response.data);
-            console.log(response.data);
-            let thisData = response.data;
+            data_scenicSpot = response.data;
+            console.log(data_scenicSpot);
+
             // 將沒有三張圖片的資料都濾掉
-            thisData = thisData.filter((item) => {return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined});
-            console.log(thisData);
-  
-            
+            data_scenicSpot = data_scenicSpot.filter((item) => { return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined });
+            console.log(data_scenicSpot);
+
+
         })
         .catch(function (error) {
             console.log(error.response.data);
