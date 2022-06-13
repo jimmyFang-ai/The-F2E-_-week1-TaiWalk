@@ -20,9 +20,13 @@ function getAuthorizationHeader() {
 } // apiUrl
 
 
-var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?$filter=Picture/PictureUrl1 ne null&$format=JSON'; // activity_apiUrl
-// restaurant_apiUrl
-// 初始化
+var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?&$format=JSON';
+var apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
+var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON'; // data 
+
+var data_scenicSpot = [];
+var data_activity = [];
+var data_restaurant = []; // 初始化
 
 function init() {
   get_ScenicSpot();
@@ -35,13 +39,13 @@ function get_ScenicSpot() {
     headers: getAuthorizationHeader()
   }).then(function (response) {
     //    document.querySelector('body').textContent=JSON.stringify(response.data);
-    console.log(response.data);
-    var thisData = response.data; // 將沒有三張圖片的資料都濾掉
+    data_scenicSpot = response.data;
+    console.log(data_scenicSpot); // 將沒有三張圖片的資料都濾掉
 
-    thisData = thisData.filter(function (item) {
+    data_scenicSpot = data_scenicSpot.filter(function (item) {
       return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined;
     });
-    console.log(thisData);
+    console.log(data_scenicSpot);
   })["catch"](function (error) {
     console.log(error.response.data);
   });
