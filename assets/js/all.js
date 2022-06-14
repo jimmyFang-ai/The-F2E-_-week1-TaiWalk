@@ -24,9 +24,9 @@ function getAuthorizationHeader() {
 console.log(getAuthorizationHeader()); // let testApi = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24top=100&%24format=JSON';
 // apiUrl
 
-var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?&$format=JSON';
-var apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
-var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON'; // data  資料
+var apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON';
+var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=Picture%2FPictureUrl1%20ne%20null&%format=JSON';
+var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON'; // data  資料
 
 var data_activity = [];
 var data_scenicSpot = [];
@@ -39,47 +39,48 @@ var home_restaurant = document.querySelector('.home_restaurant'); // console.log
 
 function init() {
   get_activity();
+  get_scenicSpot();
+  get_restaurant();
 }
 
-init(); // 近期活動: 取得資料 
+init(); // 首頁近期活動: 取得資料 
 
 function get_activity() {
   axios.get(apiUrl_activity, {
     headers: getAuthorizationHeader()
   }).then(function (response) {
-    data_activity = response.data; // console.log(data_activity);
-    // 將沒有三張圖片的資料都濾掉
-
-    data_activity = data_activity.filter(function (item) {
-      return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined;
-    }); // console.log(data_activity);
-    //呈現畫面
+    data_activity = response.data; //呈現畫面
 
     render_activity(data_activity);
+    console.log(data_activity);
   })["catch"](function (error) {
     console.log(error.response.data);
   });
 }
 
-; // 近期活動:  呈現畫面
+; // 首頁近期活動:  呈現畫面
 
 function render_activity(arr) {
   var str = ''; //  取得當前年份和月份
   // 月份是從0開始，所以要加1，才會符合12個月/年
 
   var month = new Date().getMonth() + 1;
-  var year = new Date().getFullYear(); // 隨機抽取四筆資料 呈現在畫面上
+  var year = new Date().getFullYear(); // 畫面呈現為四筆資料，所以要跑四次迴圈
 
   for (var i = 0; i < 4; i++) {
     // 隨機取得 陣列資料索引位置和資料
     var dataIndex = getRandom(arr.length);
     var dataItem = arr[dataIndex]; // 取得最近活動還沒結束的時間，落在今年或明年。
 
-    var getDate = parseInt(dataItem.EndTime.slice(0, 4)) >= year && parseInt(dataItem.EndTime.slice(5, 7)) >= month || parseInt(dataItem.EndTime.slice(0, 4)) >= year;
+    var checkDate = parseInt(dataItem.EndTime.slice(0, 4)) >= year && parseInt(dataItem.EndTime.slice(5, 7)) >= month || parseInt(dataItem.EndTime.slice(0, 4)) > year; // console.log(checkDate);
+    // 判斷 如果checkDate 為 false 重跑一次迴圈
 
-    if (getDate) {
-      console.log(dataItem);
-      str += "<div class=\"col mb-2\">\n      <div class=\"card\">\n        <div class=\"row g-0\">\n          <div class=\"col-4 overflow-hidden\">\n          <div class=\"ratio ratio-9x7  ratio-md-1x1\">\n             <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n             <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n             </a>\n          </div>\n            \n          </div>\n          <div class=\"col-8\">\n            <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n              <div>\n                <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n              </div>\n              <div class=\"d-flex justify-content-between align-items-center\">\n                <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                    src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                    class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                  </span></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>");
+    if (checkDate === false) {
+      i -= 1;
+      continue;
+    } else {
+      // 為 true 的話就組字串資料
+      str += "<div class=\"col mb-2\">\n      <div class=\"card\">\n        <div class=\"row g-0\">\n          <div class=\"col-4 overflow-hidden\">\n          <div class=\"ratio ratio-9x7  ratio-md-1x1\">\n             <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n             <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n             </a>\n          </div>\n          </div>\n          <div class=\"col-8\">\n            <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n              <div>\n                <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n              </div>\n              <div class=\"d-flex justify-content-between align-items-center\">\n                <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                    src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                    class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                  </span></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>");
     }
   }
 
@@ -87,6 +88,72 @@ function render_activity(arr) {
 
   home_activity.innerHTML = str;
 }
+
+; // 首頁打卡景點: 取得資料 
+
+function get_scenicSpot() {
+  axios.get(apiUrl_scenicSpot, {
+    headers: getAuthorizationHeader()
+  }).then(function (response) {
+    data_scenicSpot = response.data; //呈現畫面
+
+    render_scenicSpot(data_scenicSpot);
+    console.log(data_scenicSpot);
+  })["catch"](function (error) {
+    console.log(error.response.data);
+  });
+}
+
+; // 首頁打卡景點: 呈現畫面
+
+function render_scenicSpot(arr) {
+  var str = ''; // 畫面呈現為四筆資料，所以要跑四次迴圈
+
+  for (var i = 0; i < 4; i++) {
+    // 隨機取得 陣列資料索引位置和資料
+    var dataIndex = getRandom(arr.length);
+    var dataItem = arr[dataIndex];
+    str += "<li class=\"swiper-slide\">\n    <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n      <a href=\"./scenicSpot.html?id=".concat(dataItem.ScenicSpotID, "\">\n        <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\"\n          alt=\"").concat(dataItem.DescriptionDetail, "\">\n      </a>\n    </div>\n    <div class=\"py-1 py-md-2\">\n      <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.ScenicSpotName, "</h5>\n      <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n          src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n    </div>\n  </li>");
+  }
+
+  ; // 呈現畫面
+
+  home_scenicSpot.innerHTML = str;
+}
+
+; // 首頁餐廳資訊: 取得資料 
+
+function get_restaurant() {
+  axios.get(apiUrl_restaurant, {
+    headers: getAuthorizationHeader()
+  }).then(function (response) {
+    data_restaurant = response.data; //呈現畫面
+
+    render_restaurant(data_restaurant);
+    console.log(data_restaurant);
+  })["catch"](function (error) {
+    console.log(error.response.data);
+  });
+}
+
+; // 首頁餐廳資訊: 呈現畫面
+
+function render_restaurant(arr) {
+  var str = ''; // 畫面呈現為四筆資料，所以要跑四次迴圈
+
+  for (var i = 0; i < 4; i++) {
+    // 隨機取得 陣列資料索引位置和資料
+    var dataIndex = getRandom(arr.length);
+    var dataItem = arr[dataIndex];
+    str += "<li class=\"swiper-slide\">\n    <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n      <a href=\"./Restaurant.html?id=".concat(dataItem.RestaurantID, "\">\n        <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\"\n          alt=\"").concat(dataItem.DescriptionDetail, "\">\n      </a>\n    </div>\n    <div class=\"py-1 py-md-2\">\n      <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.RestaurantName, "</h5>\n      <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n          src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n    </div>\n  </li>");
+  }
+
+  ; // 呈現畫面
+
+  home_restaurant.innerHTML = str;
+}
+
+;
 // const searchCategory = document.querySelector(".search-category");
 // const categoryList = document.querySelector(".spots-categoryList");
 // console.log(searchCategory);
