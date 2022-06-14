@@ -7650,6 +7650,10 @@ fieldset:disabled .btn {
   --bs-aspect-ratio: calc(4/ 9 * 100%);
 }
 
+.ratio-9x7 {
+  --bs-aspect-ratio: calc(7/ 9 * 100%);
+}
+
 .ratio-11x8 {
   --bs-aspect-ratio: calc(8/ 11 * 100%);
 }
@@ -9445,6 +9449,10 @@ fieldset:disabled .btn {
   --bs-aspect-ratio: calc(4/ 9 * 100%) !important;
 }
 
+.ratio-9x7 {
+  --bs-aspect-ratio: calc(7/ 9 * 100%) !important;
+}
+
 .ratio-11x8 {
   --bs-aspect-ratio: calc(8/ 11 * 100%) !important;
 }
@@ -10380,6 +10388,9 @@ fieldset:disabled .btn {
   .ratio-sm-9x4 {
     --bs-aspect-ratio: calc(4/ 9 * 100%) !important;
   }
+  .ratio-sm-9x7 {
+    --bs-aspect-ratio: calc(7/ 9 * 100%) !important;
+  }
   .ratio-sm-11x8 {
     --bs-aspect-ratio: calc(8/ 11 * 100%) !important;
   }
@@ -11272,6 +11283,9 @@ fieldset:disabled .btn {
   }
   .ratio-md-9x4 {
     --bs-aspect-ratio: calc(4/ 9 * 100%) !important;
+  }
+  .ratio-md-9x7 {
+    --bs-aspect-ratio: calc(7/ 9 * 100%) !important;
   }
   .ratio-md-11x8 {
     --bs-aspect-ratio: calc(8/ 11 * 100%) !important;
@@ -12166,6 +12180,9 @@ fieldset:disabled .btn {
   .ratio-lg-9x4 {
     --bs-aspect-ratio: calc(4/ 9 * 100%) !important;
   }
+  .ratio-lg-9x7 {
+    --bs-aspect-ratio: calc(7/ 9 * 100%) !important;
+  }
   .ratio-lg-11x8 {
     --bs-aspect-ratio: calc(8/ 11 * 100%) !important;
   }
@@ -13058,6 +13075,9 @@ fieldset:disabled .btn {
   }
   .ratio-xl-9x4 {
     --bs-aspect-ratio: calc(4/ 9 * 100%) !important;
+  }
+  .ratio-xl-9x7 {
+    --bs-aspect-ratio: calc(7/ 9 * 100%) !important;
   }
   .ratio-xl-11x8 {
     --bs-aspect-ratio: calc(8/ 11 * 100%) !important;
@@ -13952,6 +13972,9 @@ fieldset:disabled .btn {
   .ratio-xxl-9x4 {
     --bs-aspect-ratio: calc(4/ 9 * 100%) !important;
   }
+  .ratio-xxl-9x7 {
+    --bs-aspect-ratio: calc(7/ 9 * 100%) !important;
+  }
   .ratio-xxl-11x8 {
     --bs-aspect-ratio: calc(8/ 11 * 100%) !important;
   }
@@ -14309,10 +14332,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   display: block;
   overflow: hidden;
   border-radius: 12px;
+  height: 100%;
 }
 
 .home_activity .card-img {
-  height: 80px;
+  height: 100%;
 }
 
 .home_activity .card-img:hover {
@@ -14330,11 +14354,9 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   }
   .home_activity .imgWarp {
     border-radius: 0;
-    height: 100%;
   }
   .home_activity .card-img {
     border-radius: 12px 0 0 12px;
-    height: 100%;
   }
 }
 

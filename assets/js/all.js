@@ -41,7 +41,7 @@ function init() {
   get_activity();
 }
 
-init(); // 節慶活動: 取得資料 
+init(); // 近期活動: 取得資料 
 
 function get_activity() {
   axios.get(apiUrl_activity, {
@@ -61,17 +61,26 @@ function get_activity() {
   });
 }
 
-; // 節慶活動:  呈現畫面
+; // 近期活動:  呈現畫面
 
 function render_activity(arr) {
-  var str = ''; // 隨機抽取四筆資料 呈現在畫面上
+  var str = ''; //  取得當前年份和月份
+  // 月份是從0開始，所以要加1，才會符合12個月/年
+
+  var month = new Date().getMonth() + 1;
+  var year = new Date().getFullYear(); // 隨機抽取四筆資料 呈現在畫面上
 
   for (var i = 0; i < 4; i++) {
     // 隨機取得 陣列資料索引位置和資料
-    var dataIndex = getRandom(data_activity.length);
-    var dataItem = data_activity[dataIndex]; // 希望撈取的是未來的活動時間?? 
+    var dataIndex = getRandom(arr.length);
+    var dataItem = arr[dataIndex]; // 取得最近活動還沒結束的時間，落在今年或明年。
 
-    str += "<div class=\"col mb-2\">\n        <div class=\"card\">\n          <div class=\"row g-0\">\n            <div class=\"col-4 overflow-hidden\">\n              <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n                <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n              </a>\n            </div>\n            <div class=\"col-8\">\n              <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n                <div>\n                  <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                  <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n                </div>\n                <div class=\"d-flex justify-content-between align-items-center\">\n                  <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                  <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                      class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                    </span></a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>");
+    var getDate = parseInt(dataItem.EndTime.slice(0, 4)) >= year && parseInt(dataItem.EndTime.slice(5, 7)) >= month || parseInt(dataItem.EndTime.slice(0, 4)) >= year;
+
+    if (getDate) {
+      console.log(dataItem);
+      str += "<div class=\"col mb-2\">\n      <div class=\"card\">\n        <div class=\"row g-0\">\n          <div class=\"col-4 overflow-hidden\">\n          <div class=\"ratio ratio-9x7  ratio-md-1x1\">\n             <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n             <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n             </a>\n          </div>\n            \n          </div>\n          <div class=\"col-8\">\n            <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n              <div>\n                <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n              </div>\n              <div class=\"d-flex justify-content-between align-items-center\">\n                <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                    src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                    class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                  </span></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>");
+    }
   }
 
   ; // 呈現畫面
