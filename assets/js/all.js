@@ -30,13 +30,18 @@ var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?
 
 var data_scenicSpot = [];
 var data_activity = [];
-var data_restaurant = []; // 初始化
+var data_restaurant = []; // 呈現畫面 DOM 
+
+var home_activity = document.querySelector('.home_activity');
+var home_scenicSpot = document.querySelector('.home_scenicSpot');
+var home_restaurant = document.querySelector('.home_restaurant'); // console.log(home_activity,home_scenicSpot,home_restaurant );
+// 初始化
 
 function init() {
   get_ScenicSpot();
 }
 
-init(); // 觀光景點: 取得資料 & 渲染畫面
+init(); // 觀光景點: 取得資料 
 
 function get_ScenicSpot() {
   axios.get(apiUrl_restaurant, {
@@ -49,11 +54,36 @@ function get_ScenicSpot() {
     data_scenicSpot = data_scenicSpot.filter(function (item) {
       return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined;
     });
-    console.log(data_scenicSpot);
+    console.log(data_scenicSpot); //呈現畫面
+
+    reder_ScenicSpot(data_scenicSpot);
   })["catch"](function (error) {
     console.log(error.response.data);
   });
 }
+
+; // 觀光景點:  呈現畫面
+
+function reder_ScenicSpot(arr) {
+  var str = ''; // 隨機抽取四筆資料 呈現在畫面上
+
+  for (var i = 0; i < 4; i++) {
+    // 隨機取得 陣列資料索引位置和資料
+    var dataIndex = getRandom(data_scenicSpot.length);
+    var dataItem = data_scenicSpot[dataIndex];
+    str += "<div class=\"col mb-2\">\n        <div class=\"card\">\n          <div class=\"row g-0\">\n            <div class=\"col-4 overflow-hidden\">\n              <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n                <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n              </a>\n            </div>\n            <div class=\"col-8\">\n              <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n                <div>\n                  <span class=\"card-text text-secondary fs-xs fs-lg-6\">").concat(dataItem.StartTime, " - ").concat(dataItem.EndTime, "</span>\n                  <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n                </div>\n                <div class=\"d-flex justify-content-between align-items-center\">\n                  <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                  <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                      class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                    </span></a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>");
+  }
+
+  ;
+  home_activity.innerHTML = str;
+} // 亂數產生器函式
+
+
+function getRandom(num) {
+  return Math.floor(Math.random() * num);
+}
+
+;
 // const searchCategory = document.querySelector(".search-category");
 // const categoryList = document.querySelector(".spots-categoryList");
 // console.log(searchCategory);
