@@ -1,11 +1,10 @@
 "use strict";
 
-// 帳號未註冊完成: 可不使用API金鑰呼叫API，但每日呼叫次數上限為50次。
 // header 驗證
 function getAuthorizationHeader() {
   //  填入自己 ID、KEY 開始
-  var AppID = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
-  var AppKey = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF'; //  填入自己 ID、KEY 結束
+  var AppID = 'pi20120413-d8af96eb-df29-4ade';
+  var AppKey = 'f833d75c-8474-4bfb-af41-b3f7af36fc7c'; //  填入自己 ID、KEY 結束
 
   var GMTString = new Date().toGMTString();
   var ShaObj = new jsSHA('SHA-1', 'TEXT');
@@ -20,9 +19,9 @@ function getAuthorizationHeader() {
 } // apiUrl
 
 
-var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?&$format=JSON';
-var apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
-var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON'; // data 
+var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?&$format=JSON'; // let apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
+// let apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
+// data 
 
 var data_scenicSpot = [];
 var data_activity = [];
