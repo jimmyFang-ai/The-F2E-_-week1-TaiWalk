@@ -26,10 +26,10 @@ console.log(getAuthorizationHeader()); // let testApi = 'https://ptx.transportda
 
 var apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?&$format=JSON';
 var apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
-var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON'; // data 
+var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON'; // data  資料
 
-var data_scenicSpot = [];
 var data_activity = [];
+var data_scenicSpot = [];
 var data_restaurant = []; // 呈現畫面 DOM 
 
 var home_activity = document.querySelector('.home_activity');
@@ -38,52 +38,46 @@ var home_restaurant = document.querySelector('.home_restaurant'); // console.log
 // 初始化
 
 function init() {
-  get_ScenicSpot();
+  get_activity();
 }
 
-init(); // 觀光景點: 取得資料 
+init(); // 節慶活動: 取得資料 
 
-function get_ScenicSpot() {
-  axios.get(apiUrl_restaurant, {
+function get_activity() {
+  axios.get(apiUrl_activity, {
     headers: getAuthorizationHeader()
   }).then(function (response) {
-    //    document.querySelector('body').textContent=JSON.stringify(response.data);
-    data_scenicSpot = response.data;
-    console.log(data_scenicSpot); // 將沒有三張圖片的資料都濾掉
+    data_activity = response.data; // console.log(data_activity);
+    // 將沒有三張圖片的資料都濾掉
 
-    data_scenicSpot = data_scenicSpot.filter(function (item) {
+    data_activity = data_activity.filter(function (item) {
       return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined;
-    });
-    console.log(data_scenicSpot); //呈現畫面
+    }); // console.log(data_activity);
+    //呈現畫面
 
-    reder_ScenicSpot(data_scenicSpot);
+    render_activity(data_activity);
   })["catch"](function (error) {
     console.log(error.response.data);
   });
 }
 
-; // 觀光景點:  呈現畫面
+; // 節慶活動:  呈現畫面
 
-function reder_ScenicSpot(arr) {
+function render_activity(arr) {
   var str = ''; // 隨機抽取四筆資料 呈現在畫面上
 
   for (var i = 0; i < 4; i++) {
     // 隨機取得 陣列資料索引位置和資料
-    var dataIndex = getRandom(data_scenicSpot.length);
-    var dataItem = data_scenicSpot[dataIndex];
-    str += "<div class=\"col mb-2\">\n        <div class=\"card\">\n          <div class=\"row g-0\">\n            <div class=\"col-4 overflow-hidden\">\n              <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n                <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n              </a>\n            </div>\n            <div class=\"col-8\">\n              <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n                <div>\n                  <span class=\"card-text text-secondary fs-xs fs-lg-6\">").concat(dataItem.StartTime, " - ").concat(dataItem.EndTime, "</span>\n                  <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n                </div>\n                <div class=\"d-flex justify-content-between align-items-center\">\n                  <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                  <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                      class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                    </span></a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>");
+    var dataIndex = getRandom(data_activity.length);
+    var dataItem = data_activity[dataIndex]; // 希望撈取的是未來的活動時間?? 
+
+    str += "<div class=\"col mb-2\">\n        <div class=\"card\">\n          <div class=\"row g-0\">\n            <div class=\"col-4 overflow-hidden\">\n              <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n                <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n              </a>\n            </div>\n            <div class=\"col-8\">\n              <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n                <div>\n                  <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                  <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n                </div>\n                <div class=\"d-flex justify-content-between align-items-center\">\n                  <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                  <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                      class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                    </span></a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>");
   }
 
-  ;
+  ; // 呈現畫面
+
   home_activity.innerHTML = str;
-} // 亂數產生器函式
-
-
-function getRandom(num) {
-  return Math.floor(Math.random() * num);
 }
-
-;
 // const searchCategory = document.querySelector(".search-category");
 // const categoryList = document.querySelector(".spots-categoryList");
 // console.log(searchCategory);
@@ -265,6 +259,7 @@ var swiper_recommend = new Swiper(".swiper-recommend", {
 //     isMenuOpen = !isMenuOpen;
 //     isMenuOpen ? this.classList.add('open') : this.classList.remove('open');
 // })
+// 動態效果
 // jQuery 初始化
 $(function () {
   // 漢堡動態效果
@@ -304,5 +299,11 @@ $(function () {
       scrollTop: 0
     }, '600');
   });
-});
+}); // 亂數產生器函式
+
+function getRandom(num) {
+  return Math.floor(Math.random() * num);
+}
+
+;
 //# sourceMappingURL=all.js.map
