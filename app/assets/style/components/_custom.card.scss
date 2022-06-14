@@ -1,6 +1,6 @@
 
 // 首頁 - 節慶活動卡片
-.home-activity{
+.home_activity{
     .card {
         cursor: pointer;
         border: 0;
@@ -34,7 +34,7 @@
 }
 
 @include media-breakpoint-up(md) { 
-    .home-activity{
+    .home_activity{
         .card-body{
             border-radius: 0 12px 12px 0px;
             background-color: #F9F9F9;
@@ -45,15 +45,16 @@
 
         .imgWarp {
            border-radius: 0;
+           height: 100%;
         }
 
         .card-img {
             border-radius: 12px 0 0 12px;
             height: 100%;
         }
-    }
-    
+    } 
 }
+
 
 
 
