@@ -1,10 +1,12 @@
 
 
-// header 驗證
+// PTX api  header 驗證
 function getAuthorizationHeader() {
     //  填入自己 ID、KEY 開始
-    let AppID = 'pi20120413-d8af96eb-df29-4ade';
-    let AppKey = 'f833d75c-8474-4bfb-af41-b3f7af36fc7c';
+    let AppID = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
+    let AppKey = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
+    // let AppID = 'pi20120413-51900829-226c-41ea';
+    // let AppKey = '3b7f6972-70db-4eba-8d74-2d6e11c5f499';
     //  填入自己 ID、KEY 結束
     let GMTString = new Date().toGMTString();
     let ShaObj = new jsSHA('SHA-1', 'TEXT');
@@ -16,11 +18,15 @@ function getAuthorizationHeader() {
 }
 
 
-// apiUrl
-let apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/?&$format=JSON';
+// 測試用 test
+console.log(getAuthorizationHeader());
+// let testApi = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24top=100&%24format=JSON';
 
-// let apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
-// let apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
+
+// apiUrl
+let apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?&$format=JSON';
+let apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
+let apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
 
 
 // data 
@@ -38,7 +44,7 @@ init();
 
 // 觀光景點: 取得資料 & 渲染畫面
 function get_ScenicSpot() {
-    axios.get(apiUrl_scenicSpot,
+    axios.get(apiUrl_restaurant,
         {
             headers: getAuthorizationHeader()
         }
