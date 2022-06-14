@@ -14,6 +14,7 @@
 // })
 
 
+// 動態效果
 // jQuery 初始化
 $(function () {
 
@@ -22,7 +23,6 @@ $(function () {
    $('#toggler-burger').on('click', function () {
       $(this).toggleClass('open');
    })
-
 
    // 導覽列滾動效果
    let lastPos = 0;
@@ -36,7 +36,6 @@ $(function () {
       }
       lastPos = currentPos;//再記住現在位置，跟未來的位置做比較
    });
-
 
 
    // goTop 動態效果
@@ -57,11 +56,15 @@ $(function () {
       e.preventDefault();
       $('html , body').animate( { scrollTop: 0,},'600');
     });
+    
 });
 
 
 
-
+// 亂數產生器函式
+function getRandom(num) {
+   return Math.floor(Math.random() * num);
+};
 
 
 

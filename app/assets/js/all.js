@@ -3,6 +3,7 @@
 
 
 
+
 // PTX api  header 驗證
 function getAuthorizationHeader() {
     //  填入自己 ID、KEY 開始
@@ -32,9 +33,9 @@ let apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$
 let apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?&$format=JSON';
 
 
-// data 
-let data_scenicSpot = [];
+// data  資料
 let data_activity = [];
+let data_scenicSpot = [];
 let data_restaurant = [];
 
 
@@ -48,30 +49,29 @@ let home_restaurant = document.querySelector('.home_restaurant');
 
 // 初始化
 function init() {
-    get_ScenicSpot();
+    get_activity();
 }
 init();
 
 
-// 觀光景點: 取得資料 
-function get_ScenicSpot() {
-    axios.get(apiUrl_restaurant,
+// 節慶活動: 取得資料 
+function get_activity() {
+    axios.get(apiUrl_activity,
         {
             headers: getAuthorizationHeader()
         }
     )
         .then(function (response) {
-            //    document.querySelector('body').textContent=JSON.stringify(response.data);
-            data_scenicSpot = response.data;
-            console.log(data_scenicSpot);
+
+            data_activity = response.data;
+            // console.log(data_activity);
 
             // 將沒有三張圖片的資料都濾掉
-            data_scenicSpot = data_scenicSpot.filter((item) => { return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined });
-            console.log(data_scenicSpot);
+            data_activity = data_activity.filter((item) => { return item.Picture.PictureUrl1 !== undefined && item.Picture.PictureUrl2 !== undefined && item.Picture.PictureUrl3 !== undefined });
+            // console.log(data_activity);
 
             //呈現畫面
-            reder_ScenicSpot(data_scenicSpot);
-
+            render_activity(data_activity);
 
         })
         .catch(function (error) {
@@ -80,8 +80,8 @@ function get_ScenicSpot() {
 };
 
 
-// 觀光景點:  呈現畫面
-function reder_ScenicSpot(arr) {
+// 節慶活動:  呈現畫面
+function render_activity(arr) {
 
     let str = '';
 
@@ -89,9 +89,11 @@ function reder_ScenicSpot(arr) {
     // 隨機抽取四筆資料 呈現在畫面上
     for (let i = 0; i < 4; i++) {
         // 隨機取得 陣列資料索引位置和資料
-        let dataIndex = getRandom(data_scenicSpot.length);
-        let dataItem = data_scenicSpot[dataIndex];
+        let dataIndex = getRandom(data_activity.length);
+        let dataItem = data_activity[dataIndex];
 
+        // 希望撈取的是未來的活動時間?? 
+       
         str += `<div class="col mb-2">
         <div class="card">
           <div class="row g-0">
@@ -103,7 +105,7 @@ function reder_ScenicSpot(arr) {
             <div class="col-8">
               <div class="card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5">
                 <div>
-                  <span class="card-text text-secondary fs-xs fs-lg-6">${dataItem.StartTime} - ${dataItem.EndTime}</span>
+                  <span class="card-text text-secondary fs-xs fs-lg-6"> ${dataItem.StartTime.slice(0,10)} - ${dataItem.EndTime.slice(0,10)}</span>
                   <h5 class="card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate">${dataItem.ActivityName}</h5>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
@@ -120,10 +122,7 @@ function reder_ScenicSpot(arr) {
       </div>`;
     };
 
+    // 呈現畫面
     home_activity.innerHTML = str;
 }
 
-// 亂數產生器函式
-function getRandom(num) {
-    return Math.floor(Math.random() * num);
-};
