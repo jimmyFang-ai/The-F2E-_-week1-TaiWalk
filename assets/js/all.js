@@ -30,12 +30,23 @@ var apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant
 // 初始化
 
 function init() {
+  // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
-  get_restaurant();
+  get_restaurant(); // //探索景點 - 取得資料
+  // scenicSpot_getCategory();
 }
 
-init(); // 首頁 - 取得資料
+init();
+"use strict";
+
+// 首頁 js
+// 呈現畫面 DOM 
+var home_activity = document.querySelector('.home_activity');
+var home_scenicSpot = document.querySelector('.home_scenicSpot');
+var home_restaurant = document.querySelector('.home_restaurant'); // 搜尋按鈕
+
+var home_searchBtn = document.querySelector('.search_Btn'); // 首頁 - 取得資料
 // 近期活動
 
 function get_activity() {
@@ -85,16 +96,8 @@ function get_restaurant() {
   });
 }
 
-;
-"use strict";
-
-// 首頁 js
-// 呈現畫面 DOM 
-var home_activity = document.querySelector('.home_activity');
-var home_scenicSpot = document.querySelector('.home_scenicSpot');
-var home_restaurant = document.querySelector('.home_restaurant'); // 搜尋按鈕
-
-var home_searchBtn = document.querySelector('.search_Btn'); // 首頁近期活動:  呈現畫面
+; // 首頁- 呈現畫面
+//近期活動 
 
 function render_activity(arr) {
   var str = ''; //  取得當前年份和月份
@@ -125,7 +128,7 @@ function render_activity(arr) {
   home_activity.innerHTML = str;
 }
 
-; // 首頁打卡景點: 呈現畫面
+; // 打卡景點
 
 function render_scenicSpot(arr) {
   var str = ''; // 畫面呈現為四筆資料，所以要跑四次迴圈
@@ -149,7 +152,7 @@ function render_scenicSpot(arr) {
   home_scenicSpot.innerHTML = str;
 }
 
-; // 首頁餐廳資訊: 呈現畫面
+; // 餐廳資訊
 
 function render_restaurant(arr) {
   var str = ''; // 畫面呈現為四筆資料，所以要跑四次迴圈
@@ -175,7 +178,9 @@ function render_restaurant(arr) {
 
 ; // 首頁 搜尋功能
 
-home_searchBtn.addEventListener('click', search_keyword);
+if (home_searchBtn) {
+  home_searchBtn.addEventListener('click', search_keyword);
+}
 
 function search_keyword() {
   var search_type = document.querySelector('.search_type');
@@ -188,6 +193,41 @@ function search_keyword() {
 }
 
 ;
+"use strict";
+
+//  DOM 
+var scenicSpot_themeArea = document.querySelector('.scenicSpot-themeArea');
+var scenicSpot_categoryInner = document.querySelector('.scenicSpot-categoryInner');
+var scenicSpot_searchResult = document.querySelector('.scenicSpot-searchResult');
+var searchCategory = document.querySelector(".search-category"); // 呈現畫面列表
+
+var scenicSpot_categoryList = document.querySelector('.scenicSpot-categoryList');
+var scenicSpot_resultLis = document.querySelector('.scenicSpot-resultLis'); // console.log(scenicSpot_themeArea,scenicSpot_categoryInner, scenicSpot_searchResult,
+// scenicSpot_categoryList,scenicSpot_resultLis);
+// 探索景點 - 篩選資料 & 取得資料
+
+if (scenicSpot_categoryList) {
+  scenicSpot_categoryList.addEventListener('click', scenicSpot_getCategory);
+}
+
+function scenicSpot_getCategory(e) {
+  e.preventDefault();
+  var category_card = e.target.closest(".category-card");
+  var categoryVal = e.target.closest("li").dataset.category;
+  searchCategory.value = categoryVal;
+  category_card.classList.toggle("active");
+  axios.get("https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24filter=contains(Class1%2C'".concat(categoryVal, "')&format=JSON"), {
+    headers: getAuthorizationHeader()
+  }).then(function (response) {
+    var data_scenicSpot = response.data;
+    console.log(data_scenicSpot); //   data_scenicSpot.forEach((item) => {
+    //   })
+  })["catch"](function (error) {
+    console.log(error.response.data);
+  });
+} // 探索景點 - 搜尋功能
+// 探索景點 - 篩選資料
+// 篩選邏輯
 // const searchCategory = document.querySelector(".search-category");
 // const categoryList = document.querySelector(".spots-categoryList");
 // console.log(searchCategory);
@@ -200,7 +240,6 @@ function search_keyword() {
 //         category.classList.toggle("active");
 //     })
 // }
-"use strict";
 "use strict";
 
 // 首頁 - heroBanner 
