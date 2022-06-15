@@ -1,17 +1,81 @@
 
 // 首頁 js
 
-
 // 呈現畫面 DOM 
-let home_activity = document.querySelector('.home_activity');
-let home_scenicSpot = document.querySelector('.home_scenicSpot');
-let home_restaurant = document.querySelector('.home_restaurant');
+const home_activity = document.querySelector('.home_activity');
+const home_scenicSpot = document.querySelector('.home_scenicSpot');
+const  home_restaurant = document.querySelector('.home_restaurant');
 
 // 搜尋按鈕
-let home_searchBtn = document.querySelector('.search_Btn');
+const  home_searchBtn = document.querySelector('.search_Btn');
 
 
-// 首頁近期活動:  呈現畫面
+
+// 首頁 - 取得資料
+// 近期活動
+function get_activity() {
+  axios.get(apiUrl_activity,
+    {
+      headers: getAuthorizationHeader()
+    }
+  )
+    .then(function (response) {
+      const data_activity = response.data;
+      
+      //呈現畫面
+      if (home_activity) {
+        render_activity(data_activity);
+      }
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
+    });
+};
+
+// 打卡景點
+function get_scenicSpot() {
+  axios.get(apiUrl_scenicSpot,
+    {
+      headers: getAuthorizationHeader()
+    }
+  )
+    .then(function (response) {
+      const data_scenicSpot = response.data;
+
+      //呈現畫面
+      if (home_scenicSpot) {
+        render_scenicSpot(data_scenicSpot);
+      }
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
+    });
+};
+
+//餐廳資訊
+function get_restaurant() {
+  axios.get(apiUrl_restaurant,
+    {
+      headers: getAuthorizationHeader()
+    }
+  )
+    .then(function (response) {
+      const data_restaurant = response.data;
+
+      if (home_restaurant) {
+        //呈現畫面
+        render_restaurant(data_restaurant);
+      }
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
+    });
+};
+
+
+
+// 首頁- 呈現畫面
+//近期活動 
 function render_activity(arr) {
 
   let str = '';
@@ -75,7 +139,7 @@ function render_activity(arr) {
 };
 
 
-// 首頁打卡景點: 呈現畫面
+// 打卡景點
 function render_scenicSpot(arr) {
 
   let str = '';
@@ -113,7 +177,7 @@ function render_scenicSpot(arr) {
 };
 
 
-// 首頁餐廳資訊: 呈現畫面
+// 餐廳資訊
 function render_restaurant(arr) {
 
   let str = '';
@@ -152,7 +216,10 @@ function render_restaurant(arr) {
 
 
 // 首頁 搜尋功能
-home_searchBtn.addEventListener('click', search_keyword);
+if (home_searchBtn) {
+  home_searchBtn.addEventListener('click', search_keyword);
+}
+
 function search_keyword() {
   const search_type = document.querySelector('.search_type');
   const search_keyword = document.querySelector('.search_keyword');
