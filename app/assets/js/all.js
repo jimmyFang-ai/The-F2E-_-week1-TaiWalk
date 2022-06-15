@@ -18,7 +18,7 @@ function getAuthorizationHeader() {
 }
 
 // 測試用 test
-console.log(getAuthorizationHeader());
+// console.log(getAuthorizationHeader());
 // // let testApi = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24top=100&%24format=JSON';
 
 
@@ -26,12 +26,6 @@ console.log(getAuthorizationHeader());
 let apiUrl_activity = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON';
 let apiUrl_scenicSpot = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=Picture%2FPictureUrl1%20ne%20null&%format=JSON';
 let apiUrl_restaurant = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON';
-
-
-// data  資料
-let data_activity = [];
-let data_scenicSpot = [];
-let data_restaurant = [];
 
 
 // console.log(home_activity, home_scenicSpot, home_restaurant, home_searchBtn);
@@ -55,8 +49,8 @@ function get_activity() {
     }
   )
     .then(function (response) {
-      data_activity = response.data;
-
+      const data_activity = response.data;
+      
       //呈現畫面
       if (home_activity) {
         render_activity(data_activity);
@@ -75,7 +69,7 @@ function get_scenicSpot() {
     }
   )
     .then(function (response) {
-      data_scenicSpot = response.data;
+      const data_scenicSpot = response.data;
 
       //呈現畫面
       if (home_scenicSpot) {
@@ -90,19 +84,21 @@ function get_scenicSpot() {
 //餐廳資訊
 function get_restaurant() {
   axios.get(apiUrl_restaurant,
-      {
-          headers: getAuthorizationHeader()
-      }
+    {
+      headers: getAuthorizationHeader()
+    }
   )
-      .then(function (response) {
-          data_restaurant = response.data;
+    .then(function (response) {
+      const data_restaurant = response.data;
 
-          if (home_restaurant) {
-              //呈現畫面
-              render_restaurant(data_restaurant);
-          }
-      })
-      .catch(function (error) {
-          console.log(error.response.data);
-      });
+      if (home_restaurant) {
+        //呈現畫面
+        render_restaurant(data_restaurant);
+      }
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
+    });
 };
+
+
