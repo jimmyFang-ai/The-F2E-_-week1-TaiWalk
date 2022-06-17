@@ -193,7 +193,7 @@ function search_keyword() {
 "use strict";
 
 // 取得分頁 DOM 元素
-var pagination = document.querySelector(".pagination"); // 分頁功能 - 整體分頁功能
+var pagination = document.querySelector('.pagination'); // 分頁功能 - 整體分頁功能
 
 function renderPages(data, nowPage) {
   // 每一頁只顯示36筆資料
@@ -276,7 +276,7 @@ function renderPageBtn(pageInfo) {
 ; // 在 pagination 綁定監聽
 
 if (pagination !== null) {
-  pagination.addEventListener("click", switchPage);
+  pagination.addEventListener('click', switchPage);
 }
 
 ; //分頁功能 - 點擊按鈕切換頁面功能
@@ -284,7 +284,7 @@ if (pagination !== null) {
 function switchPage(e) {
   e.preventDefault();
 
-  if (e.target.nodeName !== "A") {
+  if (e.target.nodeName !== 'A') {
     return;
   }
 
@@ -301,9 +301,10 @@ var scenicSpot_themeArea = document.querySelector('.scenicSpot-themeArea');
 var scenicSpot_categoryInner = document.querySelector('.scenicSpot-categoryInner');
 var scenicSpot_searchResult = document.querySelector('.scenicSpot-searchResult'); // 搜尋欄位 DOM
 
-var search_city = document.querySelector(".search-city");
-var search_category = document.querySelector(".search-category");
-var search_keyword = document.querySelector(".search-keyword"); // 呈現畫面列表 DOM
+var search_city = document.querySelector('.search-city');
+var search_category = document.querySelector('.search-category');
+var search_keyword = document.querySelector('.search-keyword');
+var scenicSpot_searchBtn = document.querySelector('.scenicSpot_searchBtn'); // 呈現畫面列表 DOM
 
 var scenicSpot_categoryList = document.querySelector('.scenicSpot-categoryList');
 var scenicSpot_resultList = document.querySelector('.scenicSpot-resultList');
@@ -384,7 +385,30 @@ function scenicSpot_renderResult(arr) {
   scenicSpot_resultList.innerHTML = str;
 }
 
+; // 探索景點 - 搜尋功能
+
+if (scenicSpot_searchBtn) {
+  scenicSpot_searchBtn.addEventListener('click', search_scenicSpot);
+}
+
 ;
+
+function search_scenicSpot(e) {
+  //  城市
+  var city = search_city.value; //  類別
+
+  var category = search_category.value; //  關鍵字
+
+  var keyword = search_keyword.value.trim(); // 搜尋結果 
+
+  var search_scenicSpotList = data_scenicSpot.filter(function (item) {
+    return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
+  });
+  scenicSpot_renderResult(search_scenicSpotList);
+  renderPages(search_scenicSpotList, 1); // 呈現結果數字
+
+  search_ResultNum.textContent = search_scenicSpotList.length;
+}
 "use strict";
 
 // 首頁 - heroBanner 
