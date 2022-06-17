@@ -16,18 +16,12 @@ function getAuthorizationHeader() {
   return { 'Authorization': Authorization, 'X-Date': GMTString };
 }
 
-// 測試用 test
-// console.log(getAuthorizationHeader());
-// // let testApi = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24top=100&%24format=JSON';
-
 
 // apiUrl
 let apiUrl_activity = `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON`;
 let apiUrl_scenicSpot = `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=Picture%2FPictureUrl1%20ne%20null&%format=JSON`;
 let apiUrl_restaurant = `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON`;
 
-
-// console.log(home_activity, home_scenicSpot, home_restaurant, home_searchBtn);
 
 
 // 初始化
@@ -37,8 +31,8 @@ function init() {
   get_scenicSpot();
   get_restaurant();
 
-  // //探索景點 - 取得資料
-  // scenicSpot_getCategory();
+  // 探索景點 - 取得資料
+  scenicSpot_getData();
 }
 init();
 
@@ -53,7 +47,7 @@ function get_activity() {
   )
     .then(function (response) {
       const data_activity = response.data;
-      
+
       //呈現畫面
       if (home_activity) {
         render_activity(data_activity);
