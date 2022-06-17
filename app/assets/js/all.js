@@ -31,8 +31,11 @@ function init() {
   get_scenicSpot();
   get_restaurant();
 
-  // 探索景點 - 取得資料
-  scenicSpot_getData();
+  // 探索景點頁面 
+  // - 取得景點全部資料
+  scenicSpot_getAllData();
+  // - 取得景點單一資料
+  scenicSpot_getInnerData();
 }
 init();
 

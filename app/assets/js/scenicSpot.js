@@ -9,7 +9,7 @@ const scenicSpot_searchResult = document.querySelector('.scenicSpot-searchResult
 const search_city = document.querySelector('.search-city');
 const search_category = document.querySelector('.search-category');
 const search_keyword = document.querySelector('.search-keyword');
-const scenicSpot_searchBtn  = document.querySelector('.scenicSpot_searchBtn');
+const scenicSpot_searchBtn = document.querySelector('.scenicSpot_searchBtn');
 
 
 // 呈現畫面列表 DOM
@@ -26,8 +26,8 @@ let data_filterResult = [];
 
 
 
-// 探索景點 - 取得資料
-function scenicSpot_getData() {
+// 探索景點 - 取得景點全部資料
+function scenicSpot_getAllData() {
   axios.get(apiUrl_scenicSpot,
     {
       headers: getAuthorizationHeader()
@@ -80,7 +80,7 @@ function scenicSpot_changeCategory(e) {
 };
 
 
-// 探索景點 - 更新類別篩選
+// 探索景點 - 更新類別篩選結果
 function scenicSpot_updateResult(categoryVal) {
 
   let category_resultList = data_scenicSpot.filter((item) => item.Class1 === categoryVal);
@@ -88,7 +88,8 @@ function scenicSpot_updateResult(categoryVal) {
   data_filterResult = category_resultList;
 
   //資料回傳 寫入分頁函式
-  renderPages(data_filterResult,1);
+  renderPages(data_filterResult, 1);
+
 
   // 呈現結果數字
   search_ResultNum.textContent = data_filterResult.length;
@@ -96,28 +97,28 @@ function scenicSpot_updateResult(categoryVal) {
 
 
 // 探索景點 - 搜尋功能 & 關鍵字
-if(scenicSpot_searchBtn) {
-  scenicSpot_searchBtn.addEventListener('click',search_scenicSpot);
+if (scenicSpot_searchBtn) {
+  scenicSpot_searchBtn.addEventListener('click', search_scenicSpot);
 };
 
 function search_scenicSpot(e) {
   //  城市
   const city = search_city.value;
   //  類別
-  const category =  search_category.value;
+  const category = search_category.value;
   //  關鍵字
   const keyword = search_keyword.value.trim();
 
- 
+
   // 搜尋結果 
   let search_scenicSpotList = data_scenicSpot.filter((item) => {
-    return  item.City === city && item.Class1 === category  && item.ScenicSpotName.match(keyword);
+    return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
   });
 
- 
+
   scenicSpot_renderResult(search_scenicSpotList);
 
-  renderPages(search_scenicSpotList,1);
+  renderPages(search_scenicSpotList, 1);
 
   // 呈現結果數字
   search_ResultNum.textContent = search_scenicSpotList.length;
@@ -162,10 +163,54 @@ function scenicSpot_renderResult(arr) {
 
 
 
+// 探索景點 - 取得景點單一資料
+function scenicSpot_getInnerData() {
+
+  // if (targetId === undefined) return;
+
+  // 取得單一資料 id
+  const targetId = location.href.split('=')[1];
+
+  console.log(targetId);
+
+  // 發送請求，篩選 ScenicSpotID 與 id 符合的資料
+  axios.get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24filter=contains(ScenicSpotID%2C'${targetId}')&%24top=30&%24format=JSON`,
+    {
+      headers: getAuthorizationHeader()
+    }
+  )
+    .then(function (response) {
+      // 回傳的資料
+      const thisData = response.data[0];
+      console.log(thisData);
+
+      // 呈現 內頁資料內容
+      scenicSpot_renderInner(thisData);
+
+      // 隱藏 探索景點主要內容
+      scenicSpot_themeArea.classList.add('d-none');
+    })
+    .catch(function (error) {
+      console.log(error.response.data);
+    });
+};
 
 
+// 探索景點 - 內頁資料內容
+function scenicSpot_renderInner(data) {
 
+  // 麵包削列表
+  const breadcrumb_theme = document.querySelector('.breadcrumb-theme');
+  const breadcrumb_city = document.querySelector('.breadcrumb-city');
+  const breadcrumb_location = document.querySelector('.breadcrumb-location');
 
+  breadcrumb_theme.classList.remove('text-secondary');
+  breadcrumb_theme.classList.add('text-primary');
+  breadcrumb_location.classList.add('text-secondary');
+  breadcrumb_city.textContent = `/ ${data.City}`;
+  breadcrumb_location.textContent = ` / ${data.ScenicSpotName}`;
+
+}
 
 
 
