@@ -29,9 +29,12 @@ function init() {
   // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
-  get_restaurant(); // 探索景點 - 取得資料
+  get_restaurant(); // 探索景點頁面 
+  // - 取得景點全部資料
 
-  scenicSpot_getData();
+  scenicSpot_getAllData(); // - 取得景點單一資料
+
+  scenicSpot_getInnerData();
 }
 
 init(); // 首頁 - 取得資料
@@ -312,9 +315,9 @@ var search_ResultNum = document.querySelector('.search_ResultNum'); // 資料 - 
 
 var data_scenicSpot = []; // 資料 - 篩選類別資料
 
-var data_filterResult = []; // 探索景點 - 取得資料
+var data_filterResult = []; // 探索景點 - 取得景點全部資料
 
-function scenicSpot_getData() {
+function scenicSpot_getAllData() {
   axios.get(apiUrl_scenicSpot, {
     headers: getAuthorizationHeader()
   }).then(function (response) {
@@ -357,7 +360,7 @@ function scenicSpot_changeCategory(e) {
   scenicSpot_updateResult(categoryVal);
 }
 
-; // 探索景點 - 更新類別篩選
+; // 探索景點 - 更新類別篩選結果
 
 function scenicSpot_updateResult(categoryVal) {
   var category_resultList = data_scenicSpot.filter(function (item) {
@@ -412,7 +415,42 @@ function scenicSpot_renderResult(arr) {
   scenicSpot_resultList.innerHTML = str;
 }
 
-;
+; // 探索景點 - 取得景點單一資料
+
+function scenicSpot_getInnerData() {
+  // if (targetId === undefined) return;
+  // 取得單一資料 id
+  var targetId = location.href.split('=')[1];
+  console.log(targetId); // 發送請求，篩選 ScenicSpotID 與 id 符合的資料
+
+  axios.get("https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24filter=contains(ScenicSpotID%2C'".concat(targetId, "')&%24top=30&%24format=JSON"), {
+    headers: getAuthorizationHeader()
+  }).then(function (response) {
+    // 回傳的資料
+    var thisData = response.data[0];
+    console.log(thisData); // 呈現 內頁資料內容
+
+    scenicSpot_renderInner(thisData); // 隱藏 探索景點主要內容
+
+    scenicSpot_themeArea.classList.add('d-none');
+  })["catch"](function (error) {
+    console.log(error.response.data);
+  });
+}
+
+; // 探索景點 - 內頁資料內容
+
+function scenicSpot_renderInner(data) {
+  // 麵包削列表
+  var breadcrumb_theme = document.querySelector('.breadcrumb-theme');
+  var breadcrumb_city = document.querySelector('.breadcrumb-city');
+  var breadcrumb_location = document.querySelector('.breadcrumb-location');
+  breadcrumb_theme.classList.remove('text-secondary');
+  breadcrumb_theme.classList.add('text-primary');
+  breadcrumb_location.classList.add('text-secondary');
+  breadcrumb_city.textContent = "/ ".concat(data.City);
+  breadcrumb_location.textContent = " / ".concat(data.ScenicSpotName);
+}
 "use strict";
 
 // 首頁 - heroBanner 
