@@ -1,5 +1,4 @@
 
-
 // 主要區塊 DOM 
 const scenicSpot_themeArea = document.querySelector('.scenicSpot-themeArea');
 const scenicSpot_categoryInner = document.querySelector('.scenicSpot-categoryInner');
@@ -13,12 +12,10 @@ const search_keyword = document.querySelector('.search-keyword');
 const scenicSpot_searchBtn  = document.querySelector('.scenicSpot_searchBtn');
 
 
-
 // 呈現畫面列表 DOM
 const scenicSpot_categoryList = document.querySelector('.scenicSpot-categoryList');
 const scenicSpot_resultList = document.querySelector('.scenicSpot-resultList');
 const search_ResultNum = document.querySelector('.search_ResultNum');
-
 
 
 // 資料 - 探索景點頁面 
@@ -57,7 +54,7 @@ function scenicSpot_getData() {
 // 探索景點 - 切換類別樣式 & 取值
 if (scenicSpot_categoryList) {
   scenicSpot_categoryList.addEventListener('click', scenicSpot_changeCategory);
-}
+};
 
 function scenicSpot_changeCategory(e) {
   e.preventDefault();
@@ -95,6 +92,35 @@ function scenicSpot_updateResult(categoryVal) {
 
   // 呈現結果數字
   search_ResultNum.textContent = data_filterResult.length;
+};
+
+
+// 探索景點 - 搜尋功能 & 關鍵字
+if(scenicSpot_searchBtn) {
+  scenicSpot_searchBtn.addEventListener('click',search_scenicSpot);
+};
+
+function search_scenicSpot(e) {
+  //  城市
+  const city = search_city.value;
+  //  類別
+  const category =  search_category.value;
+  //  關鍵字
+  const keyword = search_keyword.value.trim();
+
+ 
+  // 搜尋結果 
+  let search_scenicSpotList = data_scenicSpot.filter((item) => {
+    return  item.City === city && item.Class1 === category  && item.ScenicSpotName.match(keyword);
+  });
+
+ 
+  scenicSpot_renderResult(search_scenicSpotList);
+
+  renderPages(search_scenicSpotList,1);
+
+  // 呈現結果數字
+  search_ResultNum.textContent = search_scenicSpotList.length;
 };
 
 
@@ -137,33 +163,6 @@ function scenicSpot_renderResult(arr) {
 
 
 
-// 探索景點 - 搜尋功能
-if(scenicSpot_searchBtn) {
-  scenicSpot_searchBtn.addEventListener('click',search_scenicSpot);
-};
-
-function search_scenicSpot(e) {
-  //  城市
-  const city = search_city.value;
-  //  類別
-  const category =  search_category.value;
-  //  關鍵字
-  const keyword = search_keyword.value.trim();
-
- 
-  // 搜尋結果 
-  let search_scenicSpotList = data_scenicSpot.filter((item) => {
-    return  item.City === city && item.Class1 === category  && item.ScenicSpotName.match(keyword);
-  });
-
- 
-  scenicSpot_renderResult(search_scenicSpotList);
-
-  renderPages(search_scenicSpotList,1);
-
-  // 呈現結果數字
-  search_ResultNum.textContent = search_scenicSpotList.length;
-}
 
 
 
