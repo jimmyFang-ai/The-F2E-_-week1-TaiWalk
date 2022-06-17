@@ -337,6 +337,8 @@ if (scenicSpot_categoryList) {
   scenicSpot_categoryList.addEventListener('click', scenicSpot_changeCategory);
 }
 
+;
+
 function scenicSpot_changeCategory(e) {
   e.preventDefault(); // 取出 卡片類片 的 DOM 和 值
 
@@ -368,24 +370,7 @@ function scenicSpot_updateResult(categoryVal) {
   search_ResultNum.textContent = data_filterResult.length;
 }
 
-; // 探索景點 - 呈現類別篩選結果
-
-function scenicSpot_renderResult(arr) {
-  var str = ''; // 如果有資料就顯示 類別篩選結果區塊
-
-  if (arr.length) {
-    arr.forEach(function (item) {
-      str += "\n      <li class=\"col mb-2 mb-md-4\">\n      <div class=\"resultList-card border-0\">\n          <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n              <a href=\"./scenicSpot.html?id=".concat(item.ScenicSpotID, "\">\n                  <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                      alt=\"").concat(item.DescriptionDetail, "\">\n              </a>\n          </div>\n          <div class=\"py-1 py-md-2\">\n              <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n              </h5>\n              <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n          </div>\n      </div>\n  </li>");
-    });
-    scenicSpot_searchResult.classList.remove('d-none');
-  }
-
-  ; // 呈現結果畫面
-
-  scenicSpot_resultList.innerHTML = str;
-}
-
-; // 探索景點 - 搜尋功能
+; // 探索景點 - 搜尋功能 & 關鍵字
 
 if (scenicSpot_searchBtn) {
   scenicSpot_searchBtn.addEventListener('click', search_scenicSpot);
@@ -409,6 +394,25 @@ function search_scenicSpot(e) {
 
   search_ResultNum.textContent = search_scenicSpotList.length;
 }
+
+; // 探索景點 - 呈現類別篩選結果
+
+function scenicSpot_renderResult(arr) {
+  var str = ''; // 如果有資料就顯示 類別篩選結果區塊
+
+  if (arr.length) {
+    arr.forEach(function (item) {
+      str += "\n      <li class=\"col mb-2 mb-md-4\">\n      <div class=\"resultList-card border-0\">\n          <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n              <a href=\"./scenicSpot.html?id=".concat(item.ScenicSpotID, "\">\n                  <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                      alt=\"").concat(item.DescriptionDetail, "\">\n              </a>\n          </div>\n          <div class=\"py-1 py-md-2\">\n              <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n              </h5>\n              <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n          </div>\n      </div>\n  </li>");
+    });
+    scenicSpot_searchResult.classList.remove('d-none');
+  }
+
+  ; // 呈現結果畫面
+
+  scenicSpot_resultList.innerHTML = str;
+}
+
+;
 "use strict";
 
 // 首頁 - heroBanner 
