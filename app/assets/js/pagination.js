@@ -1,5 +1,5 @@
 // 取得分頁 DOM 元素
-const pagination = document.querySelector(".pagination");
+const pagination = document.querySelector('.pagination');
 
 
 // 分頁功能 - 整體分頁功能
@@ -99,14 +99,14 @@ function renderPageBtn(pageInfo) {
 
 // 在 pagination 綁定監聽
 if (pagination !== null) {
-    pagination.addEventListener("click", switchPage);
+    pagination.addEventListener('click', switchPage);
 };
 
 //分頁功能 - 點擊按鈕切換頁面功能
 function switchPage(e) {
     e.preventDefault();
 
-    if (e.target.nodeName !== "A") {
+    if (e.target.nodeName !== 'A') {
         return;
     };
 
