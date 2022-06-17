@@ -18,23 +18,20 @@ function getAuthorizationHeader() {
     'Authorization': Authorization,
     'X-Date': GMTString
   };
-} // 測試用 test
-// console.log(getAuthorizationHeader());
-// // let testApi = 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24top=100&%24format=JSON';
-// apiUrl
+} // apiUrl
 
 
 var apiUrl_activity = "https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON";
 var apiUrl_scenicSpot = "https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=Picture%2FPictureUrl1%20ne%20null&%format=JSON";
-var apiUrl_restaurant = "https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON"; // console.log(home_activity, home_scenicSpot, home_restaurant, home_searchBtn);
-// 初始化
+var apiUrl_restaurant = "https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON"; // 初始化
 
 function init() {
   // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
-  get_restaurant(); // //探索景點 - 取得資料
-  // scenicSpot_getCategory();
+  get_restaurant(); // 探索景點 - 取得資料
+
+  scenicSpot_getData();
 }
 
 init(); // 首頁 - 取得資料
@@ -194,6 +191,109 @@ function search_keyword() {
 
 ;
 "use strict";
+
+// 取得分頁 DOM 元素
+var pagination = document.querySelector(".pagination"); // 分頁功能 - 整體分頁功能
+
+function renderPages(data, nowPage) {
+  // 每一頁只顯示36筆資料
+  var dataPerPage = 36; // page 按鈕總數量公式: 資料數量總額 / 每一頁要顯示的資料數量
+  // 因為計算過程會有餘數產生，所以要無條件進位，使用 Math.ceil()函式取得一個大於等於指定數字的最小整數。
+
+  var totalPages = Math.ceil(data.length / dataPerPage); // 頁數
+  // 當前頁數，對應現在當前頁數
+
+  var currentPage = nowPage; // 當 "當前頁數" 比 "總頁數" 大的時候， "當前頁數" 等於 "總頁數"
+
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
+
+  ; // 資料筆數
+
+  var minData = currentPage * dataPerPage - dataPerPage + 1; // 最小資料筆數
+
+  var maxData = currentPage * dataPerPage; // 最大資料筆數
+  // 取出當前頁數的資料
+
+  var currentPageData = []; // // 取得 data 資料的索引位置
+
+  data.forEach(function (item, index) {
+    //取得 data 索引位置，因為索引是從 0 開始，所以要 +1
+    //當 index+1 比 minData 大且又小於 maxData 就push 進去 currentPageData 陣列
+    if (index + 1 >= minData && index + 1 <= maxData) {
+      currentPageData.push(item);
+    }
+
+    ;
+  }); // 物件方式傳遞資料
+
+  var pageInfo = {
+    totalPages: totalPages,
+    currentPage: currentPage,
+    hasPage: currentPage > 1,
+    hasNext: currentPage < totalPages
+  }; // 呈現出該頁資料
+
+  scenicSpot_renderResult(currentPageData); // 呈現出分頁按鈕
+
+  renderPageBtn(pageInfo);
+  console.log("\u5168\u90E8\u8CC7\u6599:".concat(data.length, " \u6BCF\u4E00\u9801\u986F\u793A:").concat(dataPerPage, "\u7B46 \u7E3D\u9801\u6578:").concat(totalPages));
+}
+
+; // 分頁功能 - 渲染分頁按鈕
+
+function renderPageBtn(pageInfo) {
+  var str = "";
+  var totalPages = pageInfo.totalPages; // 判斷 總頁數是否大於 1 頁
+
+  if (totalPages > 1) {
+    //點選上一頁
+    str += pageInfo.hasPage ? "<li class=\"page-item\"><a class=\"page-link\" href=\"#\"  data-page=\"".concat(Number(pageInfo.currentPage) - 1, "\">&laquo;</a></li>") : "<li class=\"page-item disabled\"><span class=\"page-link\">&laquo;</span></li>"; // 點選頁數
+
+    for (var i = 1; i <= totalPages; i++) {
+      // 一開始預設顯示第一頁，如果是第一頁會加上 .active 樣式
+      str += Number(pageInfo.currentPage) === i ? "<li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\" data-page=\"".concat(i, "\">").concat(i, "</a></li>") : "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" data-page=\"".concat(i, "\">").concat(i, "</a></li>");
+    }
+
+    ; // 點選下一頁
+
+    str += pageInfo.hasNext ? "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next\" data-page=\"".concat(Number(pageInfo.currentPage) + 1, "\">&raquo;</a></li>") : "<li class=\"page-item disabled\"><span class=\"page-link\" >&raquo;</span></li>";
+  } else {
+    //總頁數小於 1 頁，只顯示分頁按鈕
+    for (var _i = 1; _i <= totalPages; _i++) {
+      // 一開始預設顯示第一頁，如果是第一頁會加上 .active 樣式
+      str += Number(pageInfo.currentPage) === _i ? "<li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\" data-page=\"".concat(_i, "\">").concat(_i, "</a></li>") : "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" data-page=\"".concat(_i, "\">").concat(_i, "</a></li>");
+    }
+
+    ;
+  }
+
+  ;
+  pagination.innerHTML = str;
+}
+
+; // 在 pagination 綁定監聽
+
+if (pagination !== null) {
+  pagination.addEventListener("click", switchPage);
+}
+
+; //分頁功能 - 點擊按鈕切換頁面功能
+
+function switchPage(e) {
+  e.preventDefault();
+
+  if (e.target.nodeName !== "A") {
+    return;
+  }
+
+  ;
+  var clickPage = e.target.dataset.page;
+  renderPages(data_filterResult, clickPage);
+}
+
+;
 "use strict";
 
 // 主要區塊 DOM 
@@ -206,15 +306,37 @@ var search_category = document.querySelector(".search-category");
 var search_keyword = document.querySelector(".search-keyword"); // 呈現畫面列表 DOM
 
 var scenicSpot_categoryList = document.querySelector('.scenicSpot-categoryList');
-var scenicSpot_resultList = document.querySelector('.scenicSpot-resultList'); // console.log(scenicSpot_themeArea,scenicSpot_categoryInner, scenicSpot_searchResult,
-// scenicSpot_categoryList,scenicSpot_resultLis);
-// 探索景點 - 切換類別篩選功能 
+var scenicSpot_resultList = document.querySelector('.scenicSpot-resultList');
+var search_ResultNum = document.querySelector('.search_ResultNum'); // 資料 - 探索景點頁面 
 
-if (scenicSpot_categoryList) {
-  scenicSpot_categoryList.addEventListener('click', scenicSpot_filterCategory);
+var data_scenicSpot = []; // 資料 - 篩選類別資料
+
+var data_filterResult = []; // 探索景點 - 取得資料
+
+function scenicSpot_getData() {
+  axios.get(apiUrl_scenicSpot, {
+    headers: getAuthorizationHeader()
+  }).then(function (response) {
+    // 回傳的資料
+    var thisData = response.data; // 過濾資料 排除沒有圖片、景點名字、城市
+
+    thisData.forEach(function (item) {
+      if (item.Picture.PictureUrl1 && item.ScenicSpotName && item.City) {
+        data_scenicSpot.push(item);
+      }
+    });
+  })["catch"](function (error) {
+    console.log(error.response.data);
+  });
 }
 
-function scenicSpot_filterCategory(e) {
+; // 探索景點 - 切換類別樣式 & 取值
+
+if (scenicSpot_categoryList) {
+  scenicSpot_categoryList.addEventListener('click', scenicSpot_changeCategory);
+}
+
+function scenicSpot_changeCategory(e) {
   e.preventDefault(); // 取出 卡片類片 的 DOM 和 值
 
   var category_card = e.target.closest(".category-card");
@@ -228,69 +350,41 @@ function scenicSpot_filterCategory(e) {
 
   category_card.classList.add("active"); // 取出 卡片類別的值與 搜尋欄位的值連動
 
-  search_category.value = categoryVal; // 取得篩選資料 
-
-  scenicSpot_getCategory(categoryVal);
+  search_category.value = categoryVal;
+  scenicSpot_updateResult(categoryVal);
 }
 
-; // 探索景點 - 取得類別篩選資料 
+; // 探索景點 - 更新類別篩選
 
-function scenicSpot_getCategory(categoryVal) {
-  // 取得資料
-  axios.get("https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24filter=contains(Class1%2C'".concat(categoryVal, "')&format=JSON"), {
-    headers: getAuthorizationHeader()
-  }).then(function (response) {
-    // 回傳的資料
-    var thisData = response.data; // 過濾後的資料
-
-    var filterData = []; // 過濾資料 排除沒有圖片、景點名字、城市
-
-    thisData.forEach(function (item) {
-      if (item.Picture.PictureUrl1 && item.ScenicSpotName && item.City) {
-        filterData.push(item);
-      }
-    }); // 呈現類別篩選結果
-
-    scenicSpot_renderCategory(filterData);
-  })["catch"](function (error) {
-    console.log(error.response.data);
+function scenicSpot_updateResult(categoryVal) {
+  var category_resultList = data_scenicSpot.filter(function (item) {
+    return item.Class1 === categoryVal;
   });
+  data_filterResult = category_resultList; //資料回傳 寫入分頁函式
+
+  renderPages(data_filterResult, 1); // 呈現結果數字
+
+  search_ResultNum.textContent = data_filterResult.length;
 }
 
 ; // 探索景點 - 呈現類別篩選結果
 
-function scenicSpot_renderCategory(arr) {
-  var search_ResultNum = document.querySelector('.search_ResultNum');
+function scenicSpot_renderResult(arr) {
   var str = ''; // 如果有資料就顯示 類別篩選結果區塊
 
   if (arr.length) {
     arr.forEach(function (item) {
-      console.log(item);
-      str += "\n      <li class=\"col mb-2 mb-md-4\">\n      <div class=\"resultList-card border-0\">\n          <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n              <a href=\"#\">\n                  <img class=\"w-100 h-100 img-cover zoomImg\" src=\"".concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                      alt=\"").concat(item.DescriptionDetail, "\">\n              </a>\n          </div>\n          <div class=\"py-1 py-md-2\">\n              <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n              </h5>\n              <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n          </div>\n      </div>\n  </li>");
+      str += "\n      <li class=\"col mb-2 mb-md-4\">\n      <div class=\"resultList-card border-0\">\n          <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n              <a href=\"./scenicSpot.html?id=".concat(item.ScenicSpotID, "\">\n                  <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                      alt=\"").concat(item.DescriptionDetail, "\">\n              </a>\n          </div>\n          <div class=\"py-1 py-md-2\">\n              <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n              </h5>\n              <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n          </div>\n      </div>\n  </li>");
     });
     scenicSpot_searchResult.classList.remove('d-none');
-  } // 呈現結果數字
+  }
 
-
-  search_ResultNum.textContent = arr.length; // 呈現結果畫面
+  ; // 呈現結果畫面
 
   scenicSpot_resultList.innerHTML = str;
 }
 
-; // 分頁邏輯
-// 篩選邏輯
-// const searchCategory = document.querySelector(".search-category");
-// const categoryList = document.querySelector(".spots-categoryList");
-// console.log(searchCategory);
-// if (categoryList) {
-//     categoryList.addEventListener("click", function (e) {
-//         e.preventDefault();
-//         let category = e.target.closest(".category-card");
-//         let categoryVal = e.target.closest("li").dataset.category;
-//         searchCategory.value = categoryVal;
-//         category.classList.toggle("active");
-//     })
-// }
+;
 "use strict";
 
 // 首頁 - heroBanner 
