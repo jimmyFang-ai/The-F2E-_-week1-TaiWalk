@@ -19,7 +19,7 @@ const swiper_heroBanner = new Swiper(".swiper-heroBanner", {
   
 
 // 首頁 - 熱門打卡景點
-const swiper_homeSpots = new Swiper(".swiper-home_scenicSpot", {
+const swiper_homeSpots = new Swiper(".swiper-home-scenicSpot", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -47,7 +47,7 @@ const swiper_homeSpots = new Swiper(".swiper-home_scenicSpot", {
 });
 
 // 首頁 - 一再回訪美食
-const swiper_homeRestaurant = new Swiper(".swiper-home_restaurant", {
+const swiper_homeRestaurant = new Swiper(".swiper-home-restaurant", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -76,14 +76,9 @@ const swiper_homeRestaurant = new Swiper(".swiper-home_restaurant", {
 
 
 // 探索景點 內頁 swiper banner
-const swiper_spotsBanner = new Swiper(".swiper-scenicSpot_banner", {
+const swiper_spotsBanner = new Swiper(".swiper-scenicSpot-banner", {
   cssMode: true,
   slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    disableOnInteraction: false,
-    delay: 4000,
-  },
   navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -96,14 +91,9 @@ const swiper_spotsBanner = new Swiper(".swiper-scenicSpot_banner", {
 
 
 // 節慶活動 內頁 swiper banner
-const swiper_activityBanner = new Swiper(".swiper-activity_banner", {
+const swiper_activityBanner = new Swiper(".swiper-activity-banner", {
   cssMode: true,
   slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    disableOnInteraction: false,
-    delay: 4000,
-  },
   navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -116,14 +106,9 @@ const swiper_activityBanner = new Swiper(".swiper-activity_banner", {
 
 
 // 品嘗美食 內頁 swiper banner
-const swiper_restaurantBanner = new Swiper(".swiper-restaurant_banner", {
+const swiper_restaurantBanner = new Swiper(".swiper-restaurant-banner", {
   cssMode: true,
   slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    disableOnInteraction: false,
-    delay: 4000,
-  },
   navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",

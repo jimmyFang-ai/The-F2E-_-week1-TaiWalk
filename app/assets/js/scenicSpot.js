@@ -20,6 +20,9 @@ const search_resultNum = document.querySelector('.search_resultNum');
 const breadcrumb_theme = document.querySelector('.breadcrumb-theme');
 const breadcrumb_city = document.querySelector('.breadcrumb-city');
 const breadcrumb_location = document.querySelector('.breadcrumb-location');
+//    - swiper-banner
+const scenicSpotInner_bannerSlides = document.querySelectorAll('.swiper-scenicSpot-banner .swiper-slide');
+const scenicSpotInner_bannerBullets = document.querySelector('.swiper-pagination-bullets');
 //    - 景點內頁資訊
 const scenicSpotInner_mame = document.querySelector('.scenicSpot_mame');
 const scenicSpotInner_category = document.querySelector('.scenicSpot_category');
@@ -198,7 +201,7 @@ function scenicSpot_getInnerData() {
       .then(function (response) {
         // 回傳的資料
         const thisData = response.data[0];
-        console.log(thisData);
+        // console.log(thisData);
 
         // 呈現 內頁資料內容
         scenicSpot_renderInner(thisData);
@@ -215,17 +218,58 @@ function scenicSpot_getInnerData() {
 
 // 探索景點 - 內頁資料內容
 function scenicSpot_renderInner(data) {
+
+  // 計算 banner 圖片數量
+  let  bannerPhoto_num = 0;
+
+  // banner 圖片 
+  // 第一張圖片
+  if (data.Picture.PictureUrl1) {
+    scenicSpotInner_bannerSlides[0].innerHTML = `
+    <img class="w-100 h-100 img-cover" src="${data.Picture.PictureUrl1}" alt="${data.Picture.PictureDescription1}">`;
+    bannerPhoto_num++;
+  } else {
+    scenicSpotInner_bannerSlides[0].innerHTML = `
+    <img class="w-100 h-100 img-cover" src="./assets/images/NoImage-345x160.png" alt="NoImage">`;
+    bannerPhoto_num++;
+  };
+
+  // 第二章圖片
+  if (data.Picture.PictureUrl2) {
+    scenicSpotInner_bannerSlides[1].innerHTML = `
+    <img class="w-100 h-100 img-cover" src="${data.Picture.PictureUrl2}" alt="${data.Picture.PictureDescription2}">`;
+    bannerPhoto_num++;
+  } else {
+    scenicSpotInner_bannerSlides[1].remove();
+    scenicSpotInner_bannerBullets.classList.add('d-none');
+  };
+
+  // 第三張圖片
+  if (data.Picture.PictureUrl3) {
+    scenicSpotInner_bannerSlides[2].innerHTML = `
+    <img class="w-100 h-100 img-cover" src="${data.Picture.PictureUrl3}" alt="${data.Picture.PictureDescription3}">`;
+    bannerPhoto_num++;
+  } else {
+    scenicSpotInner_bannerSlides[2].remove();
+    scenicSpotInner_bannerBullets.classList.add('d-none');
+  };
+
+  // 圖片少於一張或剛好一張，把導覽方向鍵取消
+ if( bannerPhoto_num <= 1) {
+  document.querySelector('.swiper-button-next').classList.add('d-md-none');
+  document.querySelector('.swiper-button-prev').classList.add('d-md-none');
+ }
+
+
+
+
+
   // 麵包削
   breadcrumb_theme.classList.remove('text-secondary');
   breadcrumb_theme.classList.add('text-primary');
   breadcrumb_location.classList.add('text-secondary');
   breadcrumb_city.textContent = `/ ${data.City}`;
   breadcrumb_location.textContent = ` / ${data.ScenicSpotName}`;
-
-  // banner 圖片 
-  
-
-
 
 
   // 景點名字
@@ -237,12 +281,12 @@ function scenicSpot_renderInner(data) {
   // 景點開放時間
   scenicSpotInner_opentTime.textContent = data.OpenTime;
   // 景點電話
-  scenicSpotInner_phone.setAttribute('href','tel:'+ data.Phone);
+  scenicSpotInner_phone.setAttribute('href', 'tel:' + data.Phone);
   scenicSpotInner_phone.textContent = data.Phone;
   // 景點地址
   scenicSpotInner_address.textContent = data.Address;
   // 景點網址
-  scenicSpotInner_websiteUrl.setAttribute('href',data.WebsiteUrl);
+  scenicSpotInner_websiteUrl.setAttribute('href', data.WebsiteUrl);
   scenicSpotInner_websiteUrl.textContent = data.WebsiteUrl;
   // 景點售票資訊
   scenicSpotInner_ticketInfo.textContent = data.TicketInfo;
@@ -255,15 +299,15 @@ function scenicSpot_renderInner(data) {
   referrerpolicy="no-referrer-when-downgrade"></iframe>`;
 
   // 如果資料的資訊是空的，就顯示無的狀態
-  if(!data.TicketInfo) {scenicSpotInner_ticketInfo.textContent = '無' };
-  if(! data.Remarks) {scenicSpotInner_remarks.textContent = '無'};
-  if(!data.WebsiteUrl) {
+  if (!data.TicketInfo) { scenicSpotInner_ticketInfo.textContent = '無' };
+  if (!data.Remarks) { scenicSpotInner_remarks.textContent = '無' };
+  if (!data.WebsiteUrl) {
     scenicSpotInner_websiteUrl.textContent = '無';
     scenicSpotInner_websiteUrl.classList.add('text-dark');
     scenicSpotInner_websiteUrl.classList.remove('text-info');
     scenicSpotInner_websiteUrl.classList.toggle('text-decoration-underline');
   };
-   
+
 }
 
 

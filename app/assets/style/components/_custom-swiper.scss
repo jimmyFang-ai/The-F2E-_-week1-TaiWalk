@@ -25,17 +25,17 @@
 }
 
 // scenicSpot 內頁 swiper-banner
-.swiper-spotsBanner .swiper-wrapper {
+.swiper-scenicSpot-banner .swiper-wrapper {
     @extend %swiper-allBanner;
  }
  
 //  activity 內頁 swiper-banner
-.swiper-activityBanner .swiper-wrapper {
+.swiper-activity-banner .swiper-wrapper {
     @extend %swiper-allBanner;
  }
 
 //  restaurant內頁 swiper-banner
-.swiper-foodBanner .swiper-wrapper {
+.swiper-restaurant-banner .swiper-wrapper {
     @extend %swiper-allBanner;
  }
  
