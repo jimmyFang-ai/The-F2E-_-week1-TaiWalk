@@ -14055,7 +14055,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   height: 100%;
 }
 
-.swiper-heroBanner .swiper-wrapper, .swiper-spotsBanner .swiper-wrapper, .swiper-activityBanner .swiper-wrapper, .swiper-foodBanner .swiper-wrapper {
+.swiper-heroBanner .swiper-wrapper, .swiper-scenicSpot-banner .swiper-wrapper, .swiper-activity-banner .swiper-wrapper, .swiper-restaurant-banner .swiper-wrapper {
   background: rgba(0, 0, 0, 0.05);
   width: 100%;
   height: 185px;
@@ -14063,7 +14063,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 @media (min-width: 576px) {
-  .swiper-heroBanner .swiper-wrapper, .swiper-spotsBanner .swiper-wrapper, .swiper-activityBanner .swiper-wrapper, .swiper-foodBanner .swiper-wrapper {
+  .swiper-heroBanner .swiper-wrapper, .swiper-scenicSpot-banner .swiper-wrapper, .swiper-activity-banner .swiper-wrapper, .swiper-restaurant-banner .swiper-wrapper {
     height: 400px;
   }
 }

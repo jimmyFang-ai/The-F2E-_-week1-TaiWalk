@@ -315,7 +315,10 @@ var search_resultNum = document.querySelector('.search_resultNum'); //     - 麵
 
 var breadcrumb_theme = document.querySelector('.breadcrumb-theme');
 var breadcrumb_city = document.querySelector('.breadcrumb-city');
-var breadcrumb_location = document.querySelector('.breadcrumb-location'); //    - 景點內頁資訊
+var breadcrumb_location = document.querySelector('.breadcrumb-location'); //    - swiper-banner
+
+var scenicSpotInner_bannerSlides = document.querySelectorAll('.swiper-scenicSpot-banner .swiper-slide');
+var scenicSpotInner_bannerBullets = document.querySelector('.swiper-pagination-bullets'); //    - 景點內頁資訊
 
 var scenicSpotInner_mame = document.querySelector('.scenicSpot_mame');
 var scenicSpotInner_category = document.querySelector('.scenicSpot_category');
@@ -442,8 +445,8 @@ function scenicSpot_getInnerData() {
       headers: getAuthorizationHeader()
     }).then(function (response) {
       // 回傳的資料
-      var thisData = response.data[0];
-      console.log(thisData); // 呈現 內頁資料內容
+      var thisData = response.data[0]; // console.log(thisData);
+      // 呈現 內頁資料內容
 
       scenicSpot_renderInner(thisData); // 隱藏 探索景點主要內容
 
@@ -457,13 +460,51 @@ function scenicSpot_getInnerData() {
 ; // 探索景點 - 內頁資料內容
 
 function scenicSpot_renderInner(data) {
-  // 麵包削
+  // 計算 banner 圖片數量
+  var bannerPhoto_num = 0; // banner 圖片 
+  // 第一張圖片
+
+  if (data.Picture.PictureUrl1) {
+    scenicSpotInner_bannerSlides[0].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"".concat(data.Picture.PictureUrl1, "\" alt=\"").concat(data.Picture.PictureDescription1, "\">");
+    bannerPhoto_num++;
+  } else {
+    scenicSpotInner_bannerSlides[0].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"./assets/images/NoImage-345x160.png\" alt=\"NoImage\">";
+    bannerPhoto_num++;
+  }
+
+  ; // 第二章圖片
+
+  if (data.Picture.PictureUrl2) {
+    scenicSpotInner_bannerSlides[1].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"".concat(data.Picture.PictureUrl2, "\" alt=\"").concat(data.Picture.PictureDescription2, "\">");
+    bannerPhoto_num++;
+  } else {
+    scenicSpotInner_bannerSlides[1].remove();
+    scenicSpotInner_bannerBullets.classList.add('d-none');
+  }
+
+  ; // 第三張圖片
+
+  if (data.Picture.PictureUrl3) {
+    scenicSpotInner_bannerSlides[2].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"".concat(data.Picture.PictureUrl3, "\" alt=\"").concat(data.Picture.PictureDescription3, "\">");
+    bannerPhoto_num++;
+  } else {
+    scenicSpotInner_bannerSlides[2].remove();
+    scenicSpotInner_bannerBullets.classList.add('d-none');
+  }
+
+  ; // 圖片少於一張或剛好一張，把導覽方向鍵取消
+
+  if (bannerPhoto_num <= 1) {
+    document.querySelector('.swiper-button-next').classList.add('d-md-none');
+    document.querySelector('.swiper-button-prev').classList.add('d-md-none');
+  } // 麵包削
+
+
   breadcrumb_theme.classList.remove('text-secondary');
   breadcrumb_theme.classList.add('text-primary');
   breadcrumb_location.classList.add('text-secondary');
   breadcrumb_city.textContent = "/ ".concat(data.City);
-  breadcrumb_location.textContent = " / ".concat(data.ScenicSpotName); // banner 圖片 
-  // 景點名字
+  breadcrumb_location.textContent = " / ".concat(data.ScenicSpotName); // 景點名字
 
   scenicSpotInner_mame.textContent = data.ScenicSpotName; // 景點類別
 
@@ -530,7 +571,7 @@ var swiper_heroBanner = new Swiper(".swiper-heroBanner", {
   }
 }); // 首頁 - 熱門打卡景點
 
-var swiper_homeSpots = new Swiper(".swiper-home_scenicSpot", {
+var swiper_homeSpots = new Swiper(".swiper-home-scenicSpot", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -557,7 +598,7 @@ var swiper_homeSpots = new Swiper(".swiper-home_scenicSpot", {
   }
 }); // 首頁 - 一再回訪美食
 
-var swiper_homeRestaurant = new Swiper(".swiper-home_restaurant", {
+var swiper_homeRestaurant = new Swiper(".swiper-home-restaurant", {
   slidesPerView: 1.6,
   spaceBetween: 16,
   grid: {
@@ -584,14 +625,9 @@ var swiper_homeRestaurant = new Swiper(".swiper-home_restaurant", {
   }
 }); // 探索景點 內頁 swiper banner
 
-var swiper_spotsBanner = new Swiper(".swiper-scenicSpot_banner", {
+var swiper_spotsBanner = new Swiper(".swiper-scenicSpot-banner", {
   cssMode: true,
   slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    disableOnInteraction: false,
-    delay: 4000
-  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev"
@@ -602,14 +638,9 @@ var swiper_spotsBanner = new Swiper(".swiper-scenicSpot_banner", {
   }
 }); // 節慶活動 內頁 swiper banner
 
-var swiper_activityBanner = new Swiper(".swiper-activity_banner", {
+var swiper_activityBanner = new Swiper(".swiper-activity-banner", {
   cssMode: true,
   slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    disableOnInteraction: false,
-    delay: 4000
-  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev"
@@ -620,14 +651,9 @@ var swiper_activityBanner = new Swiper(".swiper-activity_banner", {
   }
 }); // 品嘗美食 內頁 swiper banner
 
-var swiper_restaurantBanner = new Swiper(".swiper-restaurant_banner", {
+var swiper_restaurantBanner = new Swiper(".swiper-restaurant-banner", {
   cssMode: true,
   slidesPerView: 1,
-  loop: true,
-  autoplay: {
-    disableOnInteraction: false,
-    delay: 4000
-  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev"
