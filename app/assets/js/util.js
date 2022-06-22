@@ -17,7 +17,6 @@
 // 動態效果
 // jQuery 初始化
 $(function () {
-
    // 漢堡動態效果
    // 漢堡按鈕 綁定事件監聽，點擊後觸發加上切換 .open class功能
    $('#toggler-burger').on('click', function () {
