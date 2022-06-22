@@ -1,93 +1,66 @@
 "use strict";
 
-// PTX api  header 驗證
-function getAuthorizationHeader() {
-  //  填入自己 ID、KEY 開始
-  var AppID = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
-  var AppKey = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF'; // let AppID = 'pi20120413-51900829-226c-41ea';
-  // let AppKey = '3b7f6972-70db-4eba-8d74-2d6e11c5f499';
-  //  填入自己 ID、KEY 結束
+// // PTX api  header 驗證
+// function getAuthorizationHeader() {
+//   //  填入自己 ID、KEY 開始
+//   // let AppID = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
+//   // let AppKey = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF';
+//   let AppID = 'pi20120413-51900829-226c-41ea';
+//   let AppKey = 'beeda1e6-f94e-4b14-b9d4-98e7c6e2669f';
+//   //  填入自己 ID、KEY 結束
+//   let GMTString = new Date().toGMTString();
+//   let ShaObj = new jsSHA('SHA-1', 'TEXT');
+//   ShaObj.setHMACKey(AppKey, 'TEXT');
+//   ShaObj.update('x-date: ' + GMTString);
+//   let HMAC = ShaObj.getHMAC('B64');
+//   let Authorization = 'hmac username=\"' + AppID + '\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"' + HMAC + '\"';
+//   return { 'Authorization': Authorization, 'X-Date': GMTString };
+// }
+// jQuery 初始化
+$(function () {
+  // 取得 TDX api  header 驗證
+  getAuthorizationHeader(); // 首頁- 取得資料
 
-  var GMTString = new Date().toGMTString();
-  var ShaObj = new jsSHA('SHA-1', 'TEXT');
-  ShaObj.setHMACKey(AppKey, 'TEXT');
-  ShaObj.update('x-date: ' + GMTString);
-  var HMAC = ShaObj.getHMAC('B64');
-  var Authorization = 'hmac username=\"' + AppID + '\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"' + HMAC + '\"';
-  return {
-    'Authorization': Authorization,
-    'X-Date': GMTString
-  };
-} // apiUrl
-
-
-var apiUrl_activity = "https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON";
-var apiUrl_scenicSpot = "https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=Picture%2FPictureUrl1%20ne%20null&%format=JSON";
-var apiUrl_restaurant = "https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/?$filter=Picture%2FPictureUrl1%20ne%20null&$format=JSON"; // 初始化
-
-function init() {
-  // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
-  get_restaurant(); // 探索景點頁面 
+  get_restaurant(); // 探索景點頁面
   // - 取得景點全部資料
 
-  scenicSpot_getAllData(); // - 取得景點單一資料
+  scenicSpot_getAllData();
+}); // baseUrl
 
-  scenicSpot_getInnerData();
-}
+var baseUrl = "https://tdx.transportdata.tw/api/basic/v2/Tourism"; // apiUrl
 
-init(); // 首頁 - 取得資料
-// 近期活動
+var apiUrl_activity = "".concat(baseUrl, "/Activity?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON");
+var apiUrl_scenicSpot = "".concat(baseUrl, "/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON");
+var apiUrl_restaurant = "".concat(baseUrl, "/Restaurant?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"); // jQuery  取得 TDX api  header 驗證
 
-function get_activity() {
-  axios.get(apiUrl_activity, {
-    headers: getAuthorizationHeader()
-  }).then(function (response) {
-    var data_activity = response.data; //呈現畫面
+function getAuthorizationHeader() {
+  var parameter = {
+    grant_type: "client_credentials",
+    client_id: "pi20120413-51900829-226c-41ea",
+    client_secret: "cbff89f1-e9e0-4dad-bb3b-1503012fb83d"
+  };
+  var auth_url = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token";
+  $.ajax({
+    type: "POST",
+    url: auth_url,
+    crossDomain: true,
+    dataType: 'JSON',
+    data: parameter,
+    async: false,
+    success: function success(data) {
+      var access_token = JSON.stringify(data.access_token);
+      var expires_in = JSON.stringify(data.expires_in); // 存取 token 
 
-    if (home_activity) {
-      render_activity(data_activity);
+      var token = document.cookie = "tourToken=".concat(access_token, "; expires=").concat(new Date(expires_in), "; path=/");
+    },
+    error: function error(xhr, textStatus, thrownError) {
+      console.log('errorStatus:', textStatus);
+      console.log('Error:', thrownError);
     }
-  })["catch"](function (error) {
-    console.log(error.response.data);
   });
 }
-
-; // 打卡景點
-
-function get_scenicSpot() {
-  axios.get(apiUrl_scenicSpot, {
-    headers: getAuthorizationHeader()
-  }).then(function (response) {
-    var data_scenicSpot = response.data; //呈現畫面
-
-    if (home_scenicSpot) {
-      render_scenicSpot(data_scenicSpot);
-    }
-  })["catch"](function (error) {
-    console.log(error.response.data);
-  });
-}
-
-; //餐廳資訊
-
-function get_restaurant() {
-  axios.get(apiUrl_restaurant, {
-    headers: getAuthorizationHeader()
-  }).then(function (response) {
-    var data_restaurant = response.data;
-
-    if (home_restaurant) {
-      //呈現畫面
-      render_restaurant(data_restaurant);
-    }
-  })["catch"](function (error) {
-    console.log(error.response.data);
-  });
-}
-
-;
 "use strict";
 
 // 首頁 js
@@ -96,7 +69,98 @@ var home_activity = document.querySelector('.home_activity');
 var home_scenicSpot = document.querySelector('.home_scenicSpot');
 var home_restaurant = document.querySelector('.home_restaurant'); // 搜尋按鈕
 
-var home_searchBtn = document.querySelector('.search_Btn'); // 首頁- 呈現畫面
+var home_searchBtn = document.querySelector('.search_btn'); // 首頁 - 取得資料
+// 近期活動
+
+function get_activity() {
+  // 取得 token
+  var token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
+
+  if (token !== undefined) {
+    $.ajax({
+      type: 'GET',
+      url: "".concat(baseUrl, "/Activity?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"),
+      headers: {
+        "authorization": "Bearer " + token
+      },
+      async: false,
+      success: function success(data) {
+        var data_activity = data; // console.log('data', data_activity);
+        //呈現畫面
+
+        if (home_activity) {
+          render_activity(data_activity);
+        }
+      },
+      error: function error(xhr, textStatus, thrownError) {
+        console.log('errorStatus:', textStatus);
+        console.log('Error:', thrownError);
+      }
+    });
+  }
+}
+
+; // 打卡景點
+
+function get_scenicSpot() {
+  // 取得 token
+  var token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
+
+  if (token !== undefined) {
+    $.ajax({
+      type: 'GET',
+      url: "".concat(baseUrl, "/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"),
+      headers: {
+        "authorization": "Bearer " + token
+      },
+      async: false,
+      success: function success(data) {
+        var data_scenicSpot = data; // console.log('data', data_scenicSpot);
+        // 呈現畫面
+
+        if (home_scenicSpot) {
+          render_scenicSpot(data_scenicSpot);
+        }
+      },
+      error: function error(xhr, textStatus, thrownError) {
+        console.log('errorStatus:', textStatus);
+        console.log('Error:', thrownError);
+      }
+    });
+  }
+}
+
+; //餐廳資訊
+
+function get_restaurant() {
+  // 取得 token
+  var token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
+
+  if (token !== undefined) {
+    $.ajax({
+      type: 'GET',
+      url: "".concat(baseUrl, "/Restaurant?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"),
+      headers: {
+        "authorization": "Bearer " + token
+      },
+      async: false,
+      success: function success(data) {
+        var data_restaurant = data; // console.log('data', data_restaurant);
+        //呈現畫面
+
+        if (home_restaurant) {
+          render_restaurant(data_restaurant);
+        }
+      },
+      error: function error(xhr, textStatus, thrownError) {
+        console.log('errorStatus:', textStatus);
+        console.log('Error:', thrownError);
+      }
+    });
+  }
+}
+
+; // 首頁- 呈現畫面
 //近期活動 
 
 function render_activity(arr) {
@@ -119,7 +183,7 @@ function render_activity(arr) {
       continue;
     } else {
       // 為 true 的話就組字串資料
-      str += "<div class=\"col mb-2\">\n        <div class=\"card\">\n          <div class=\"row g-0\">\n            <div class=\"col-4 overflow-hidden\">\n            <div class=\"ratio ratio-9x7  ratio-md-1x1\">\n               <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n               <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n               </a>\n            </div>\n            </div>\n            <div class=\"col-8\">\n              <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n                <div>\n                  <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                  <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n                </div>\n                <div class=\"d-flex justify-content-between align-items-center\">\n                  <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                  <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                      class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                    </span></a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>");
+      str += "<div class=\"col mb-2\">\n          <div class=\"card\">\n            <div class=\"row g-0\">\n              <div class=\"col-4 overflow-hidden\">\n              <div class=\"ratio ratio-9x7  ratio-md-1x1\">\n                 <a class=\"imgWarp\" href=\"./activity.html?id=".concat(dataItem.ActivityID, "\">\n                 <img class=\" card-img img-cover\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" alt=\"").concat(dataItem.Description, "\">\n                 </a>\n              </div>\n              </div>\n              <div class=\"col-8\">\n                <div class=\"card-body d-flex flex-column  justify-content-between py-md-1  py-lg-2 px-lg-5\">\n                  <div>\n                    <span class=\"card-text text-secondary fs-xs fs-lg-6\"> ").concat(dataItem.StartTime.slice(0, 10), " - ").concat(dataItem.EndTime.slice(0, 10), "</span>\n                    <h5 class=\"card-title fs-6 fs-lg-xl lh-base fw-bold mb-0 text-truncate\">").concat(dataItem.ActivityName, "</h5>\n                  </div>\n                  <div class=\"d-flex justify-content-between align-items-center\">\n                    <span class=\"card-text text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                        src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                    <a class=\"btn  btn-infoBtn   d-none d-md-inline-block shadow-none\" href=\"./activity.html?id=").concat(dataItem.ActivityID, "\"><span\n                        class=\"btn-inner\">\u8A73\u7D30\u4ECB\u7D39 \u276F\n                      </span></a>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>");
     }
   }
 
@@ -143,7 +207,7 @@ function render_scenicSpot(arr) {
       continue;
     } else {
       // onerror事件 : 當圖片不存在時或者因為網路原因載入失敗,將觸發onerror事件，替換預設圖片
-      str += "<li class=\"swiper-slide\">\n      <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n        <a href=\"./scenicSpot.html?id=".concat(dataItem.ScenicSpotID, "\">\n          <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\"  onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n            alt=\"").concat(dataItem.DescriptionDetail, "\">\n        </a>\n      </div>\n      <div class=\"py-1 py-md-2\">\n        <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.ScenicSpotName, "</h5>\n        <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n            src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n      </div>\n    </li>");
+      str += "<li class=\"swiper-slide\">\n        <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n          <a href=\"./scenicSpot.html?id=".concat(dataItem.ScenicSpotID, "\">\n            <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\"  onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n              alt=\"").concat(dataItem.DescriptionDetail, "\">\n          </a>\n        </div>\n        <div class=\"py-1 py-md-2\">\n          <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.ScenicSpotName, "</h5>\n          <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n              src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n        </div>\n      </li>");
     }
   }
 
@@ -167,7 +231,7 @@ function render_restaurant(arr) {
       continue;
     } else {
       // onerror事件 : 當圖片不存在時或者因為網路原因載入失敗,將觸發onerror事件，替換預設圖片
-      str += "<li class=\"swiper-slide\">\n        <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n          <a href=\"./Restaurant.html?id=".concat(dataItem.RestaurantID, "\">\n            <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n              alt=\"").concat(dataItem.DescriptionDetail, "\">\n          </a>\n        </div>\n        <div class=\"py-1 py-md-2\">\n          <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.RestaurantName, "</h5>\n          <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n              src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n        </div>\n      </li>");
+      str += "<li class=\"swiper-slide\">\n          <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n            <a href=\"./restaurant.html?id=".concat(dataItem.RestaurantID, "\">\n              <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                alt=\"").concat(dataItem.DescriptionDetail, "\">\n            </a>\n          </div>\n          <div class=\"py-1 py-md-2\">\n            <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.RestaurantName, "</h5>\n            <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n          </div>\n        </li>");
     }
   }
 
@@ -184,11 +248,15 @@ if (home_searchBtn) {
 
 function search_keyword() {
   var search_type = document.querySelector('.search_type');
-  var search_keyword = document.querySelector('.search_keyword');
+  var search_keyword = document.querySelector('.search_keyword'); // encodeURIComponent  將 網址參數 中文 編碼成 '%E8%8A%B1'
+  //   console.log(encodeURIComponent('花'));
+  // decodeURIComponent =  將 網址參數 '%E8%8A%B1' 編碼成中文
+  //   console.log(decodeURIComponent('%E8%8A%B1'));
+
+  var encodedStr = encodeURIComponent(search_keyword.value.trim());
 
   if (search_keyword.value.trim() !== '') {
-    // window.location.href = `./${search_type.value}.html?city=&keyword="+encodeURIComponent(${search_keyword.value.trim()})`;
-    window.location.href = "./".concat(search_type.value, ".html?%24filter=contains(keyword%2C'").concat(search_keyword.value.trim(), "')");
+    window.location.href = "./".concat(search_type.value, ".html?city%24filter=contains%28Keyword=").concat(encodedStr);
   }
 }
 
@@ -315,10 +383,11 @@ var search_resultNum = document.querySelector('.search_resultNum'); //     - 麵
 
 var breadcrumb_theme = document.querySelector('.breadcrumb-theme');
 var breadcrumb_city = document.querySelector('.breadcrumb-city');
-var breadcrumb_location = document.querySelector('.breadcrumb-location'); //    - swiper-banner
+var breadcrumb_location = document.querySelector('.breadcrumb-location'); //  呈現景點內頁畫面 DOM
+//    - swiper-banner
 
 var scenicSpotInner_bannerSlides = document.querySelectorAll('.swiper-scenicSpot-banner .swiper-slide');
-var scenicSpotInner_bannerBullets = document.querySelector('.swiper-pagination-bullets'); //    - 景點內頁資訊
+var scenicSpotInner_bannerBullets = document.querySelector('.swiper-pagination-bullets'); //    - 景點內容
 
 var scenicSpotInner_mame = document.querySelector('.scenicSpot_mame');
 var scenicSpotInner_category = document.querySelector('.scenicSpot_category');
@@ -329,27 +398,40 @@ var scenicSpotInner_address = document.querySelector('.scenicSpot_address');
 var scenicSpotInner_websiteUrl = document.querySelector('.scenicSpot_websiteUrl');
 var scenicSpotInner_ticketInfo = document.querySelector('.scenicSpot_ticketInfo');
 var scenicSpotInner_remarks = document.querySelector('.scenicSpot_remarks');
-var scenicSpotInner_map = document.querySelector('.scenicSpot_map'); // 資料 - 探索景點頁面 
+var scenicSpotInner_map = document.querySelector('.scenicSpot_map'); //    - 推薦景點
+
+var scenicSpotInner_recommend = document.querySelector('.recommend_scenicSpot'); // 資料 - 探索景點頁面 
 
 var data_scenicSpot = []; // 資料 - 篩選類別資料
 
-var data_filterResult = []; // 探索景點 - 取得景點全部資料
+var data_filterResult = []; // // 探索景點 - 取得景點全部資料
 
 function scenicSpot_getAllData() {
-  axios.get(apiUrl_scenicSpot, {
-    headers: getAuthorizationHeader()
-  }).then(function (response) {
-    // 回傳的資料
-    var thisData = response.data; // 過濾資料 排除沒有圖片、景點名字、城市
+  // 取得 token
+  var token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
 
-    thisData.forEach(function (item) {
-      if (item.Picture.PictureUrl1 && item.ScenicSpotName && item.City) {
-        data_scenicSpot.push(item);
+  if (token !== undefined) {
+    $.ajax({
+      type: 'GET',
+      url: "".concat(baseUrl, "/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"),
+      headers: {
+        "authorization": "Bearer " + token
+      },
+      async: false,
+      success: function success(data) {
+        // 回傳的資料
+        var thisData = data; // 過濾資料 排除沒有類別 1、景點名字、城市
+
+        data_scenicSpot = thisData.filter(function (item) {
+          return item.ScenicSpotName && item.City && item.Class1;
+        });
+      },
+      error: function error(xhr, textStatus, thrownError) {
+        console.log('errorStatus:', textStatus);
+        console.log('Error:', thrownError);
       }
     });
-  })["catch"](function (error) {
-    console.log(error.response.data);
-  });
+  }
 }
 
 ; // 探索景點 - 切換類別樣式 & 取值
@@ -405,63 +487,79 @@ function search_scenicSpot(e) {
 
   var category = search_category.value; //  關鍵字
 
-  var keyword = search_keyword.value.trim(); // 搜尋結果 
+  var keyword = search_keyword.value.trim(); // 搜尋結果
 
   var search_scenicSpotList = data_scenicSpot.filter(function (item) {
     return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
-  });
-  scenicSpot_renderResult(search_scenicSpotList);
-  renderPages(search_scenicSpotList, 1); // 呈現結果數字
+  }); // 呈現 篩選結果
+
+  scenicSpot_renderResult(search_scenicSpotList); // 隱藏分頁
+
+  pagination.classList.add('d-none'); // 呈現結果數字
 
   search_resultNum.textContent = search_scenicSpotList.length;
 }
 
-; // 探索景點 - 呈現類別篩選結果
+; // 探索景點 - 呈現篩選結果
 
 function scenicSpot_renderResult(arr) {
   var str = ''; // 如果有資料就顯示 類別篩選結果區塊
 
-  if (arr.length) {
+  if (!arr.length) {
+    str += "<div class=\"text-center\">\n    <img src=\"./assets/images/nofound80.png\" alt=\"\u627E\u4E0D\u5230\u8CC7\u6599\">\n    <p class=\"text-primary fw-bold\">\u76EE\u524D\u67E5\u7121\u8CC7\u6599<br>\u8ACB\u91CD\u65B0\u641C\u5C0B</p>\n    </div>";
+  } else {
     arr.forEach(function (item) {
-      str += "\n      <li class=\"col mb-2 mb-md-4\">\n      <div class=\"resultList-card border-0\">\n          <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n              <a href=\"./scenicSpot.html?id=".concat(item.ScenicSpotID, "\">\n                  <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                      alt=\"").concat(item.DescriptionDetail, "\">\n              </a>\n          </div>\n          <div class=\"py-1 py-md-2\">\n              <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n              </h5>\n              <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                      src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n          </div>\n      </div>\n  </li>");
+      str += "\n    <div class=\"col-12 col-md-4 col-lg-3 mb-2 mb-md-4\">\n    <div class=\"resultList-card border-0\">\n      <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n          <a href=\"./scenicSpot.html?id=".concat(item.ScenicSpotID, "\">\n              <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                  alt=\"").concat(item.DescriptionDetail, "\">\n          </a>\n      </div>\n      <div class=\"py-1 py-md-2\">\n          <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n          </h5>\n          <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                  src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n      </div>\n    </div>\n   </div>");
     });
     scenicSpot_searchResult.classList.remove('d-none');
-  }
+  } // 呈現結果畫面
 
-  ; // 呈現結果畫面
 
   scenicSpot_resultList.innerHTML = str;
 }
 
-; // 探索景點 - 取得景點單一資料
+; // 探索景點內頁 - 取得景點單一資料
 
-function scenicSpot_getInnerData() {
-  // 取得單一資料 id
-  var targetId = location.href.split('=')[1]; // 如果 單一資料 id 不是 undefined 就發送請求取得資料
+function scenicSpotInner_getData(id) {
+  // 取得 token
+  var token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1')); // 取得單一資料 id
 
-  if (targetId !== undefined) {
-    // 發送請求，篩選 ScenicSpotID 與 id 符合的資料
-    axios.get("https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24filter=contains(ScenicSpotID%2C'".concat(targetId, "')&%24top=30&%24format=JSON"), {
-      headers: getAuthorizationHeader()
-    }).then(function (response) {
-      // 回傳的資料
-      var thisData = response.data[0]; // console.log(thisData);
-      // 呈現 內頁資料內容
+  var targetId = id;
 
-      scenicSpot_renderInner(thisData); // 隱藏 探索景點主要內容
+  if (token !== undefined && targetId !== undefined) {
+    $.ajax({
+      type: 'GET',
+      url: "".concat(baseUrl, "/ScenicSpot?%24filter=contains%28ScenicSpotID%20%20%2C%20%27").concat(targetId, "%27%29&%24format=JSON"),
+      headers: {
+        "authorization": "Bearer " + token
+      },
+      async: false,
+      success: function success(data) {
+        var thisData = data[0];
+        console.log('data', thisData); //呈現 內頁資料內容
 
-      scenicSpot_themeArea.classList.add('d-none');
-    })["catch"](function (error) {
-      console.log(error.response.data);
+        scenicSpotInner_renderData(thisData); //呈現 推薦列表
+
+        scenicSpotInner_renderRecommend(targetId); // 隱藏 探索景點主要內容
+
+        scenicSpot_themeArea.classList.add('d-none'); // 顯示 內頁內容
+
+        scenicSpot_categoryInner.classList.toggle('d-none');
+      },
+      error: function error(xhr, textStatus, thrownError) {
+        console.log('errorStatus:', textStatus);
+        console.log('Error:', thrownError);
+      }
     });
   }
 }
 
-; // 探索景點 - 內頁資料內容
+; // scenicSpotInner_getData('C1_315081800H_000021');
+// 探索景點內頁 -  呈現 內頁資料內容
 
-function scenicSpot_renderInner(data) {
+function scenicSpotInner_renderData(data) {
   // 計算 banner 圖片數量
-  var bannerPhoto_num = 0; // banner 圖片 
+  var bannerPhoto_num = 0; // banner 圖片
   // 第一張圖片
 
   if (data.Picture.PictureUrl1) {
@@ -548,8 +646,87 @@ function scenicSpot_renderInner(data) {
   }
 
   ;
-} // 周邊介紹
-// 景點推薦
+} //探索景點內頁 - 呈現推薦列表
+
+
+function scenicSpotInner_renderRecommend(id) {
+  // 取得 token
+  var token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1')); // 取得單一資料 id
+
+  var targetId = id;
+
+  if (token !== undefined && targetId !== undefined) {
+    $.ajax({
+      type: 'GET',
+      url: "".concat(baseUrl, "/ScenicSpot?%24filter=ScenicSpotID%20%20ne%20%27").concat(targetId, "%27&%24format=JSON"),
+      headers: {
+        "authorization": "Bearer " + token
+      },
+      async: false,
+      success: function success(data) {
+        var thisData = data; // 過濾 沒有 景點名稱、圖片、城市、類別的資料
+
+        thisData = thisData.filter(function (item) {
+          return item.ScenicSpotName && item.City && item.Class1 && item.Picture.PictureUrl1;
+        }); // 組字串資料
+
+        var str = ''; // 畫面呈現為四筆資料，所以要跑四次迴圈
+
+        for (var i = 0; i < 4; i++) {
+          // 隨機取得 陣列資料索引位置和資料
+          var dataIndex = getRandom(thisData.length);
+          var dataItem = thisData[dataIndex]; // 如果與內頁 id 是一樣的話，就重跑一次迴圈
+
+          if (dataItem.ScenicSpotID === id) {
+            i -= 1;
+            continue;
+          } else {
+            // onerror事件 : 當圖片不存在時或者因為網路原因載入失敗,將觸發onerror事件，替換預設圖片
+            str += "<li class=\"swiper-slide\">\n                          <div class=\"ratio ratio-5x4 rounded-5  overflow-hidden\">\n                            <a href=\"./scenicSpot.html?id=".concat(dataItem.ScenicSpotID, "\">\n                              <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(dataItem.Picture.PictureUrl1, "\"  onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                                alt=\"").concat(dataItem.DescriptionDetail, "\">\n                            </a>\n                          </div>\n                          <div class=\"py-1 py-md-2\">\n                            <h5 class=\"slide-title-hover fw-bold  fs-m fs-md-5 mb-1 text-truncate\">").concat(dataItem.ScenicSpotName, "</h5>\n                            <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                                src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(dataItem.City, "</span>\n                          </div>\n                        </li>");
+          }
+        }
+
+        ; // 呈現在 景點內頁推薦列表
+
+        scenicSpotInner_recommend.innerHTML = str;
+      },
+      error: function error(xhr, textStatus, thrownError) {
+        console.log('errorStatus:', textStatus);
+        console.log('Error:', thrownError);
+      }
+    });
+  }
+}
+
+; // // 判斷網頁跳轉 路徑狀態
+
+if (!location.search) {
+  scenicSpot_getAllData();
+} else {
+  var arr1 = location.search.split('?');
+  var id; // let city;
+
+  var keyword;
+  console.log(arr1);
+
+  if (!arr1[1].includes('&')) {
+    id = arr1[1].split('=')[1]; // 取得 路徑 id
+
+    scenicSpotInner_getData(id);
+  } //    else {
+  //     // city = arr1[1].split('&')[0].split('=')[1];
+  //     keyword = arr1[1].split('&')[1].split('=')[1];
+  //     if (keyword.includes('+encodeURIComponent')) {
+  //       keyword = decodeURIComponent(keyword.split('+encodeURIComponent(')[1].split(')')[0]);
+  //       console.log(keyword);
+  //     } else {
+  //       keyword = arr1[1].split('&')[1].split('=')[1];
+  //     }
+  //     console.log(keyword);
+  //     search_scenicSpot(city, keyword);
+  //   }
+
+}
 "use strict";
 
 // 首頁 - heroBanner 

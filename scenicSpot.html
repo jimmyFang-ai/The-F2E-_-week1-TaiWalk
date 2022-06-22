@@ -126,7 +126,8 @@
                     <input type="text" class="search-keyword  form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
                 <div class="col-12  col-lg-2 mb-2">
-                    <button type="button" class="scenicSpot_searchBtn  btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
+                    <button type="button"
+                        class="scenicSpot_searchBtn  btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
                         <span class="material-symbols-outlined me-2 ">search</span>搜尋
                     </button>
                 </div>
@@ -226,15 +227,15 @@
         <!-- 呈現 篩選結果 -->
         <div class="scenicSpot-searchResult d-none">
             <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
-                <p class="fs-sm fs-md-lg d-inline">共有 <span class="search_ResultNum text-warning">240</span> 筆
+                <p class="fs-sm fs-md-lg d-inline">共有 <span class="search_resultNum text-warning">240</span> 筆
                 </p>
             </h2>
-            <ul class="scenicSpot-resultList  row row-cols-1  row-cols-md-3 row-cols-lg-4  mb-8">
-            </ul>
+            <div class="scenicSpot-resultList  row  mb-8">
+            </div>
 
             <!-- 分頁 -->
             <nav aria-label="Page  navigation">
-                <ul class="pagination mb-0 justify-content-center" id="pageId">
+                <ul class="pagination  mb-0 justify-content-center">
                 </ul>
             </nav>
         </div>
@@ -244,21 +245,18 @@
 
 
 <!-- 探索景點 分類內頁 -->
-<section class="scenicSpot-categoryInner mb-1">
+<section class="scenicSpot-categoryInner mb-1  d-none">
     <!-- 輪播卡片 -->
     <div class="container mb-2 mb-md-5">
         <div class="swiper swiper-scenicSpot-banner">
             <!-- 要插入 render 回來的資料 -->
             <ul class="swiper-wrapper rounded-4 rounded-md-6">
                 <li class="swiper-slide">
-                      
                 </li>
                 <li class="swiper-slide">
-                  
-                </li> 
+                </li>
                 <li class="swiper-slide">
-                    
-                </li> 
+                </li>
             </ul>
 
             <!--  pagination -->
@@ -274,7 +272,8 @@
     <div class="container mb-7">
         <h2 class="scenicSpot_mame  fs-4 fs-md-2 fw-light mb-1 mb-md-2">羅東林業文化園區</h2>
         <div class="mb-2 mb-md-5">
-            <a class=" btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1"># <span class="scenicSpot_category" href="#">自然風景類</span></a>
+            <a class=" btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1"># <span
+                    class="scenicSpot_category" href="#">自然風景類</span></a>
         </div>
         <h5 class="fs-m fs-md-5 fw-bold mb-1">景點介紹：</h5>
         <p class="scenicSpot_description fw-light mb-5 mb-md-7">
@@ -285,12 +284,11 @@
             <div class="bg-light  col rounded-0 rounded-lg-4 h-100">
                 <div class="px-1 px-lg-3 py-5 ">
                     <p class="fw-bold">開放時間： <span class="scenicSpot_opentTime  fw-normal"></span></p>
-                    <p class="fw-bold">服務電話： <a class="scenicSpot_phone text-gray-black fw-normal"
-                            href="#"></a></p>
+                    <p class="fw-bold">服務電話： <a class="scenicSpot_phone text-gray-black fw-normal" href="#"></a></p>
                     <p class="fw-bold">景點地址： <span
                             class="scenicSpot_address text-info text-decoration-underline fw-normal"></span></p>
-                    <p class=" fw-bold">官方網站： <a class="scenicSpot_websiteUrl text-info text-decoration-underline fw-normal"
-                            href="#"></a>
+                    <p class=" fw-bold">官方網站： <a
+                            class="scenicSpot_websiteUrl text-info text-decoration-underline fw-normal" href="#"></a>
                     </p>
                     <p class="fw-bold">票價資訊： <span class="scenicSpot_ticketInfo fw-normal"></span></p>
                     <div>
@@ -426,8 +424,6 @@
         </div>
     </div>
 </section>
-
-
   </main>
 
   <!-- 表尾 -->
