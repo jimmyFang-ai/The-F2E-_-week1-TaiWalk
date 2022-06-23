@@ -83,9 +83,9 @@
         <!-- 探索景點 搜尋功能 -->
         <div class="scenicSpot-searchGroup mb-4 mb-md-6">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
-                <div class="col-12  col-lg-3 mb-2">
+                <div class="col-12  col-md-4 mb-2">
                     <select class="search-city form-select text-primary" aria-label="select">
-                        <option value="" selected="">全部縣市</option>
+                        <option value="全部縣市" selected="">全部縣市</option>
                         <option value="臺北市">臺北市</option>
                         <option value="新北市">新北市</option>
                         <option value="桃園市">桃園市</option>
@@ -110,22 +110,10 @@
                         <option value="連江縣">連江縣</option>
                     </select>
                 </div>
-                <div class="col-12  col-lg-3 mb-2">
-                    <select class="search-category form-select text-primary" aria-label="select">
-                        <option value="all">全部主題</option>
-                        <option value="自然風景類">自然風景類</option>
-                        <option value="觀光工廠類">觀光工廠類</option>
-                        <option value="遊憩類">遊憩類</option>
-                        <option value="休閒農業類">休閒農業類</option>
-                        <option value="生態類">生態類</option>
-                        <option value="溫泉類">溫泉類</option>
-                        <option value="古蹟類">古蹟類</option>
-                    </select>
-                </div>
-                <div class="col-12  col-lg-4 mb-2">
+                <div class="col-12  col-md-5 mb-2">
                     <input type="text" class="search-keyword  form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
-                <div class="col-12  col-lg-2 mb-2">
+                <div class="col-12  col-md-3 mb-2">
                     <button type="button"
                         class="scenicSpot_searchBtn  btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
                         <span class="material-symbols-outlined me-2 ">search</span>搜尋
@@ -222,23 +210,26 @@
                 </li>
             </ul>
         </div>
+    </div>
+</section>
 
 
-        <!-- 呈現 篩選結果 -->
-        <div class="scenicSpot-searchResult d-none">
-            <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
-                <p class="fs-sm fs-md-lg d-inline">共有 <span class="search_resultNum text-warning">240</span> 筆
-                </p>
-            </h2>
-            <div class="scenicSpot-resultList  row  mb-8">
-            </div>
-
-            <!-- 分頁 -->
-            <nav aria-label="Page  navigation">
-                <ul class="pagination  mb-0 justify-content-center">
-                </ul>
-            </nav>
+<!-- 探索景點    呈現 篩選結果 -->
+<section class="scenicSpot-searchResult mb-1 d-none">
+    <div class="container">
+        <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
+            <p class="fs-sm fs-md-lg d-inline">共有 <span class="search_resultNum text-warning">240</span> 筆
+            </p>
+        </h2>
+        <div class="scenicSpot-resultList  row  mb-8">
         </div>
+
+
+        <!-- 分頁 -->
+        <nav aria-label="Page  navigation">
+            <ul class="pagination  mb-0 justify-content-center">
+            </ul>
+        </nav>
     </div>
 </section>
 
