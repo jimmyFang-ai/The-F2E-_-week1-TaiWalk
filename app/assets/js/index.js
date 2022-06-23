@@ -259,7 +259,7 @@ function search_keyword() {
     let encodedStr = encodeURIComponent(search_keyword.value.trim());
    
     if (search_keyword.value.trim() !== '') {
-        window.location.href = `./${search_type.value}.html?city%24filter=contains%28Keyword=${encodedStr}`;
+        window.location.href = `./${search_type.value}.html?city=全部縣市&keyword=${encodedStr}`;
     }
 };
 

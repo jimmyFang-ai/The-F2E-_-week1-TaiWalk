@@ -19,6 +19,7 @@ const scenicSpot_resultList = document.querySelector('.scenicSpot-resultList');
 const search_resultNum = document.querySelector('.search_resultNum');
 
 //     - 麵包削列表
+const scenicSpot_breadcrumb = document.querySelector('.scenicSpot-breadcrumb')
 const breadcrumb_theme = document.querySelector('.breadcrumb-theme');
 const breadcrumb_city = document.querySelector('.breadcrumb-city');
 const breadcrumb_location = document.querySelector('.breadcrumb-location');
@@ -42,7 +43,6 @@ const scenicSpotInner_map = document.querySelector('.scenicSpot_map');
 const scenicSpotInner_recommend = document.querySelector('.recommend_scenicSpot');
 
 
-
 // 資料 - 探索景點頁面 
 let data_scenicSpot = [];
 
@@ -50,7 +50,8 @@ let data_scenicSpot = [];
 let data_filterResult = [];
 
 
-// // 探索景點 - 取得景點全部資料
+
+// 探索景點 - 取得景點全部資料
 function scenicSpot_getAllData() {
     // 取得 token
     const token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
@@ -101,9 +102,8 @@ function scenicSpot_changeCategory(e) {
     // 在透過被點擊到的卡片加上 acitve
     category_card.classList.add("active");
 
-    // 取出 卡片類別的值與 搜尋欄位的值連動
-    search_category.value = categoryVal;
 
+    // 更新類別篩選結果
     scenicSpot_updateResult(categoryVal);
 };
 
@@ -111,6 +111,7 @@ function scenicSpot_changeCategory(e) {
 // 探索景點 - 更新類別篩選結果
 function scenicSpot_updateResult(categoryVal) {
 
+    console.log(categoryVal);
     let category_resultList = data_scenicSpot.filter((item) => item.Class1 === categoryVal);
 
     data_filterResult = category_resultList;
@@ -120,41 +121,18 @@ function scenicSpot_updateResult(categoryVal) {
 
     // 呈現結果數字
     search_resultNum.textContent = data_filterResult.length;
+
+    // 更改 麵包削狀態
+    scenicSpot_breadcrumb.innerHTML =
+        `<a class="text-info" href="./index.html">首頁</a> /
+    <a class="breadcrumb-theme" href="./scenicSpot.html">探索景點</a> /
+    <a class="breadcrumb-category text-secondary" href="#">${categoryVal}</a>`;
 };
 
-
-// 探索景點 - 搜尋功能 & 關鍵字
-if (scenicSpot_searchBtn) {
-    scenicSpot_searchBtn.addEventListener('click', search_scenicSpot);
-};
-
-function search_scenicSpot(e) {
-    //  城市
-    const city = search_city.value;
-    //  類別
-    const category = search_category.value;
-    //  關鍵字
-    const keyword = search_keyword.value.trim();
-
-    // 搜尋結果
-    let search_scenicSpotList = data_scenicSpot.filter((item) => {
-        return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
-    });
-
-    // 呈現 篩選結果
-    scenicSpot_renderResult(search_scenicSpotList);
-
-    // 隱藏分頁
-    pagination.classList.add('d-none');
-
-    // 呈現結果數字
-    search_resultNum.textContent = search_scenicSpotList.length;
-};
 
 
 // 探索景點 - 呈現篩選結果
 function scenicSpot_renderResult(arr) {
-
     let str = '';
 
     // 如果有資料就顯示 類別篩選結果區塊
@@ -184,13 +162,80 @@ function scenicSpot_renderResult(arr) {
    </div>`;
         });
 
-        scenicSpot_searchResult.classList.remove('d-none');
+        // 切換模式  隱藏 → 顯示
+        scenicSpot_searchResult.classList.toggle('d-none');
+
+        // 切換模式  顯示 → 隱藏
+        scenicSpot_themeArea.classList.toggle('d-none');
     }
 
 
     // 呈現結果畫面
     scenicSpot_resultList.innerHTML = str;
 };
+
+
+
+
+// 探索景點 - 搜尋功能 & 關鍵字
+if (scenicSpot_searchBtn) {
+    scenicSpot_searchBtn.addEventListener('click', function (e) {
+        let city = search_city.value;
+        let keyword = search_keyword.value;
+
+        if (keyword.trim() !== '') {
+            search_scenicSpot(city, keyword);
+        }
+    });
+};
+
+
+
+
+// https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot/Taipei?%24filter=contains%28ScenicSpotName%2C%27%E5%8C%97%27%29&%24top=200&%24format=JSON
+function search_scenicSpot(city, keyword) {
+
+    console.log(city, keyword);
+
+    // 取得 token
+    const token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
+
+    if (token !== undefined) {
+        $.ajax({
+            type: 'GET',
+            url: `${baseUrl}/ScenicSpot/Taipei?%24filter=contains%28ScenicSpotName%2C%27%E5%8C%97%27%29&%24top=200&%24format=JSON`,
+            headers: {
+                "authorization": "Bearer " +token,
+            },
+            async: false,
+            success: function (data) {
+                const thisData = data;
+                console.log('data',thisData);
+               
+            },
+            error: function (xhr, textStatus, thrownError) {
+                console.log('errorStatus:', textStatus);
+                console.log('Error:', thrownError);
+            }
+        });
+    }
+    // // 搜尋結果
+    // let search_scenicSpotList = data_scenicSpot.filter((item) => {
+    //     return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
+    // });
+
+    // // 呈現 篩選結果
+    // scenicSpot_renderResult(search_scenicSpotList);
+
+    // // 隱藏分頁
+    // pagination.classList.add('d-none');
+
+    // // 呈現結果數字
+    // search_resultNum.textContent = search_scenicSpotList.length;
+};
+
+
+
 
 
 // 探索景點內頁 - 取得景點單一資料
@@ -234,7 +279,6 @@ function scenicSpotInner_getData(id) {
     }
 };
 
-// scenicSpotInner_getData('C1_315081800H_000021');
 
 
 // 探索景點內頁 -  呈現 內頁資料內容
@@ -350,7 +394,7 @@ function scenicSpotInner_renderRecommend(id) {
 
                 // 過濾 沒有 景點名稱、圖片、城市、類別的資料
                 thisData = thisData.filter((item) => item.ScenicSpotName && item.City && item.Class1 && item.Picture.PictureUrl1);
-                
+
                 // 組字串資料
                 let str = '';
 
@@ -395,34 +439,49 @@ function scenicSpotInner_renderRecommend(id) {
 
 
 
+// 判斷網頁跳轉 路徑狀態
+function getParameters() {
+
+    if (location.search) {
+        let id;
+        let city;
+        let keyword;
+
+        //將url  從 '?' 分切成兩部分，
+        const searchUrl = location.search.split('?');
+
+        console.log(searchUrl);
+
+        //  如果取得參數是沒有 '&'的多個參數的話，就取得 id的值，並顯示資料內頁
+        if (!searchUrl[1].includes('&')) {
+            // 取得 路徑 id
+            id = searchUrl[1].split('=')[1];
+            // 呈現 資料內頁
+            scenicSpotInner_getData(id);
+
+        } else {
+            // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
+            const parameters = searchUrl[1].split('&');
+            console.log(parameters);
+
+            // 跑 forEach 取出 參數的 city 和 key 的值
+            parameters.forEach((parameter, index) => {
+                if (parameters[index].split('=')[0] === 'city') {
+                    // 取出 city 的值  並解碼
+                    city = decodeURIComponent(parameters[index].split('=')[1]);
+                } else if (parameters[index].split('=')[0] === 'keyword') {
+                    // 取出 keywodr 的值 並解碼
+                    keyword = decodeURIComponent(parameters[index].split('=')[1]);
+                };
 
 
-// // 判斷網頁跳轉 路徑狀態
-if (!location.search) {
-  scenicSpot_getAllData();
-} else {
-  const arr1 = location.search.split('?');
-  let id;
-  // let city;
-  let keyword;
-  console.log(arr1);
-  if (!arr1[1].includes('&')) {
-    id = arr1[1].split('=')[1];
-    // 取得 路徑 id
-    scenicSpotInner_getData(id);
-   } 
-//    else {
-//     // city = arr1[1].split('&')[0].split('=')[1];
-//     keyword = arr1[1].split('&')[1].split('=')[1];
-//     if (keyword.includes('+encodeURIComponent')) {
-//       keyword = decodeURIComponent(keyword.split('+encodeURIComponent(')[1].split(')')[0]);
-//       console.log(keyword);
-//     } else {
-//       keyword = arr1[1].split('&')[1].split('=')[1];
-//     }
-//     console.log(keyword);
-//     search_scenicSpot(city, keyword);
-//   }
+            });
+
+            // 呈現 探索景點   搜尋結果列表
+            search_scenicSpot(city, keyword);
+        }
+    }
 }
+
 
 

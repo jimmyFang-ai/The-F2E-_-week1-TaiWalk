@@ -23,6 +23,9 @@ $(function () {
   // 取得 TDX api  header 驗證
   getAuthorizationHeader();
 
+  // 取得 網址參數
+  getParameters();
+
   // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
