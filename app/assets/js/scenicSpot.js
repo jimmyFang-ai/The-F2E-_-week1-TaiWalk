@@ -1,5 +1,4 @@
 
-
 // 主要區塊 DOM 
 const scenicSpot_themeArea = document.querySelector('.scenicSpot-themeArea');
 const scenicSpot_categoryInner = document.querySelector('.scenicSpot-categoryInner');
@@ -20,9 +19,7 @@ const search_resultNum = document.querySelector('.search_resultNum');
 
 //     - 麵包削列表
 const scenicSpot_breadcrumb = document.querySelector('.scenicSpot-breadcrumb')
-const breadcrumb_theme = document.querySelector('.breadcrumb-theme');
-const breadcrumb_city = document.querySelector('.breadcrumb-city');
-const breadcrumb_location = document.querySelector('.breadcrumb-location');
+
 
 //  呈現景點內頁畫面 DOM
 //    - swiper-banner
@@ -161,19 +158,17 @@ function scenicSpot_renderResult(arr) {
     </div>
    </div>`;
         });
-
-        // 切換模式  隱藏 → 顯示
-        scenicSpot_searchResult.classList.toggle('d-none');
-
-        // 切換模式  顯示 → 隱藏
-        scenicSpot_themeArea.classList.toggle('d-none');
     }
 
+    // 切換模式  隱藏 → 顯示
+    scenicSpot_searchResult.classList.toggle('d-none');
+
+    // 切換模式  顯示 → 隱藏
+    scenicSpot_themeArea.classList.toggle('d-none');
 
     // 呈現結果畫面
     scenicSpot_resultList.innerHTML = str;
 };
-
 
 
 
@@ -192,7 +187,6 @@ if (scenicSpot_searchBtn) {
 
 
 
-// https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot/Taipei?%24filter=contains%28ScenicSpotName%2C%27%E5%8C%97%27%29&%24top=200&%24format=JSON
 function search_scenicSpot(city, keyword) {
 
     console.log(city, keyword);
@@ -203,15 +197,37 @@ function search_scenicSpot(city, keyword) {
     if (token !== undefined) {
         $.ajax({
             type: 'GET',
-            url: `${baseUrl}/ScenicSpot/Taipei?%24filter=contains%28ScenicSpotName%2C%27%E5%8C%97%27%29&%24top=200&%24format=JSON`,
+            url: `${baseUrl}/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`,
             headers: {
-                "authorization": "Bearer " +token,
+                "authorization": "Bearer " + token,
             },
             async: false,
             success: function (data) {
-                const thisData = data;
-                console.log('data',thisData);
-               
+                // 回傳的資料
+                let thisData = data;
+                // 過濾資料 排除沒有類別 1、景點名字、城市
+                thisData = thisData.filter((item) => item.ScenicSpotName && item.City && item.Class1);
+                console.log('data', thisData);
+
+                // 篩選結果資料
+                let resurltData = []
+
+                // 如果 city 的值是全部縣市的，把keyword符合的資料篩選出來
+                if (city === '全部縣市') {
+                    resurltData = thisData.filter((item) => item.ScenicSpotName.match(keyword));
+                    console.log(resurltData);
+                } else {
+                    // 如果 city 的值是其他縣市，把 city 和 keyword符合的資料篩選出來
+                    resurltData = thisData.filter((item) => item.City === city && item.ScenicSpotName.match(keyword));
+                    console.log(resurltData);
+                }
+
+
+                //   呈現篩選結果
+                scenicSpot_renderResult(resurltData);
+
+                // 呈現結果數字
+                search_resultNum.textContent = resurltData.length;
             },
             error: function (xhr, textStatus, thrownError) {
                 console.log('errorStatus:', textStatus);
@@ -219,22 +235,7 @@ function search_scenicSpot(city, keyword) {
             }
         });
     }
-    // // 搜尋結果
-    // let search_scenicSpotList = data_scenicSpot.filter((item) => {
-    //     return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
-    // });
-
-    // // 呈現 篩選結果
-    // scenicSpot_renderResult(search_scenicSpotList);
-
-    // // 隱藏分頁
-    // pagination.classList.add('d-none');
-
-    // // 呈現結果數字
-    // search_resultNum.textContent = search_scenicSpotList.length;
 };
-
-
 
 
 
@@ -291,7 +292,7 @@ function scenicSpotInner_renderData(data) {
     // 第一張圖片
     if (data.Picture.PictureUrl1) {
         scenicSpotInner_bannerSlides[0].innerHTML = `
-    <img class="w-100 h-100 img-cover" src="${data.Picture.PictureUrl1}" alt="${data.Picture.PictureDescription1}">`;
+    <img class="w-100 h-100 img-cover" src="${data.Picture.PictureUrl1}"  alt="${data.Picture.PictureDescription1}">`;
         bannerPhoto_num++;
     } else {
         scenicSpotInner_bannerSlides[0].innerHTML = `
@@ -327,11 +328,10 @@ function scenicSpotInner_renderData(data) {
 
 
     // 麵包削
-    breadcrumb_theme.classList.remove('text-secondary');
-    breadcrumb_theme.classList.add('text-primary');
-    breadcrumb_location.classList.add('text-secondary');
-    breadcrumb_city.textContent = `/ ${data.City}`;
-    breadcrumb_location.textContent = ` / ${data.ScenicSpotName}`;
+    scenicSpot_breadcrumb.innerHTML = `<a class="text-info" href="./index.html">首頁</a> /
+    <a class="breadcrumb-theme" href="./scenicSpot.html">探索景點</a> /
+    <a class="breadcrumb-city" href="#">${data.City}</a> /
+    <a class="breadcrumb-location text-secondary" href="#">${data.ScenicSpotName}</a>`;
 
 
     // 景點名字
