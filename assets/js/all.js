@@ -263,110 +263,96 @@ function search_keyword() {
 }
 
 ;
+//   --------- 篩選類別後，顯示資料分頁 切換會壞掉  ---------
+// // 取得分頁 DOM 元素
+// const pagination = document.querySelector('.pagination');
+// // 分頁功能 - 整體分頁功能
+// function renderPages(data, nowPage) {
+//     // 每一頁只顯示36筆資料
+//     let dataPerPage =  36;
+//     // page 按鈕總數量公式: 資料數量總額 / 每一頁要顯示的資料數量
+//     // 因為計算過程會有餘數產生，所以要無條件進位，使用 Math.ceil()函式取得一個大於等於指定數字的最小整數。
+//     const totalPages = Math.ceil(data.length / dataPerPage);
+//     // 頁數
+//     // 當前頁數，對應現在當前頁數
+//     let currentPage = nowPage;
+//     // 當 "當前頁數" 比 "總頁數" 大的時候， "當前頁數" 等於 "總頁數"
+//     if (currentPage > totalPages) {
+//         currentPage = totalPages;
+//     };
+//     // 資料筆數
+//     const minData = (currentPage * dataPerPage) - dataPerPage + 1; // 最小資料筆數
+//     const maxData = (currentPage * dataPerPage);  // 最大資料筆數
+//     // 取出當前頁數的資料
+//     const currentPageData = [];
+//     // // 取得 data 資料的索引位置
+//     data.forEach((item, index) => {
+//         //取得 data 索引位置，因為索引是從 0 開始，所以要 +1
+//         //當 index+1 比 minData 大且又小於 maxData 就push 進去 currentPageData 陣列
+//         if (index + 1 >= minData && index + 1 <= maxData) {
+//             currentPageData.push(item);
+//         };
+//     });
+//     // 物件方式傳遞資料
+//     const pageInfo = {
+//         totalPages,
+//         currentPage,
+//         hasPage: currentPage > 1,
+//         hasNext: currentPage < totalPages,
+//     };
+//     // 呈現出該頁資料
+//     scenicSpot_renderResult(currentPageData);
+//     // 呈現出分頁按鈕
+//     renderPageBtn(pageInfo);
+//     console.log(`全部資料:${data.length} 每一頁顯示:${dataPerPage}筆 總頁數:${totalPages}`);
+// };
+// // 分頁功能 - 渲染分頁按鈕
+// function renderPageBtn(pageInfo) {
+//     let str = "";
+//     const totalPages = pageInfo.totalPages;
+//     // 判斷 總頁數是否大於 1 頁
+//     if (totalPages > 1) {
+//         //點選上一頁
+//         str += (pageInfo.hasPage) ?
+//             `<li class="page-item"><a class="page-link" href="#"  data-page="${Number(pageInfo.currentPage) - 1}">&laquo;</a></li>`
+//             : `<li class="page-item disabled"><span class="page-link">&laquo;</span></li>`;
+//         // 點選頁數
+//         for (let i = 1; i <= totalPages; i++) {
+//             // 一開始預設顯示第一頁，如果是第一頁會加上 .active 樣式
+//             str += (Number(pageInfo.currentPage) === i) ?
+//                 `<li class="page-item active"><a class="page-link" href="#" aria-label="Previous" data-page="${i}">${i}</a></li>`
+//                 : `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+//         };
+//         // 點選下一頁
+//         str += (pageInfo.hasNext) ?
+//             `<li class="page-item"><a class="page-link" href="#" aria-label="Next" data-page="${Number(pageInfo.currentPage) + 1}">&raquo;</a></li>`
+//             : `<li class="page-item disabled"><span class="page-link" >&raquo;</span></li>`;
+//     } else {
+//         //總頁數小於 1 頁，只顯示分頁按鈕
+//         for (let i = 1; i <= totalPages; i++) {
+//             // 一開始預設顯示第一頁，如果是第一頁會加上 .active 樣式
+//             str += (Number(pageInfo.currentPage) === i) ?
+//                 `<li class="page-item active"><a class="page-link" href="#" aria-label="Previous" data-page="${i}">${i}</a></li>`
+//                 : `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+//         };
+//     };
+//     pagination.innerHTML = str;
+// };
+// // 在 pagination 綁定監聽
+// if (pagination !== null) {
+//     pagination.addEventListener('click', switchPage);
+// };
+// console.log(pagination);
+// //分頁功能 - 點擊按鈕切換頁面功能
+// function switchPage(e) {
+//     e.preventDefault();
+//     if (e.target.nodeName !== 'A') {
+//         return;
+//     };
+//     const clickPage = e.target.dataset.page;
+//     renderPages(data_filterResult, clickPage);
+// };
 "use strict";
-
-// 取得分頁 DOM 元素
-var pagination = document.querySelector('.pagination'); // 分頁功能 - 整體分頁功能
-
-function renderPages(data, nowPage) {
-  // 每一頁只顯示36筆資料
-  var dataPerPage = 36; // page 按鈕總數量公式: 資料數量總額 / 每一頁要顯示的資料數量
-  // 因為計算過程會有餘數產生，所以要無條件進位，使用 Math.ceil()函式取得一個大於等於指定數字的最小整數。
-
-  var totalPages = Math.ceil(data.length / dataPerPage); // 頁數
-  // 當前頁數，對應現在當前頁數
-
-  var currentPage = nowPage; // 當 "當前頁數" 比 "總頁數" 大的時候， "當前頁數" 等於 "總頁數"
-
-  if (currentPage > totalPages) {
-    currentPage = totalPages;
-  }
-
-  ; // 資料筆數
-
-  var minData = currentPage * dataPerPage - dataPerPage + 1; // 最小資料筆數
-
-  var maxData = currentPage * dataPerPage; // 最大資料筆數
-  // 取出當前頁數的資料
-
-  var currentPageData = []; // // 取得 data 資料的索引位置
-
-  data.forEach(function (item, index) {
-    //取得 data 索引位置，因為索引是從 0 開始，所以要 +1
-    //當 index+1 比 minData 大且又小於 maxData 就push 進去 currentPageData 陣列
-    if (index + 1 >= minData && index + 1 <= maxData) {
-      currentPageData.push(item);
-    }
-
-    ;
-  }); // 物件方式傳遞資料
-
-  var pageInfo = {
-    totalPages: totalPages,
-    currentPage: currentPage,
-    hasPage: currentPage > 1,
-    hasNext: currentPage < totalPages
-  }; // 呈現出該頁資料
-
-  scenicSpot_renderResult(currentPageData); // 呈現出分頁按鈕
-
-  renderPageBtn(pageInfo);
-  console.log("\u5168\u90E8\u8CC7\u6599:".concat(data.length, " \u6BCF\u4E00\u9801\u986F\u793A:").concat(dataPerPage, "\u7B46 \u7E3D\u9801\u6578:").concat(totalPages));
-}
-
-; // 分頁功能 - 渲染分頁按鈕
-
-function renderPageBtn(pageInfo) {
-  var str = "";
-  var totalPages = pageInfo.totalPages; // 判斷 總頁數是否大於 1 頁
-
-  if (totalPages > 1) {
-    //點選上一頁
-    str += pageInfo.hasPage ? "<li class=\"page-item\"><a class=\"page-link\" href=\"#\"  data-page=\"".concat(Number(pageInfo.currentPage) - 1, "\">&laquo;</a></li>") : "<li class=\"page-item disabled\"><span class=\"page-link\">&laquo;</span></li>"; // 點選頁數
-
-    for (var i = 1; i <= totalPages; i++) {
-      // 一開始預設顯示第一頁，如果是第一頁會加上 .active 樣式
-      str += Number(pageInfo.currentPage) === i ? "<li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\" data-page=\"".concat(i, "\">").concat(i, "</a></li>") : "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" data-page=\"".concat(i, "\">").concat(i, "</a></li>");
-    }
-
-    ; // 點選下一頁
-
-    str += pageInfo.hasNext ? "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next\" data-page=\"".concat(Number(pageInfo.currentPage) + 1, "\">&raquo;</a></li>") : "<li class=\"page-item disabled\"><span class=\"page-link\" >&raquo;</span></li>";
-  } else {
-    //總頁數小於 1 頁，只顯示分頁按鈕
-    for (var _i = 1; _i <= totalPages; _i++) {
-      // 一開始預設顯示第一頁，如果是第一頁會加上 .active 樣式
-      str += Number(pageInfo.currentPage) === _i ? "<li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\" data-page=\"".concat(_i, "\">").concat(_i, "</a></li>") : "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" data-page=\"".concat(_i, "\">").concat(_i, "</a></li>");
-    }
-
-    ;
-  }
-
-  ;
-  pagination.innerHTML = str;
-}
-
-; // 在 pagination 綁定監聽
-
-if (pagination !== null) {
-  pagination.addEventListener('click', switchPage);
-}
-
-; //分頁功能 - 點擊按鈕切換頁面功能
-
-function switchPage(e) {
-  e.preventDefault();
-
-  if (e.target.nodeName !== 'A') {
-    return;
-  }
-
-  ;
-  var clickPage = e.target.dataset.page;
-  renderPages(data_filterResult, clickPage);
-}
-
-;
 "use strict";
 
 // 主要區塊 DOM 
@@ -383,10 +369,7 @@ var scenicSpot_categoryList = document.querySelector('.scenicSpot-categoryList')
 var scenicSpot_resultList = document.querySelector('.scenicSpot-resultList');
 var search_resultNum = document.querySelector('.search_resultNum'); //     - 麵包削列表
 
-var scenicSpot_breadcrumb = document.querySelector('.scenicSpot-breadcrumb');
-var breadcrumb_theme = document.querySelector('.breadcrumb-theme');
-var breadcrumb_city = document.querySelector('.breadcrumb-city');
-var breadcrumb_location = document.querySelector('.breadcrumb-location'); //  呈現景點內頁畫面 DOM
+var scenicSpot_breadcrumb = document.querySelector('.scenicSpot-breadcrumb'); //  呈現景點內頁畫面 DOM
 //    - swiper-banner
 
 var scenicSpotInner_bannerSlides = document.querySelectorAll('.swiper-scenicSpot-banner .swiper-slide');
@@ -488,13 +471,13 @@ function scenicSpot_renderResult(arr) {
   } else {
     arr.forEach(function (item) {
       str += "\n    <div class=\"col-12 col-md-4 col-lg-3 mb-2 mb-md-4\">\n    <div class=\"resultList-card border-0\">\n      <div class=\"ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden\">\n          <a href=\"./scenicSpot.html?id=".concat(item.ScenicSpotID, "\">\n              <img class=\"w-100 h-100 img-cover zoomImg\" src=\"").concat(item.Picture.PictureUrl1, "\" onerror=\"this.onerror=''; this.src='./assets/images/NoImage-255x200.png'\"\n                  alt=\"").concat(item.DescriptionDetail, "\">\n          </a>\n      </div>\n      <div class=\"py-1 py-md-2\">\n          <h5 class=\"card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1\">").concat(item.ScenicSpotName, "\n          </h5>\n          <span class=\"text-secondary d-flex align-items-center\"><img class=\"me-1\"\n                  src=\"./assets/images/spot16.png\" alt=\"spot\">").concat(item.City, "</span>\n      </div>\n    </div>\n   </div>");
-    }); // 切換模式  隱藏 → 顯示
+    });
+  } // 切換模式  隱藏 → 顯示
 
-    scenicSpot_searchResult.classList.toggle('d-none'); // 切換模式  顯示 → 隱藏
 
-    scenicSpot_themeArea.classList.toggle('d-none');
-  } // 呈現結果畫面
+  scenicSpot_searchResult.classList.toggle('d-none'); // 切換模式  顯示 → 隱藏
 
+  scenicSpot_themeArea.classList.toggle('d-none'); // 呈現結果畫面
 
   scenicSpot_resultList.innerHTML = str;
 }
@@ -512,7 +495,7 @@ if (scenicSpot_searchBtn) {
   });
 }
 
-; // https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot/Taipei?%24filter=contains%28ScenicSpotName%2C%27%E5%8C%97%27%29&%24top=200&%24format=JSON
+;
 
 function search_scenicSpot(city, keyword) {
   console.log(city, keyword); // 取得 token
@@ -522,31 +505,46 @@ function search_scenicSpot(city, keyword) {
   if (token !== undefined) {
     $.ajax({
       type: 'GET',
-      url: "".concat(baseUrl, "/ScenicSpot/Taipei?%24filter=contains%28ScenicSpotName%2C%27%E5%8C%97%27%29&%24top=200&%24format=JSON"),
+      url: "".concat(baseUrl, "/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"),
       headers: {
         "authorization": "Bearer " + token
       },
       async: false,
       success: function success(data) {
-        var thisData = data;
-        console.log('data', thisData);
+        // 回傳的資料
+        var thisData = data; // 過濾資料 排除沒有類別 1、景點名字、城市
+
+        thisData = thisData.filter(function (item) {
+          return item.ScenicSpotName && item.City && item.Class1;
+        });
+        console.log('data', thisData); // 篩選結果資料
+
+        var resurltData = []; // 如果 city 的值是全部縣市的，把keyword符合的資料篩選出來
+
+        if (city === '全部縣市') {
+          resurltData = thisData.filter(function (item) {
+            return item.ScenicSpotName.match(keyword);
+          });
+          console.log(resurltData);
+        } else {
+          // 如果 city 的值是其他縣市，把 city 和 keyword符合的資料篩選出來
+          resurltData = thisData.filter(function (item) {
+            return item.City === city && item.ScenicSpotName.match(keyword);
+          });
+          console.log(resurltData);
+        } //   呈現篩選結果
+
+
+        scenicSpot_renderResult(resurltData); // 呈現結果數字
+
+        search_resultNum.textContent = resurltData.length;
       },
       error: function error(xhr, textStatus, thrownError) {
         console.log('errorStatus:', textStatus);
         console.log('Error:', thrownError);
       }
     });
-  } // // 搜尋結果
-  // let search_scenicSpotList = data_scenicSpot.filter((item) => {
-  //     return item.City === city && item.Class1 === category && item.ScenicSpotName.match(keyword);
-  // });
-  // // 呈現 篩選結果
-  // scenicSpot_renderResult(search_scenicSpotList);
-  // // 隱藏分頁
-  // pagination.classList.add('d-none');
-  // // 呈現結果數字
-  // search_resultNum.textContent = search_scenicSpotList.length;
-
+  }
 }
 
 ; // 探索景點內頁 - 取得景點單一資料
@@ -593,7 +591,7 @@ function scenicSpotInner_renderData(data) {
   // 第一張圖片
 
   if (data.Picture.PictureUrl1) {
-    scenicSpotInner_bannerSlides[0].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"".concat(data.Picture.PictureUrl1, "\" alt=\"").concat(data.Picture.PictureDescription1, "\">");
+    scenicSpotInner_bannerSlides[0].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"".concat(data.Picture.PictureUrl1, "\"  alt=\"").concat(data.Picture.PictureDescription1, "\">");
     bannerPhoto_num++;
   } else {
     scenicSpotInner_bannerSlides[0].innerHTML = "\n    <img class=\"w-100 h-100 img-cover\" src=\"./assets/images/NoImage-345x160.png\" alt=\"NoImage\">";
@@ -628,11 +626,7 @@ function scenicSpotInner_renderData(data) {
   } // 麵包削
 
 
-  breadcrumb_theme.classList.remove('text-secondary');
-  breadcrumb_theme.classList.add('text-primary');
-  breadcrumb_location.classList.add('text-secondary');
-  breadcrumb_city.textContent = "/ ".concat(data.City);
-  breadcrumb_location.textContent = " / ".concat(data.ScenicSpotName); // 景點名字
+  scenicSpot_breadcrumb.innerHTML = "<a class=\"text-info\" href=\"./index.html\">\u9996\u9801</a> /\n    <a class=\"breadcrumb-theme\" href=\"./scenicSpot.html\">\u63A2\u7D22\u666F\u9EDE</a> /\n    <a class=\"breadcrumb-city\" href=\"#\">".concat(data.City, "</a> /\n    <a class=\"breadcrumb-location text-secondary\" href=\"#\">").concat(data.ScenicSpotName, "</a>"); // 景點名字
 
   scenicSpotInner_mame.textContent = data.ScenicSpotName; // 景點類別
 
