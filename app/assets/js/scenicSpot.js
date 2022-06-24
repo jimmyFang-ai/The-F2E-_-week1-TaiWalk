@@ -40,11 +40,12 @@ const scenicSpotInner_map = document.querySelector('.scenicSpot_map');
 const scenicSpotInner_recommend = document.querySelector('.recommend_scenicSpot');
 
 
+
 // 資料 - 探索景點頁面 
 let data_scenicSpot = [];
 
 // 資料 - 篩選類別資料
-let data_filterResult = [];
+let data_spotResult = [];
 
 
 
@@ -108,16 +109,18 @@ function scenicSpot_changeCategory(e) {
 // 探索景點 - 更新類別篩選結果
 function scenicSpot_updateResult(categoryVal) {
 
-    console.log(categoryVal);
     let category_resultList = data_scenicSpot.filter((item) => item.Class1 === categoryVal);
 
-    data_filterResult = category_resultList;
+    data_spotResult = category_resultList;
 
     //資料回傳 寫入分頁函式
-    renderPages(data_filterResult, 1);
+    // renderPages(data_spotResult, 1);
+
+    // 呈現 結果
+    scenicSpot_renderResult( data_spotResult);
 
     // 呈現結果數字
-    search_resultNum.textContent = data_filterResult.length;
+    search_resultNum.textContent = data_spotResult.length;
 
     // 更改 麵包削狀態
     scenicSpot_breadcrumb.innerHTML =
@@ -189,8 +192,6 @@ if (scenicSpot_searchBtn) {
 
 function search_scenicSpot(city, keyword) {
 
-    console.log(city, keyword);
-
     // 取得 token
     const token = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)tourToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
 
@@ -205,12 +206,14 @@ function search_scenicSpot(city, keyword) {
             success: function (data) {
                 // 回傳的資料
                 let thisData = data;
+
+                // 篩選結果資料
+                let resurltData = []
+
                 // 過濾資料 排除沒有類別 1、景點名字、城市
                 thisData = thisData.filter((item) => item.ScenicSpotName && item.City && item.Class1);
                 console.log('data', thisData);
 
-                // 篩選結果資料
-                let resurltData = []
 
                 // 如果 city 的值是全部縣市的，把keyword符合的資料篩選出來
                 if (city === '全部縣市') {
@@ -221,7 +224,6 @@ function search_scenicSpot(city, keyword) {
                     resurltData = thisData.filter((item) => item.City === city && item.ScenicSpotName.match(keyword));
                     console.log(resurltData);
                 }
-
 
                 //   呈現篩選結果
                 scenicSpot_renderResult(resurltData);
@@ -266,11 +268,10 @@ function scenicSpotInner_getData(id) {
                 scenicSpotInner_renderRecommend(targetId);
 
                 // 隱藏 探索景點主要內容
-                scenicSpot_themeArea.classList.add('d-none');
+                scenicSpot_themeArea.classList.toggle('d-none');
 
                 // 顯示 內頁內容
                 scenicSpot_categoryInner.classList.toggle('d-none');
-
             },
             error: function (xhr, textStatus, thrownError) {
                 console.log('errorStatus:', textStatus);
@@ -473,8 +474,6 @@ function getParameters() {
                     // 取出 keywodr 的值 並解碼
                     keyword = decodeURIComponent(parameters[index].split('=')[1]);
                 };
-
-
             });
 
             // 呈現 探索景點   搜尋結果列表
