@@ -456,9 +456,6 @@ function activityInner_renderRecommend(id) {
 };
 
 
-// activityInner_getData('C2_315081200H_007164');
-
-
 
 // 判斷網頁跳轉 路徑狀態
 function activity_getParameters() {
