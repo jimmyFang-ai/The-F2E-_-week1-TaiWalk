@@ -24,27 +24,34 @@ $(function () {
   getAuthorizationHeader();
 
   // 取得 網址參數
-  getParameters();
+  if (this.location.pathname === '/activity.html') {
+    activity_getParameters()
+  }
+
+  if (this.location.pathname === '/scenicSpot.html') {
+    scenicSpot_getParameters();
+  }
+
+  // scenicSpot_getParameters();
+  // activity_getParameters()
 
   // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
   get_restaurant();
 
-    // 探索景點頁面
-    // - 取得景點全部資料
-    scenicSpot_getAllData();
-});
+  // 探索景點頁面 - 取得景點全部資料
+  scenicSpot_getAllData();
 
+  // 節慶活動頁面 - 取得活動全部資料
+  activity_getAllData();
+});
 
 
 // baseUrl
 let baseUrl = `https://tdx.transportdata.tw/api/basic/v2/Tourism`;
 
-// apiUrl
-let apiUrl_activity = `${baseUrl}/Activity?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`;
-let apiUrl_scenicSpot = `${baseUrl}/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`;
-let apiUrl_restaurant = `${baseUrl}/Restaurant?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`;
+
 
 
 // jQuery  取得 TDX api  header 驗證
@@ -52,7 +59,7 @@ function getAuthorizationHeader() {
   const parameter = {
     grant_type: "client_credentials",
     client_id: "pi20120413-51900829-226c-41ea",
-    client_secret: "cbff89f1-e9e0-4dad-bb3b-1503012fb83d"
+    client_secret: "8094d91e-08e7-403f-81a2-59c5d0426a91"
   };
 
   let auth_url = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token";
@@ -77,4 +84,5 @@ function getAuthorizationHeader() {
     }
   });
 }
+
 

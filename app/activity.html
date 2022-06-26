@@ -22,9 +22,9 @@ current: activity
         <!-- 節慶活動 搜尋功能 -->
         <div class="activity-searchGroup mb-4 mb-md-6">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
-                <div class="col-12  col-lg-3 mb-2">
-                    <select class="search-city form-select text-primary" aria-label="select">
-                        <option value="" selected="">全部縣市</option>
+                <div class="col-12  col-md-4 mb-2">
+                    <select class="activity-searchCity form-select text-primary" aria-label="select">
+                        <option value="全部縣市" selected="">全部縣市</option>
                         <option value="臺北市">臺北市</option>
                         <option value="新北市">新北市</option>
                         <option value="桃園市">桃園市</option>
@@ -49,24 +49,13 @@ current: activity
                         <option value="連江縣">連江縣</option>
                     </select>
                 </div>
-                <div class="col-12  col-lg-3 mb-2">
-                    <select class="search-category form-select text-primary" aria-label="select">
-                        <option value="all">全部主題</option>
-                        <option value="節慶活動">節慶活動</option>
-                        <option value="自行車活動">自行車活動</option>
-                        <option value="遊憩活動">遊憩活動</option>
-                        <option value="產業文化活動">產業文化活動</option>
-                        <option value="年度活動">年度活動</option>
-                        <option value="四季活動">四季活動</option>
-                    </select>
+                <div class="col-12  col-md-5 mb-2">
+                    <input type="text" class="activity-searchKeyword  form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
-                <div class="col-12  col-lg-4 mb-2">
-                    <input type="text" class="search-keyword form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
-                </div>
-                <div class="col-12  col-lg-2 mb-2">
-                    <button type="button" class="btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
+                <div class="col-12  col-md-3 mb-2">
+                    <button type="button" class="activity_searchBtn  btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
                         <span class="material-symbols-outlined me-2 ">search</span>搜尋
-                     </button>
+                    </button>
                 </div>
             </div>
 
@@ -74,10 +63,11 @@ current: activity
             <h2 class="fs-4 fs-md-2 text-dark  fw-light mb-2">熱門主題</h2>
             <ul class="activity-categoryList row row-cols-2  row-cols-md-3 row-cols-lg-4">
                 <li class="col mb-2" data-category="節慶活動">
-                    <div class="category-card active rounded-4 rounded-md-6">
+                    <div class="category-card  rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-1.png" alt="spots">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-1.png"
+                                    alt="節慶活動">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">節慶活動
@@ -88,21 +78,23 @@ current: activity
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-2.png" alt="spots">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-2.png"
+                                    alt="自行車活動">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">自行車活動
                         </h4>
                     </div>
                 </li>
-                <li class="col mb-2" data-category="遊憩活動">
+                <li class="col mb-2" data-category="藝文活動">
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-3.png" alt="spots">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-3.png"
+                                    alt="藝文活動">
                             </a>
                         </div>
-                        <h4 class="category-cardText fs-6  fs-md-4   mb-0">遊憩活動
+                        <h4 class="category-cardText fs-6  fs-md-4   mb-0">藝文活動
                         </h4>
                     </div>
                 </li>
@@ -110,21 +102,23 @@ current: activity
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6 overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-4.png" alt="spots">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-4.png"
+                                    alt="產業文化活動">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">產業文化活動
                         </h4>
                     </div>
                 </li>
-                <li class="col mb-2" data-category="年度活動">
+                <li class="col mb-2" data-category="活動快報">
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6  overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-5.png" alt="spots">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-5.png"
+                                    alt="活動快報">
                             </a>
                         </div>
-                        <h4 class="category-cardText  fs-6 fs-md-4   mb-0">年度活動
+                        <h4 class="category-cardText  fs-6 fs-md-4   mb-0">活動快報
                         </h4>
                     </div>
                 </li>
@@ -132,110 +126,61 @@ current: activity
                     <div class="category-card rounded-4 rounded-md-6">
                         <div class="ratio ratio-16x9 rounded-4 rounded-md-6  overflow-hidden">
                             <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-6.png" alt="spots">
+                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/Theme-bg2-6.png"
+                                    alt="四季活動">
                             </a>
                         </div>
                         <h4 class="category-cardText  fs-6 fs-md-4   mb-0">四季活動
                         </h4>
                     </div>
                 </li>
-
             </ul>
         </div>
 
-
-        <!-- 呈現 篩選結果 -->
-        <div class="activity-searchResult">
-            <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
-                <p class="fs-sm fs-md-lg d-inline">共有 <span class="text-warning">240</span> 筆
-                </p>
-            </h2>
-            <ul class="activity-resultList  row row-cols-1  row-cols-md-3 row-cols-lg-4  mb-8">
-                <li class="col mb-2 mb-md-4">
-                    <div class="resultList-card border-0">
-                        <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden">
-                            <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/NoImage-255x200.png"
-                                    alt="spots">
-                            </a>
-                        </div>
-                        <div class="py-1 py-md-2">
-                            <h5 class="card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1">景點名稱景點名稱景點景點景點景點景點
-                            </h5>
-                            <span class="text-secondary d-flex align-items-center"><img class="me-1"
-                                    src="./assets/images/spot16.png" alt="spot">新北市</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="col mb-2 mb-md-4">
-                    <div class="resultList-card border-0">
-                        <div class="ratio ratio-17x9  ratio-md-5x4 rounded-5  overflow-hidden">
-                            <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/NoImage-255x200.png"
-                                    alt="spots">
-                            </a>
-                        </div>
-                        <div class="py-1 py-md-2">
-                            <h5 class="card-title-hover fs-m fs-md-xl fw-bold text-truncate mb-1">景點名稱景點名稱景點景點景點景點景點
-                            </h5>
-                            <span class="text-secondary d-flex align-items-center"><img class="me-1"
-                                    src="./assets/images/spot16.png" alt="spot">新北市</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-
-            <!-- 分頁 -->
-            <nav class="py-3">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </div>
 </section>
 
 
+<!-- 節慶活動  呈現篩選結果 -->
+<section class="activity-searchResult mb-1 d-none">
+    <div class="container">
+
+        <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
+            <p class="fs-sm fs-md-lg d-inline">共有 <span class="search_resultNum text-warning">240</span> 筆
+            </p>
+        </h2>
+
+        <div class="activity-resultList  row  mb-8">
+
+        </div>
+
+        <!-- 分頁 -->
+        <nav aria-label="Page  navigation">
+            <ul class="pagination  mb-0 justify-content-center">
+            </ul>
+        </nav>
+    </div>
+    
+</section>
+
 
 <!-- 節慶活動 分類內頁 -->
-<section class="activity-categoryInner mb-1 ">
+<section class="activity-categoryInner mb-1 d-none">
     <!-- 輪播卡片 -->
     <div class="container mb-2 mb-md-5">
         <div class="swiper swiper-activity-banner">
             <!-- 要插入 render 回來的資料 -->
             <ul class="swiper-wrapper rounded-4 rounded-md-6">
                 <li class="swiper-slide">
-                    <a href="#">
-                        <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
-                        <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">
-                            新北市 | 不厭亭
-                        </h3>
-                    </a>
                 </li>
-                <li class="swiper-slide ">
-                    <a href="#">
-                        <img class="w-100 h-100 img-cover" src="./assets/images/Carousel.png" alt="hero-banner">
-                        <h3 class="position-absolute top-50 start-50 translate-middle fs-6 fs-lg-3 text-white fw-bold">
-                            新北市 | 不厭亭
-                        </h3>
-                    </a>
+                <li class="swiper-slide">
+                </li>
+                <li class="swiper-slide">
                 </li>
             </ul>
 
             <!--  pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination swiper-pagination-bullets"></div>
 
             <!-- navigation buttons -->
             <div class="swiper-button-prev"></div>
@@ -245,39 +190,38 @@ current: activity
 
     <!-- 內頁內容 -->
     <div class="container mb-7">
-        <h2 class="fs-4 fs-md-2 fw-light mb-1 mb-md-2">2021 苗栗龍系列活動</h2>
+        <h2 class="activity_name fs-4 fs-md-2 fw-light mb-1 mb-md-2">2021 苗栗龍系列活動</h2>
         <div class="mb-2 mb-md-5">
-            <span class="btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1">#
-                節慶活動</span>
-            <span class="btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg  lh-base fw-normal "> #
-                藝文活動</span>
+            <a class="btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1" href="#">#
+               <span class="activity_category">節慶活動</span>
+            </a>
         </div>
         <h5 class="fs-m fs-md-5 fw-bold mb-1">活動介紹：</h5>
-        <p class="fw-light mb-5 mb-md-7">
+        <p class="activity_description  fw-light mb-5 mb-md-7">
             日治時期台灣有三大林場，分別是：八仙山林場、阿里山林場以及太平山林場。從太平山林場所砍伐的檜木、扁柏等木材，都會運送到羅東出張所和貯木池進行存放，而羅東出張所經過規劃後，成為現今的羅東林業文化園區。羅東林業文化區坐落於羅東市區附近，交通十分方便，園內規劃有貯木池、森林鐵路、竹林車站、蒸汽火車頭、綠林和步道等，從這些設備、建築物中發現當年的林業發展多麼蓬勃，又是多麼地熱鬧，同時也讓人不禁感慨，許多珍貴的檜木消逝在太平山中。隨著林業發展的轉型，可以看見昔日風華的貯木池，零散放著當時砍伐的檜木，如今，貯木池不再具有貯木的功能，而是成為水鳥和魚兒們的天堂。在園區中散步，彷彿進入一座秘密花園，園內種植滿滿茂密的樹木，不時聽見鳥兒的叫聲，空氣中帶有芬多精與淡淡的檜木香，舒服的環境，令人不禁停下腳步，感受內心的寧靜。
         </p>
 
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="bg-light  col rounded-0 rounded-lg-4 h-100">
                 <div class="px-1 px-lg-3 py-5 ">
-                    <p class="fw-bold">活動時間： <span class="fw-normal">2021/02/19 00:00 - 2021/02/28 00:00</span></p>
-                    <p class="fw-bold">聯絡電話： <a class="text-gray-black fw-normal"
+                    <p class="fw-bold">活動時間： <span class="activity_time fw-normal">2021/02/19 00:00 - 2021/02/28 00:00</span></p>
+                    <p class="fw-bold">聯絡電話： <a class="activity_phone text-gray-black fw-normal"
                             href="tel:+886-3-9545114">886-3-9545114</a></p>
                     <p class="fw-bold">主辦單位： <span
-                            class="text-info text-decoration-underline fw-normal">苗栗市公所、苗栗市民代表會</span></p>
+                            class="activity_organizer  fw-normal">苗栗市公所、苗栗市民代表會</span></p>
                     <p class="fw-bold">活動地點： <span
-                            class="text-info text-decoration-underline fw-normal">宜蘭縣265羅東鎮中正北路118號</span></p>
-                    <p class="fw-bold">官方網站： <a class="text-info text-decoration-underline fw-normal"
+                            class="activity_address text-info text-decoration-underline fw-normal">宜蘭縣265羅東鎮中正北路118號</span></p>
+                    <p class="fw-bold">官方網站： <a class="activity_websiteUrl text-info text-decoration-underline fw-normal"
                             href="http://www.art-fruit.com.tw/2021/index.html">http://www.art-fruit.com.tw/2021/index.html</a>
                     </p>
-                    <p class="fw-bold">活動費用： <span class="fw-normal">免費。</span></p>
+                    <p class="fw-bold">活動費用： <span class="activity_charge fw-normal">免費。</span></p>
                     <div>
-                        <p class="fw-bold mb-1">注意事項： <span class="fw-normal">小心火燭</span></p>
+                        <p class="fw-bold mb-1">注意事項： <span class="activity_remarks fw-normal">小心火燭</span></p>
                     </div>
                 </div>
             </div>
             <div class="bg-light bg-lg-white col pb-5 pb-lg-0">
-                <div class="ratio  ratio-17x9 ratio-lg-9x4 overflow-hidden mb-3 mb-lg-5">
+                <div class="activity_map ratio  ratio-17x9 ratio-lg-9x4 overflow-hidden mb-3 mb-lg-5">
                     <iframe class="rounded-4"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14454.01159552712!2d121.58607397049146!3d25.08483239317479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442acea866a6e2f%3A0xb251bab667083c8f!2z5aSn5rmW5YWs5ZySICjpmLLngb3lhazlnJLvvIk!5e0!3m2!1szh-TW!2stw!4v1654327720711!5m2!1szh-TW!2stw"
                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
@@ -346,8 +290,8 @@ current: activity
                         <li class="swiper-slide">
                             <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
-                                    <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
-                                        alt="spots">
+                                    <img class="w-100 h-100 img-cover zoomImg"
+                                        src="./assets/images/RestaurantPicture.png" alt="spots">
                                 </a>
                             </div>
                             <div class="py-1 py-md-2">
@@ -359,8 +303,8 @@ current: activity
                         <li class="swiper-slide">
                             <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
-                                    <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
-                                        alt="spots">
+                                    <img class="w-100 h-100 img-cover zoomImg"
+                                        src="./assets/images/RestaurantPicture.png" alt="spots">
                                 </a>
                             </div>
                             <div class="py-1 py-md-2">
@@ -372,8 +316,8 @@ current: activity
                         <li class="swiper-slide">
                             <div class="ratio ratio-5x4 rounded-5 overflow-hidden">
                                 <a href="#">
-                                    <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/RestaurantPicture.png"
-                                        alt="spots">
+                                    <img class="w-100 h-100 img-cover zoomImg"
+                                        src="./assets/images/RestaurantPicture.png" alt="spots">
                                 </a>
                             </div>
                             <div class="py-1 py-md-2">

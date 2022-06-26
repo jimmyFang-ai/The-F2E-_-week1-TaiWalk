@@ -6,10 +6,9 @@ const scenicSpot_searchResult = document.querySelector('.scenicSpot-searchResult
 
 
 // 搜尋欄位 DOM
-const search_city = document.querySelector('.search-city');
-const search_category = document.querySelector('.search-category');
-const search_keyword = document.querySelector('.search-keyword');
-const scenicSpot_searchBtn = document.querySelector('.scenicSpot_searchBtn');
+const scenicSpot_searchCity = document.querySelector('.scenicSpot-searchCity');
+const scenicSpot_searchKeyword = document.querySelector('.scenicSpot-searchKeyword');
+const scenicSpot_searchBtn = document.querySelector('.scenicSpot-searchBtn');
 
 
 // 呈現畫面列表 DOM
@@ -17,7 +16,7 @@ const scenicSpot_categoryList = document.querySelector('.scenicSpot-categoryList
 const scenicSpot_resultList = document.querySelector('.scenicSpot-resultList');
 const search_resultNum = document.querySelector('.search_resultNum');
 
-//     - 麵包削列表
+//  麵包削列表
 const scenicSpot_breadcrumb = document.querySelector('.scenicSpot-breadcrumb')
 
 
@@ -41,7 +40,7 @@ const scenicSpotInner_recommend = document.querySelector('.recommend_scenicSpot'
 
 
 
-// 資料 - 探索景點頁面 
+// 資料 - 探索景點
 let data_scenicSpot = [];
 
 // 資料 - 篩選類別資料
@@ -125,7 +124,7 @@ function scenicSpot_updateResult(categoryVal) {
     // 更改 麵包削狀態
     scenicSpot_breadcrumb.innerHTML =
         `<a class="text-info" href="./index.html">首頁</a> /
-    <a class="breadcrumb-theme" href="./scenicSpot.html">探索景點</a> /
+    <a class="breadcrumb-theme text-info" href="./scenicSpot.html">探索景點</a> /
     <a class="breadcrumb-category text-secondary" href="#">${categoryVal}</a>`;
 };
 
@@ -178,8 +177,8 @@ function scenicSpot_renderResult(arr) {
 // 探索景點 - 搜尋功能 & 關鍵字
 if (scenicSpot_searchBtn) {
     scenicSpot_searchBtn.addEventListener('click', function (e) {
-        let city = search_city.value;
-        let keyword = search_keyword.value;
+        let city = scenicSpot_searchCity.value;
+        let keyword = scenicSpot_searchKeyword.value;
 
         if (keyword.trim() !== '') {
             search_scenicSpot(city, keyword);
@@ -330,8 +329,8 @@ function scenicSpotInner_renderData(data) {
 
     // 麵包削
     scenicSpot_breadcrumb.innerHTML = `<a class="text-info" href="./index.html">首頁</a> /
-    <a class="breadcrumb-theme" href="./scenicSpot.html">探索景點</a> /
-    <a class="breadcrumb-city" href="#">${data.City}</a> /
+    <a class="breadcrumb-theme text-info" href="./scenicSpot.html">探索景點</a> /
+    <a class="breadcrumb-city text-info" href="#">${data.City}</a> /
     <a class="breadcrumb-location text-secondary" href="#">${data.ScenicSpotName}</a>`;
 
 
@@ -371,7 +370,6 @@ function scenicSpotInner_renderData(data) {
         scenicSpotInner_websiteUrl.classList.toggle('text-decoration-underline');
     };
 }
-
 
 
 //探索景點內頁 - 呈現推薦列表
@@ -441,46 +439,45 @@ function scenicSpotInner_renderRecommend(id) {
 
 
 // 判斷網頁跳轉 路徑狀態
-function getParameters() {
-
+function  scenicSpot_getParameters() {
     if (location.search) {
-        let id;
-        let city;
-        let keyword;
+      let id;
+      let city;
+      let keyword;
+  
+      //將url  從 '?' 分切成兩部分，
+      const searchUrl = location.search.split('?');
+  
+      console.log(searchUrl);
+  
+      //  如果取得參數是沒有 '&'的多個參數的話，就取得 id的值，並顯示資料內頁
+      if (!searchUrl[1].includes('&')) {
+        // 取得 路徑 id
+        id = searchUrl[1].split('=')[1];
+  
+        // 呈現 探索景點內頁
+        scenicSpotInner_getData(id);
 
-        //將url  從 '?' 分切成兩部分，
-        const searchUrl = location.search.split('?');
-
-        console.log(searchUrl);
-
-        //  如果取得參數是沒有 '&'的多個參數的話，就取得 id的值，並顯示資料內頁
-        if (!searchUrl[1].includes('&')) {
-            // 取得 路徑 id
-            id = searchUrl[1].split('=')[1];
-            // 呈現 資料內頁
-            scenicSpotInner_getData(id);
-
-        } else {
-            // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
-            const parameters = searchUrl[1].split('&');
-            console.log(parameters);
-
-            // 跑 forEach 取出 參數的 city 和 key 的值
-            parameters.forEach((parameter, index) => {
-                if (parameters[index].split('=')[0] === 'city') {
-                    // 取出 city 的值  並解碼
-                    city = decodeURIComponent(parameters[index].split('=')[1]);
-                } else if (parameters[index].split('=')[0] === 'keyword') {
-                    // 取出 keywodr 的值 並解碼
-                    keyword = decodeURIComponent(parameters[index].split('=')[1]);
-                };
-            });
-
-            // 呈現 探索景點   搜尋結果列表
-            search_scenicSpot(city, keyword);
-        }
+      } else {
+        // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
+        const parameters = searchUrl[1].split('&');
+        console.log(parameters);
+  
+        // 跑 forEach 取出 參數的 city 和 key 的值
+        parameters.forEach((parameter, index) => {
+          if (parameters[index].split('=')[0] === 'city') {
+            // 取出 city 的值  並解碼
+            city = decodeURIComponent(parameters[index].split('=')[1]);
+          } else if (parameters[index].split('=')[0] === 'keyword') {
+            // 取出 keywodr 的值 並解碼
+            keyword = decodeURIComponent(parameters[index].split('=')[1]);
+          };
+        });
+  
+        // 呈現 探索景點   搜尋結果列表
+        search_scenicSpot(city, keyword);
+      }
+    }else{
+        scenicSpot_getAllData();
     }
-}
-
-
-
+  }

@@ -127,7 +127,7 @@ function render_activity(arr) {
         if (checkDate === false) {
             i -= 1;
             continue;
-        } else {
+        } else {      // onerror事件 : 當圖片不存在時或者因為網路原因載入失敗,將觸發onerror事件，替換預設圖片
             // 為 true 的話就組字串資料
             str += `<div class="col mb-2">
           <div class="card">
@@ -135,7 +135,7 @@ function render_activity(arr) {
               <div class="col-4 overflow-hidden">
               <div class="ratio ratio-9x7  ratio-md-1x1">
                  <a class="imgWarp" href="./activity.html?id=${dataItem.ActivityID}">
-                 <img class=" card-img img-cover" src="${dataItem.Picture.PictureUrl1}" alt="${dataItem.Description}">
+                 <img class=" card-img img-cover" src="${dataItem.Picture.PictureUrl1}" onerror="this.onerror=''; this.src='./assets/images/NoImage-255x200.png' alt="${dataItem.Description}">
                  </a>
               </div>
               </div>

@@ -24,7 +24,7 @@ current: scenicSpot
         <div class="scenicSpot-searchGroup mb-4 mb-md-6">
             <div class="row   gx-md-2 mb-4 mb-lg-7">
                 <div class="col-12  col-md-4 mb-2">
-                    <select class="search-city form-select text-primary" aria-label="select">
+                    <select class="scenicSpot-searchCity form-select text-primary" aria-label="select">
                         <option value="全部縣市" selected="">全部縣市</option>
                         <option value="臺北市">臺北市</option>
                         <option value="新北市">新北市</option>
@@ -51,11 +51,11 @@ current: scenicSpot
                     </select>
                 </div>
                 <div class="col-12  col-md-5 mb-2">
-                    <input type="text" class="search-keyword  form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
+                    <input type="text" class="scenicSpot-searchKeyword  form-control  text-muted" placeholder="你想去哪裡？請輸入關鍵字">
                 </div>
                 <div class="col-12  col-md-3 mb-2">
                     <button type="button"
-                        class="scenicSpot_searchBtn  btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
+                        class="scenicSpot-searchBtn  btn btn-custom-search   d-flex justify-content-center align-items-center text-white w-100 ">
                         <span class="material-symbols-outlined me-2 ">search</span>搜尋
                     </button>
                 </div>
@@ -154,7 +154,7 @@ current: scenicSpot
 </section>
 
 
-<!-- 探索景點    呈現 篩選結果 -->
+<!-- 探索景點    呈現篩選結果 -->
 <section class="scenicSpot-searchResult mb-1 d-none">
     <div class="container">
         <h2 class=" fs-4 fs-md-2 text-dark fw-light mb-2">搜尋結果
@@ -202,8 +202,9 @@ current: scenicSpot
     <div class="container mb-7">
         <h2 class="scenicSpot_mame  fs-4 fs-md-2 fw-light mb-1 mb-md-2">羅東林業文化園區</h2>
         <div class="mb-2 mb-md-5">
-            <a class=" btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1"># <span
-                    class="scenicSpot_category" href="#">自然風景類</span></a>
+            <a class=" btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1" href="#"># 
+                <span class="scenicSpot_category">自然風景類</span>
+            </a>
         </div>
         <h5 class="fs-m fs-md-5 fw-bold mb-1">景點介紹：</h5>
         <p class="scenicSpot_description fw-light mb-5 mb-md-7">
