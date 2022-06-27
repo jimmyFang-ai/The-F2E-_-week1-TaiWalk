@@ -24,16 +24,18 @@ $(function () {
   getAuthorizationHeader();
 
   // 取得 網址參數
-  if (this.location.pathname === '/activity.html') {
+  if (location.pathname === '/activity.html') {
     activity_getParameters()
   }
 
-  if (this.location.pathname === '/scenicSpot.html') {
+  if (location.pathname === '/scenicSpot.html') {
     scenicSpot_getParameters();
   }
 
-  // scenicSpot_getParameters();
-  // activity_getParameters()
+  if (location.pathname === '/restaurant.html') {
+    restaurant_getParameters(); 
+  }
+
 
   // 首頁- 取得資料
   get_activity();
@@ -42,9 +44,10 @@ $(function () {
 
   // 探索景點頁面 - 取得景點全部資料
   scenicSpot_getAllData();
-
   // 節慶活動頁面 - 取得活動全部資料
   activity_getAllData();
+  // 品嘗美食頁面 - 取得活動全部資料
+  restaurant_getAllData();
 });
 
 

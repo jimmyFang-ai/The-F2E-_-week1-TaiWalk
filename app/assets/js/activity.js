@@ -1,24 +1,24 @@
 
 // 主要區塊 DOM 
-const activity_themeArea = document.querySelector('.activity-themeArea');
-const activity_searchResult = document.querySelector('.activity-searchResult');
-const activity_categoryInner = document.querySelector('.activity-categoryInner');
+const activity_themeArea = document.querySelector('.activity_themeArea');
+const activity_searchResult = document.querySelector('.activity_searchResult');
+const activity_categoryInner = document.querySelector('.activity_categoryInner');
 
 
 // 搜尋欄位 DOM  
-const activity_searchCity = document.querySelector('.activity-searchCity');
-const activity_searchKeyword = document.querySelector('.activity-searchKeyword');
+const activity_searchCity = document.querySelector('.activity_searchCity');
+const activity_searchKeyword = document.querySelector('.activity_searchKeyword');
 const activity_searchBtn = document.querySelector('.activity_searchBtn');
 
 
 // 呈現畫面列表 DOM
-const activity_categoryList = document.querySelector('.activity-categoryList');
-const activity_resultList = document.querySelector('.activity-resultList');
+const activity_categoryList = document.querySelector('.activity_categoryList');
+const activity_resultList = document.querySelector('.activity_resultList');
 const search_resultNum = document.querySelector('.search_resultNum');
 
 
 //  麵包削列表
-const activity_breadcrumb = document.querySelector('.activity-breadcrumb')
+const activity_breadcrumb = document.querySelector('.activity_breadcrumb')
 
 
 //  呈現節慶活動內頁畫面 DOM
@@ -133,7 +133,6 @@ function activity_updateResult(categoryVal) {
 };
 
 
-
 // 節慶活動 - 呈現篩選結果
 function activity_renderResult(arr) {
     let str = '';
@@ -193,7 +192,6 @@ if (activity_searchBtn) {
 
 
 
-
 function search_activity(city, keyword) {
 
     // 取得 token
@@ -244,9 +242,6 @@ function search_activity(city, keyword) {
 };
 
 
-// //  ------   未完成   跳轉 id 會出錯 ------
-
-
 
 // 節慶活動內頁 - 取得活動單一資料
 function activityInner_getData(id) {
@@ -259,7 +254,7 @@ function activityInner_getData(id) {
     if (token !== undefined && targetId !== undefined) {
         $.ajax({
             type: 'GET',
-            url: `https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?%24filter=contains%28ActivityID%2C%27${targetId}%27%29&%24top=30&%24format=JSON`,
+            url: `${baseUrl}/Activity?%24filter=contains%28ActivityID%2C%27${targetId}%27%29&%24top=30&%24format=JSON`,
             headers: {
                 "authorization": "Bearer " + token,
             },
@@ -287,7 +282,6 @@ function activityInner_getData(id) {
         });
     }
 };
-
 
 
 
@@ -356,21 +350,21 @@ function activityInner_renderData(data) {
     // 活動介紹
     activityInner_description.textContent = data.Description;
     // 活動時間
-    activityInner_time.textContent = data.StartTime.slice(0, 10) + '~' + data.EndTime.slice(0, 10);
+    activityInner_time.textContent = data.StartTime.slice(0, 10) + '~' + data.EndTime.slice(0, 10) || '無';
     // 活動電話
     activityInner_phone.setAttribute('href', 'tel:' + data.Phone);
-    activityInner_phone.textContent = data.Phone;
+    activityInner_phone.textContent = data.Phone || '無';
     //主辦單位
-    activityInner_organizer.textContent = data.Organizer;
+    activityInner_organizer.textContent = data.Organizer || '無';
     // 活動地址
-    activityInner_address.textContent = data.Address;
+    activityInner_address.textContent = data.Address || '無';
     // 活動網址
     activityInner_websiteUrl.setAttribute('href', data.WebsiteUrl);
-    activityInner_websiteUrl.textContent = data.WebsiteUrl;
+    activityInner_websiteUrl.textContent = data.WebsiteUrl || '無';
     // 活動售票資訊
-    activityInner_charge.textContent = data.Charge;
+    activityInner_charge.textContent = data.Charge || '無';
     // 活動注意事項
-    activityInner_remarks.textContent = data.Remarks;
+    activityInner_remarks.textContent = data.Remarks || '無';
     // 活動地圖
     activityInner_map.innerHTML = `<iframe class="rounded-4"
   src="https://www.google.com/maps?q=${data.Address}(${data.ActivityName})&hl=zh-TW&z=15&t=&output=embed"
@@ -378,10 +372,7 @@ function activityInner_renderData(data) {
   referrerpolicy="no-referrer-when-downgrade"></iframe>`;
 
     // 如果資料的資訊是空的，就顯示無的狀態
-    if (!data.charge) { activityInner_charge.textContent = '無' };
-    if (!data.Remarks) { activityInner_remarks.textContent = '無' };
     if (!data.WebsiteUrl) {
-        activityInner_websiteUrl.textContent = '無';
         activityInner_websiteUrl.classList.add('text-dark');
         activityInner_websiteUrl.classList.remove('text-info');
         activityInner_websiteUrl.classList.toggle('text-decoration-underline');
@@ -402,7 +393,7 @@ function activityInner_renderRecommend(id) {
     if (token !== undefined && targetId !== undefined) {
         $.ajax({
             type: 'GET',
-            url: `https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?%24filter=ActivityID%20%20ne%20%27${targetId}%27&%24format=JSON`,
+            url: `${baseUrl}/Activity?%24filter=ActivityID%20%20ne%20%27${targetId}%27&%24format=JSON`,
             headers: {
                 "authorization": "Bearer " + token,
             },

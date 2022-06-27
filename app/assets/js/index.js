@@ -21,12 +21,15 @@ function get_activity() {
             type: 'GET',
             url: `${baseUrl}/Activity?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`,
             headers: {
-                "authorization": "Bearer " +token,
+                "authorization": "Bearer " + token,
             },
             async: false,
             success: function (data) {
-                const data_activity = data;
-                // console.log('data', data_activity);
+                let thisData = data;
+
+                // 過濾資料 排除沒有類別 1、景點名字、城市
+                let data_activity = thisData.filter((item) => item.ActivityName && item.City && item.Class1);
+
                 //呈現畫面
                 if (home_activity) {
                     render_activity(data_activity);
@@ -50,12 +53,15 @@ function get_scenicSpot() {
             type: 'GET',
             url: `${baseUrl}/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`,
             headers: {
-                "authorization": "Bearer " +token,
+                "authorization": "Bearer " + token,
             },
             async: false,
             success: function (data) {
-                const data_scenicSpot = data;
-                // console.log('data', data_scenicSpot);
+                let thisData = data;
+
+                // 過濾資料 排除沒有類別 1、景點名字、城市
+                let data_scenicSpot = thisData.filter((item) => item.ScenicSpotName && item.City && item.Class1);
+
                 // 呈現畫面
                 if (home_scenicSpot) {
                     render_scenicSpot(data_scenicSpot);
@@ -80,12 +86,15 @@ function get_restaurant() {
             type: 'GET',
             url: `${baseUrl}/Restaurant?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`,
             headers: {
-                "authorization": "Bearer " +token,
+                "authorization": "Bearer " + token,
             },
             async: false,
             success: function (data) {
-                const data_restaurant = data;
-                // console.log('data', data_restaurant);
+                let thisData = data;
+
+                // 過濾資料 排除沒有類別 1、景點名字、城市
+                let data_restaurant = thisData.filter((item) => item.RestaurantName && item.City && item.Class);
+
                 //呈現畫面
                 if (home_restaurant) {
                     render_restaurant(data_restaurant);
@@ -257,7 +266,7 @@ function search_keyword() {
     //   console.log(decodeURIComponent('%E8%8A%B1'));
 
     let encodedStr = encodeURIComponent(search_keyword.value.trim());
-   
+
     if (search_keyword.value.trim() !== '') {
         window.location.href = `./${search_type.value}.html?city=全部縣市&keyword=${encodedStr}`;
     }
