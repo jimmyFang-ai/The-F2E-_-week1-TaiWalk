@@ -14,7 +14,8 @@
 
 
   <!-- google icon -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <!-- swiper -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
@@ -194,30 +195,6 @@
                         </h4>
                     </div>
                 </li>
-                <li class="col mb-2" data-category="夜市小吃">
-                    <div class="category-card rounded-4 rounded-md-6">
-                        <div class="ratio ratio-16x9 rounded-4 rounded-md-6  overflow-hidden">
-                            <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/夜市小吃.jpg"
-                                    alt="夜市小吃">
-                            </a>
-                        </div>
-                        <h4 class="category-cardText  fs-6 fs-md-4   mb-0">夜市小吃
-                        </h4>
-                    </div>
-                </li>
-                <li class="col mb-2" data-category="其他">
-                    <div class="category-card rounded-4 rounded-md-6">
-                        <div class="ratio ratio-16x9 rounded-4 rounded-md-6  overflow-hidden">
-                            <a href="#">
-                                <img class="w-100 h-100 img-cover zoomImg" src="./assets/images/其他.jpg"
-                                    alt="其他">
-                            </a>
-                        </div>
-                        <h4 class="category-cardText  fs-6 fs-md-4   mb-0">其他
-                        </h4>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -273,13 +250,11 @@
     <div class="container mb-7">
         <h2 class="restaurant_name fs-4 fs-md-2 fw-light mb-1 mb-md-2">金都餐廳</h2>
         <div class="mb-2 mb-md-5">
-            <a class="btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1" href="#">#
-                <span class="restaurant_category">中式美食</span>
+            <a class="restaurant_category btn btn-outline-badge  rounded-pill  fs-sm fs-md-lg lh-base fw-normal me-1" href="#">
              </a>
         </div>
         <h5 class="fs-m fs-md-5 fw-bold mb-1">餐廳介紹：</h5>
         <p class="restaurant_description fw-light mb-5 mb-md-7">
-            埔里金都餐廳於1994年創立於美麗的台灣中心埔里，1995年起創意取材埔里名酒研發推出紹興宴，揚名台北中華美食展，此後，不斷結合地方鄉土農特產，持續研發新健康美食與主題饗宴(日月潭邵族宴、水果宴、梅宴、茭白筍大餐、珍菇水筍宴、養生御膳、百花宴、香草宴、香米喜宴、原鄉風味餐、2003時尚蕃茄宴…等)，更榮耀承辦聖文森總理及五國元首國宴，成功的在台灣捲起金都美食風！精采展現台灣美食新風情，成為台灣中部旅遊線首選最佳的美食餐廳，並連續四年榮獲優經濟部選拔為質餐廳之殊榮。
         </p>
 
         <div class="row row-cols-1 row-cols-lg-2">
@@ -290,7 +265,7 @@
                             href="tel:+886-3-9545114"></a></p>
                     <p class="fw-bold">餐廳地址： <span
                             class="restaurant_address text-info text-decoration-underline fw-normal"></span></p>
-                    <p class="fw-bold">官方網站： <a class="restaurant_websiteUrl text-info text-decoration-underline fw-normal"
+                    <p class="fw-bold">官方網站： <a class="restaurant_websiteUrl text-break text-info text-decoration-underline fw-normal"
                             href="#"></a>
                     </p>
                 </div>
@@ -320,7 +295,7 @@
                     </li>
                     <li class="col">
                         <a class="d-block  border border-1 rounded-3" href="#">
-                            <div class="nearbyInfo-card active   py-2  py-md-4">
+                            <div class="nearbyInfo-card    py-2  py-md-4">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img class="nearbyIcon" src="./assets/images/nearby-event30.png"
                                         alt="nearby-event30">
@@ -385,14 +360,26 @@
     </a>
   </div>
 
-
+  <!--loading  -->
+  <div class="loading" style="display: none;">
+    <div class="loading-mask"></div>
+    <div class="loading-img">
+      <div class="loadingio-spinner-ripple-ett975kzlg6">
+        <div class="ldio-fhsto9ag0lp">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </div>
   
+
+
+
   <!-- axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
   <!-- 加密 使用 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
-  
   
   <!-- <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> -->
   <script src="./assets/js/vendors.js"></script>

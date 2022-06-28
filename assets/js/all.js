@@ -76,24 +76,8 @@ if (activity_categoryList) {
 function activity_changeCategory(e) {
   e.preventDefault(); // 取出 卡片類片 的 DOM 和 值
 
-  var category_card = e.target.closest(".category-card");
-  var categoryVal = e.target.closest("li").dataset.category; // 切換 卡片類片 active
+  var categoryVal = e.target.closest("li").dataset.category; // 類別篩選結果
 
-  var category_allCard = document.querySelectorAll('.category-card');
-  category_allCard.forEach(function (item) {
-    // 先移除全部 acitve
-    item.classList.remove("active");
-  }); // 在透過被點擊到的卡片加上 acitve
-
-  category_card.classList.add("active"); // 更新類別篩選結果
-
-  activity_updateResult(categoryVal);
-}
-
-; // 節慶活動 - 更新類別篩選結果
-
-function activity_updateResult(categoryVal) {
-  console.log(categoryVal);
   var category_resultList = data_activity.filter(function (item) {
     return item.Class1 === categoryVal;
   });
@@ -281,13 +265,13 @@ function activityInner_renderData(data) {
 
   activityInner_mame.textContent = data.ActivityName; // 活動類別
 
-  activityInner_category.textContent = data.Class1; // 活動介紹
+  activityInner_category.textContent = "# ".concat(data.Class1); // 活動介紹
 
   activityInner_description.textContent = data.Description; // 活動時間
 
-  activityInner_time.textContent = data.StartTime.slice(0, 10) + '~' + data.EndTime.slice(0, 10) || '無'; // 活動電話
+  activityInner_time.textContent = "".concat(data.StartTime.slice(0, 10), "  ~ ").concat(data.EndTime.slice(0, 10)) || '無'; // 活動電話
 
-  activityInner_phone.setAttribute('href', 'tel:' + data.Phone);
+  activityInner_phone.setAttribute('href', "tel:+".concat(data.Phone));
   activityInner_phone.textContent = data.Phone || '無'; //主辦單位
 
   activityInner_organizer.textContent = data.Organizer || '無'; // 活動地址
@@ -398,10 +382,10 @@ function activity_getParameters() {
 
       search_activity(city, keyword);
     }
-  } else {
-    activity_getAllData();
   }
 }
+
+;
 "use strict";
 
 // // PTX api  header 驗證
@@ -423,7 +407,17 @@ function activity_getParameters() {
 // jQuery 初始化
 $(function () {
   // 取得 TDX api  header 驗證
-  getAuthorizationHeader(); // 取得 網址參數
+  getAuthorizationHeader(); // 首頁- 取得資料
+
+  get_activity();
+  get_scenicSpot();
+  get_restaurant(); // 探索景點頁面 - 取得景點全部資料
+
+  scenicSpot_getAllData(); // 節慶活動頁面 - 取得活動全部資料
+
+  activity_getAllData(); // 品嘗美食頁面 - 取得活動全部資料
+
+  restaurant_getAllData(); // 取得 網址參數
 
   if (location.pathname === '/activity.html') {
     activity_getParameters();
@@ -435,18 +429,13 @@ $(function () {
 
   if (location.pathname === '/restaurant.html') {
     restaurant_getParameters();
-  } // 首頁- 取得資料
+  } // loading 動畫
 
 
-  get_activity();
-  get_scenicSpot();
-  get_restaurant(); // 探索景點頁面 - 取得景點全部資料
-
-  scenicSpot_getAllData(); // 節慶活動頁面 - 取得活動全部資料
-
-  activity_getAllData(); // 品嘗美食頁面 - 取得活動全部資料
-
-  restaurant_getAllData();
+  toggleLoading(true);
+  setTimeout(function () {
+    toggleLoading(false);
+  }, 3000);
 }); // baseUrl
 
 var baseUrl = "https://tdx.transportdata.tw/api/basic/v2/Tourism"; // jQuery  取得 TDX api  header 驗證
@@ -852,23 +841,8 @@ if (restaurant_categoryList) {
 function restaurant_changeCategory(e) {
   e.preventDefault(); // 取出 卡片類片 的 DOM 和 值
 
-  var category_card = e.target.closest(".category-card");
-  var categoryVal = e.target.closest("li").dataset.category; // 切換 卡片類片 active
+  var categoryVal = e.target.closest("li").dataset.category; // 類別篩選結果
 
-  var category_allCard = document.querySelectorAll('.category-card');
-  category_allCard.forEach(function (item) {
-    // 先移除全部 acitve
-    item.classList.remove("active");
-  }); // 在透過被點擊到的卡片加上 acitve
-
-  category_card.classList.add("active"); // 更新類別篩選結果
-
-  restaurant_updateResult(categoryVal);
-}
-
-; // 品嘗美食 - 更新類別篩選結果
-
-function restaurant_updateResult(categoryVal) {
   var category_resultList = data_restaurant.filter(function (item) {
     return item.Class === categoryVal;
   });
@@ -1052,16 +1026,16 @@ function restaurantInner_renderData(data) {
 
   restaurantInner_mame.textContent = data.RestaurantName; // 餐廳類別
 
-  restaurantInner_category.textContent = data.Class; // 餐廳介紹
+  restaurantInner_category.textContent = "#  ".concat(data.Class); // 餐廳介紹
 
   restaurantInner_description.textContent = data.Description; // 餐廳時間
 
-  restaurantInner_time.textContent = data.OpenTime; // 餐廳電話
+  restaurantInner_time.textContent = data.OpenTime || '無'; // 餐廳電話
 
-  restaurantInner_phone.setAttribute('href', 'tel:' + data.Phone);
-  restaurantInner_phone.textContent = data.Phone; // 餐廳地址
+  restaurantInner_phone.setAttribute('href', "tel:+".concat(data.Phone));
+  restaurantInner_phone.textContent = data.Phone || '無'; // 餐廳地址
 
-  restaurantInner_address.textContent = data.Address; // 餐廳網址
+  restaurantInner_address.textContent = data.Address || '無'; // 餐廳網址
 
   restaurantInner_websiteUrl.setAttribute('href', data.WebsiteUrl);
   restaurantInner_websiteUrl.textContent = data.WebsiteUrl || '無'; // 餐廳地圖
@@ -1141,7 +1115,7 @@ function restaurant_getParameters() {
 
     if (!searchUrl[1].includes('&')) {
       // 取得 路徑 id
-      id = searchUrl[1].split('=')[1]; // 呈現 節慶活動內頁
+      id = searchUrl[1].split('=')[1]; // 呈現 品嘗美食內頁
 
       restaurantInner_getData(id);
     } else {
@@ -1159,12 +1133,10 @@ function restaurant_getParameters() {
         }
 
         ;
-      }); // 呈現 節慶活動  搜尋結果列表
+      }); // 呈現 品嘗美食  搜尋結果列表
 
       search_restaurant(city, keyword);
     }
-  } else {
-    restaurant_getAllData();
   }
 }
 "use strict";
@@ -1244,23 +1216,8 @@ if (scenicSpot_categoryList) {
 function scenicSpot_changeCategory(e) {
   e.preventDefault(); // 取出 卡片類片 的 DOM 和 值
 
-  var category_card = e.target.closest(".category-card");
-  var categoryVal = e.target.closest("li").dataset.category; // 切換 卡片類片 active
+  var categoryVal = e.target.closest("li").dataset.category; // 類別篩選結果
 
-  var category_allCard = document.querySelectorAll('.category-card');
-  category_allCard.forEach(function (item) {
-    // 先移除全部 acitve
-    item.classList.remove("active");
-  }); // 在透過被點擊到的卡片加上 acitve
-
-  category_card.classList.add("active"); // 更新類別篩選結果
-
-  scenicSpot_updateResult(categoryVal);
-}
-
-; // 探索景點 - 更新類別篩選結果
-
-function scenicSpot_updateResult(categoryVal) {
   var category_resultList = data_scenicSpot.filter(function (item) {
     return item.Class1 === categoryVal;
   });
@@ -1443,13 +1400,13 @@ function scenicSpotInner_renderData(data) {
 
   scenicSpotInner_mame.textContent = data.ScenicSpotName; // 景點類別
 
-  scenicSpotInner_category.textContent = data.Class1; // 景點介紹
+  scenicSpotInner_category.textContent = "#  ".concat(data.Class1); // 景點介紹
 
   scenicSpotInner_description.textContent = data.DescriptionDetail; // 景點開放時間
 
   scenicSpotInner_opentTime.textContent = data.OpenTime || '無'; // 景點電話
 
-  scenicSpotInner_phone.setAttribute('href', 'tel:' + data.Phone);
+  scenicSpotInner_phone.setAttribute('href', "tel:+".concat(data.Phone));
   scenicSpotInner_phone.textContent = data.Phone || '無'; // 景點地址
 
   scenicSpotInner_address.textContent = data.Address || '無'; // 景點網址
@@ -1559,10 +1516,10 @@ function scenicSpot_getParameters() {
     }
 
     ;
-  } else {
-    scenicSpot_getAllData();
   }
 }
+
+;
 "use strict";
 
 // 首頁 - heroBanner 
@@ -1760,6 +1717,13 @@ $(function () {
 
 function getRandom(num) {
   return Math.floor(Math.random() * num);
+}
+
+; // loading 載入動態
+
+function toggleLoading(show) {
+  //show的參數，從外部傳入如果是true 就 開啟loading，flase 就關閉
+  document.querySelector(".loading").style.display = show ? 'block' : 'none';
 }
 
 ;
