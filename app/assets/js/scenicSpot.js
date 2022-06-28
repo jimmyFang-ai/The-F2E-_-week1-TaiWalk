@@ -54,6 +54,9 @@ function scenicSpot_getAllData() {
 
     if (token !== undefined) {
         $.ajax({
+            beforeSend: function () {
+                toggleLoading(true);
+            },
             type: 'GET',
             url: `${baseUrl}/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON`,
             headers: {
@@ -65,6 +68,10 @@ function scenicSpot_getAllData() {
                 const thisData = data;
                 // 過濾資料 排除沒有類別 1、景點名字、城市
                 data_scenicSpot = thisData.filter((item) => item.ScenicSpotName && item.City && item.Class1);
+            },
+            complete: function () {
+                setTimeout(() => { toggleLoading(false);
+                }, 3000);
             },
             error: function (xhr, textStatus, thrownError) {
                 console.log('errorStatus:', textStatus);
