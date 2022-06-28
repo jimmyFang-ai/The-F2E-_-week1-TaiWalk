@@ -74,17 +74,6 @@
         font-weight: 700;
         opacity: .6;
     }
-
-    &.active {
-        box-shadow: 0 0 0 4px  $warning;
-        .category-cardText   {
-            opacity: 1;
-         }
-
-        .zoomImg {
-                 transform: scale(1.2);
-         }
-    }
    
     &:hover {
         .category-cardText  {

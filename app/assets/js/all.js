@@ -23,24 +23,12 @@ $(function () {
   // 取得 TDX api  header 驗證
   getAuthorizationHeader();
 
-  // 取得 網址參數
-  if (location.pathname === '/activity.html') {
-    activity_getParameters()
-  }
-
-  if (location.pathname === '/scenicSpot.html') {
-    scenicSpot_getParameters();
-  }
-
-  if (location.pathname === '/restaurant.html') {
-    restaurant_getParameters(); 
-  }
-
 
   // 首頁- 取得資料
   get_activity();
   get_scenicSpot();
   get_restaurant();
+
 
   // 探索景點頁面 - 取得景點全部資料
   scenicSpot_getAllData();
@@ -48,12 +36,30 @@ $(function () {
   activity_getAllData();
   // 品嘗美食頁面 - 取得活動全部資料
   restaurant_getAllData();
+
+
+  // 取得 網址參數
+  if (location.pathname === '/activity.html') {
+    activity_getParameters();
+  }
+
+  if (location.pathname === '/scenicSpot.html') {
+    scenicSpot_getParameters();
+  }
+
+  if (location.pathname === '/restaurant.html') {
+    restaurant_getParameters();
+  }
+
+  // loading 動畫
+  toggleLoading(true);
+  setTimeout(() => { toggleLoading(false);
+  }, 3000);
 });
 
 
 // baseUrl
 let baseUrl = `https://tdx.transportdata.tw/api/basic/v2/Tourism`;
-
 
 
 

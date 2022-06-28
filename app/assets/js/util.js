@@ -66,6 +66,9 @@ function getRandom(num) {
 };
 
 
-
-
+// loading 載入動態
+function toggleLoading(show) {
+   //show的參數，從外部傳入如果是true 就 開啟loading，flase 就關閉
+   document.querySelector(".loading").style.display = show ? 'block' : 'none';
+};
 

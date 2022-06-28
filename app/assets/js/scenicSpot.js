@@ -47,7 +47,6 @@ let data_scenicSpot = [];
 let data_spotResult = [];
 
 
-
 // 探索景點 - 取得景點全部資料
 function scenicSpot_getAllData() {
     // 取得 token
@@ -86,28 +85,10 @@ function scenicSpot_changeCategory(e) {
 
 
     // 取出 卡片類片 的 DOM 和 值
-    let category_card = e.target.closest(".category-card");
     let categoryVal = e.target.closest("li").dataset.category;
 
 
-    // 切換 卡片類片 active
-    let category_allCard = document.querySelectorAll('.category-card');
-    category_allCard.forEach((item) => {
-        // 先移除全部 acitve
-        item.classList.remove("active");
-    })
-    // 在透過被點擊到的卡片加上 acitve
-    category_card.classList.add("active");
-
-
-    // 更新類別篩選結果
-    scenicSpot_updateResult(categoryVal);
-};
-
-
-// 探索景點 - 更新類別篩選結果
-function scenicSpot_updateResult(categoryVal) {
-
+    // 類別篩選結果
     let category_resultList = data_scenicSpot.filter((item) => item.Class1 === categoryVal);
 
     data_spotResult = category_resultList;
@@ -188,7 +169,6 @@ if (scenicSpot_searchBtn) {
 
 
 
-
 function search_scenicSpot(city, keyword) {
 
     // 取得 token
@@ -239,7 +219,6 @@ function search_scenicSpot(city, keyword) {
 };
 
 
-
 // 探索景點內頁 - 取得景點單一資料
 function scenicSpotInner_getData(id) {
     // 取得 token
@@ -279,7 +258,6 @@ function scenicSpotInner_getData(id) {
         });
     }
 };
-
 
 
 // 探索景點內頁 -  呈現 內頁資料內容
@@ -337,13 +315,13 @@ function scenicSpotInner_renderData(data) {
     // 景點名字
     scenicSpotInner_mame.textContent = data.ScenicSpotName;
     // 景點類別
-    scenicSpotInner_category.textContent = data.Class1;
+    scenicSpotInner_category.textContent = `#  ${data.Class1}`;
     // 景點介紹
     scenicSpotInner_description.textContent = data.DescriptionDetail;
     // 景點開放時間
     scenicSpotInner_opentTime.textContent = data.OpenTime || '無';
     // 景點電話
-    scenicSpotInner_phone.setAttribute('href', 'tel:' + data.Phone);
+    scenicSpotInner_phone.setAttribute('href', `tel:+${data.Phone}`);
     scenicSpotInner_phone.textContent = data.Phone || '無';
     // 景點地址
     scenicSpotInner_address.textContent = data.Address || '無';
@@ -361,7 +339,7 @@ function scenicSpotInner_renderData(data) {
   referrerpolicy="no-referrer-when-downgrade"></iframe>`;
 
     // 如果資料的資訊是空的，就顯示無的狀態
-   
+
     if (!data.WebsiteUrl) {
         scenicSpotInner_websiteUrl.classList.add('text-dark');
         scenicSpotInner_websiteUrl.classList.remove('text-info');
@@ -435,7 +413,6 @@ function scenicSpotInner_renderRecommend(id) {
 };
 
 
-
 // 判斷網頁跳轉 路徑狀態
 function scenicSpot_getParameters() {
     if (location.search) {
@@ -474,8 +451,5 @@ function scenicSpot_getParameters() {
             // 呈現 探索景點   搜尋結果列表
             search_scenicSpot(city, keyword);
         };
-        
-    } else {
-        scenicSpot_getAllData();
     }
-}
+};

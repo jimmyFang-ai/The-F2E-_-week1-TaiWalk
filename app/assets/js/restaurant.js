@@ -47,7 +47,6 @@ let data_restaurant = [];
 let data_restaurantResult = [];
 
 
-
 // 品嘗美食 - 取得活動全部資料
 function restaurant_getAllData() {
     // 取得 token
@@ -85,28 +84,9 @@ function restaurant_changeCategory(e) {
     e.preventDefault();
 
     // 取出 卡片類片 的 DOM 和 值
-    let category_card = e.target.closest(".category-card");
     let categoryVal = e.target.closest("li").dataset.category;
 
-
-    // 切換 卡片類片 active
-    let category_allCard = document.querySelectorAll('.category-card');
-    category_allCard.forEach((item) => {
-        // 先移除全部 acitve
-        item.classList.remove("active");
-    })
-    // 在透過被點擊到的卡片加上 acitve
-    category_card.classList.add("active");
-
-
-    // 更新類別篩選結果
-    restaurant_updateResult(categoryVal);
-};
-
-
-// 品嘗美食 - 更新類別篩選結果
-function restaurant_updateResult(categoryVal) {
-
+    // 類別篩選結果
     let category_resultList = data_restaurant.filter((item) => item.Class === categoryVal);
 
     data_restaurantResult = category_resultList;
@@ -172,7 +152,6 @@ function restaurant_renderResult(arr) {
 };
 
 
-
 // 品嘗美食 - 搜尋功能 & 關鍵字
 if (restaurant_searchBtn) {
     restaurant_searchBtn.addEventListener('click', function (e) {
@@ -185,7 +164,6 @@ if (restaurant_searchBtn) {
         }
     });
 };
-
 
 
 function search_restaurant(city, keyword) {
@@ -237,7 +215,6 @@ function search_restaurant(city, keyword) {
 };
 
 
-
 // 品嘗美食內頁 - 取得活動單一資料
 function restaurantInner_getData(id) {
     // 取得 token
@@ -277,9 +254,6 @@ function restaurantInner_getData(id) {
         });
     }
 };
-
-
-
 
 
 // 品嘗美食內頁 -  呈現 內頁資料內容
@@ -340,17 +314,17 @@ function restaurantInner_renderData(data) {
     // 餐廳名稱
     restaurantInner_mame.textContent = data.RestaurantName;
     // 餐廳類別
-    restaurantInner_category.textContent = data.Class;
+    restaurantInner_category.textContent = `#  ${data.Class}`;
     // 餐廳介紹
     restaurantInner_description.textContent = data.Description;
     // 餐廳時間
-    restaurantInner_time.textContent = data.OpenTime;
+    restaurantInner_time.textContent = data.OpenTime || '無';
     // 餐廳電話
-    restaurantInner_phone.setAttribute('href', 'tel:' + data.Phone);
-    restaurantInner_phone.textContent = data.Phone;
+    restaurantInner_phone.setAttribute('href', `tel:+${data.Phone}`);
+    restaurantInner_phone.textContent = data.Phone || '無';
 
     // 餐廳地址
-    restaurantInner_address.textContent = data.Address;
+    restaurantInner_address.textContent = data.Address || '無';
     // 餐廳網址
     restaurantInner_websiteUrl.setAttribute('href', data.WebsiteUrl);
     restaurantInner_websiteUrl.textContent = data.WebsiteUrl || '無';
@@ -367,9 +341,6 @@ function restaurantInner_renderData(data) {
         restaurantInner_websiteUrl.classList.toggle('text-decoration-underline');
     };
 };
-
-
-
 
 
 //品嘗美食內頁 - 呈現推薦列表
@@ -426,7 +397,7 @@ function restaurantInner_renderRecommend(id) {
                 };
 
                 // 呈現在 活動內頁推薦列表
-               restaurantInner_recommend.innerHTML = str;
+                restaurantInner_recommend.innerHTML = str;
             },
             error: function (xhr, textStatus, thrownError) {
                 console.log('errorStatus:', textStatus);
@@ -454,29 +425,27 @@ function restaurant_getParameters() {
             // 取得 路徑 id
             id = searchUrl[1].split('=')[1];
 
-            // 呈現 節慶活動內頁
-           restaurantInner_getData(id)
+            // 呈現 品嘗美食內頁
+            restaurantInner_getData(id)
         } else {
-                // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
-                const parameters = searchUrl[1].split('&');
-                console.log(parameters);
+            // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
+            const parameters = searchUrl[1].split('&');
+            console.log(parameters);
 
-                // 跑 forEach 取出 參數的 city 和 key 的值
-                parameters.forEach((parameter, index) => {
-                  if (parameters[index].split('=')[0] === 'city') {
+            // 跑 forEach 取出 參數的 city 和 key 的值
+            parameters.forEach((parameter, index) => {
+                if (parameters[index].split('=')[0] === 'city') {
                     // 取出 city 的值  並解碼
                     city = decodeURIComponent(parameters[index].split('=')[1]);
-                  } else if (parameters[index].split('=')[0] === 'keyword') {
+                } else if (parameters[index].split('=')[0] === 'keyword') {
                     // 取出 keywodr 的值 並解碼
                     keyword = decodeURIComponent(parameters[index].split('=')[1]);
-                  };
-                });
+                };
+            });
 
-                // 呈現 節慶活動  搜尋結果列表
-                search_restaurant(city, keyword);
-              }
-        }else {
-            restaurant_getAllData();
+            // 呈現 品嘗美食  搜尋結果列表
+            search_restaurant(city, keyword);
         }
     }
+}
 

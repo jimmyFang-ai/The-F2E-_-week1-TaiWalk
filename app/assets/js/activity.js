@@ -88,30 +88,9 @@ function activity_changeCategory(e) {
     e.preventDefault();
 
     // 取出 卡片類片 的 DOM 和 值
-    let category_card = e.target.closest(".category-card");
     let categoryVal = e.target.closest("li").dataset.category;
 
-
-    // 切換 卡片類片 active
-    let category_allCard = document.querySelectorAll('.category-card');
-    category_allCard.forEach((item) => {
-        // 先移除全部 acitve
-        item.classList.remove("active");
-    })
-    // 在透過被點擊到的卡片加上 acitve
-    category_card.classList.add("active");
-
-
-    // 更新類別篩選結果
-    activity_updateResult(categoryVal);
-};
-
-
-// 節慶活動 - 更新類別篩選結果
-function activity_updateResult(categoryVal) {
-
-    console.log(categoryVal);
-
+    // 類別篩選結果
     let category_resultList = data_activity.filter((item) => item.Class1 === categoryVal);
 
     data_spotResult = category_resultList;
@@ -176,7 +155,6 @@ function activity_renderResult(arr) {
 };
 
 
-
 // 節慶活動 - 搜尋功能 & 關鍵字
 if (activity_searchBtn) {
     activity_searchBtn.addEventListener('click', function (e) {
@@ -189,7 +167,6 @@ if (activity_searchBtn) {
         }
     });
 };
-
 
 
 function search_activity(city, keyword) {
@@ -242,7 +219,6 @@ function search_activity(city, keyword) {
 };
 
 
-
 // 節慶活動內頁 - 取得活動單一資料
 function activityInner_getData(id) {
     // 取得 token
@@ -282,7 +258,6 @@ function activityInner_getData(id) {
         });
     }
 };
-
 
 
 // 節慶活動內頁 -  呈現 內頁資料內容
@@ -346,13 +321,13 @@ function activityInner_renderData(data) {
     // 活動名稱
     activityInner_mame.textContent = data.ActivityName;
     // 活動類別
-    activityInner_category.textContent = data.Class1;
+    activityInner_category.textContent = `# ${data.Class1}`;
     // 活動介紹
     activityInner_description.textContent = data.Description;
     // 活動時間
-    activityInner_time.textContent = data.StartTime.slice(0, 10) + '~' + data.EndTime.slice(0, 10) || '無';
+    activityInner_time.textContent = `${data.StartTime.slice(0, 10)}  ~ ${data.EndTime.slice(0, 10)}` || '無';
     // 活動電話
-    activityInner_phone.setAttribute('href', 'tel:' + data.Phone);
+    activityInner_phone.setAttribute('href', `tel:+${data.Phone}`);
     activityInner_phone.textContent = data.Phone || '無';
     //主辦單位
     activityInner_organizer.textContent = data.Organizer || '無';
@@ -379,7 +354,6 @@ function activityInner_renderData(data) {
     };
 
 };
-
 
 
 //節慶活動內頁 - 呈現推薦列表
@@ -447,7 +421,6 @@ function activityInner_renderRecommend(id) {
 };
 
 
-
 // 判斷網頁跳轉 路徑狀態
 function activity_getParameters() {
     if (location.search) {
@@ -468,26 +441,24 @@ function activity_getParameters() {
             // 呈現 節慶活動內頁
             activityInner_getData(id)
         } else {
-                // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
-                const parameters = searchUrl[1].split('&');
-                console.log(parameters);
+            // 如果取得參數是有 '&' 做連接 city 和 keyword的話，就顯示搜尋結果列表
+            const parameters = searchUrl[1].split('&');
+            console.log(parameters);
 
-                // 跑 forEach 取出 參數的 city 和 key 的值
-                parameters.forEach((parameter, index) => {
-                  if (parameters[index].split('=')[0] === 'city') {
+            // 跑 forEach 取出 參數的 city 和 key 的值
+            parameters.forEach((parameter, index) => {
+                if (parameters[index].split('=')[0] === 'city') {
                     // 取出 city 的值  並解碼
                     city = decodeURIComponent(parameters[index].split('=')[1]);
-                  } else if (parameters[index].split('=')[0] === 'keyword') {
+                } else if (parameters[index].split('=')[0] === 'keyword') {
                     // 取出 keywodr 的值 並解碼
                     keyword = decodeURIComponent(parameters[index].split('=')[1]);
-                  };
-                });
+                };
+            });
 
-                // 呈現 節慶活動  搜尋結果列表
-                search_activity(city, keyword);
-              }
-        }else {
-            activity_getAllData();
+            // 呈現 節慶活動  搜尋結果列表
+            search_activity(city, keyword);
         }
     }
+};
 
