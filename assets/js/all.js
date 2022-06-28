@@ -419,15 +419,15 @@ $(function () {
 
   restaurant_getAllData(); // 取得 網址參數
 
-  if (location.pathname === '/activity.html') {
+  if (location.pathname === '/activity.html' || location.pathname === '/The-F2E-_-week1-TaiWalk/activity.html') {
     activity_getParameters();
   }
 
-  if (location.pathname === '/scenicSpot.html') {
+  if (location.pathname === '/scenicSpot.html' || location.pathname === '/The-F2E-_-week1-TaiWalk/scenicSpot.html') {
     scenicSpot_getParameters();
   }
 
-  if (location.pathname === '/restaurant.html') {
+  if (location.pathname === '/restaurant.html' || location.pathname === '/The-F2E-_-week1-TaiWalk/restaurant.html') {
     restaurant_getParameters();
   } // loading 動畫
 
