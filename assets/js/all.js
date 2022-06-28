@@ -418,15 +418,6 @@ $(function () {
   activity_getAllData(); // 品嘗美食頁面 - 取得活動全部資料
 
   restaurant_getAllData(); // 取得 網址參數
-  // if (location.pathname === '/activity.html' || location.pathname === '/The-F2E-_-week1-TaiWalk/activity.html') {
-  //   activity_getParameters();
-  // }
-  // if (location.pathname === '/scenicSpot.html' || location.pathname === '/The-F2E-_-week1-TaiWalk/scenicSpot.html') {
-  //   scenicSpot_getParameters();
-  // }
-  // if (location.pathname === '/restaurant.html' || location.pathname === '/The-F2E-_-week1-TaiWalk/restaurant.html') {
-  //   restaurant_getParameters();
-  // }
 
   if (location.pathname.includes('/activity.html')) {
     activity_getParameters();
@@ -1192,6 +1183,9 @@ function scenicSpot_getAllData() {
 
   if (token !== undefined) {
     $.ajax({
+      beforeSend: function beforeSend() {
+        toggleLoading(true);
+      },
       type: 'GET',
       url: "".concat(baseUrl, "/ScenicSpot?%24filter=Picture%2FPictureUrl1%20ne%20null&%24format=JSON"),
       headers: {
@@ -1205,6 +1199,11 @@ function scenicSpot_getAllData() {
         data_scenicSpot = thisData.filter(function (item) {
           return item.ScenicSpotName && item.City && item.Class1;
         });
+      },
+      complete: function complete() {
+        setTimeout(function () {
+          toggleLoading(false);
+        }, 3000);
       },
       error: function error(xhr, textStatus, thrownError) {
         console.log('errorStatus:', textStatus);
